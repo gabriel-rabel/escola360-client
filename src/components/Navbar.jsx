@@ -3,76 +3,78 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
 function Navbar() {
-   //acessando as informações do context
-   const { isLoggedIn, role } = useContext(AuthContext);
+  //acessando as informações do context
+  const { isLoggedIn, role } = useContext(AuthContext);
 
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-   function handleLogout(e) {
-      e.preventDefault();
-      localStorage.removeItem("userToken");
-      localStorage.removeItem("userId");
-      localStorage.removeItem("userRole");
+  function handleLogout(e) {
+    e.preventDefault();
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userRole");
 
-      navigate("/login");
-   }
+    navigate("/login");
+  }
 
-   console.log(role);
+  console.log(role);
 
-   return (
-      <nav className="bg-white shadow">
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between h-16">
-               <Link to="/" className="flex">
-                  <div className="flex-shrink-0 flex items-center">
-                     {/*<img
+  return (
+    <nav className="bg-white shadow">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <Link to="/" className="flex">
+            <div className="flex-shrink-0 flex justify-center items-center">
+              {/*<img
                         className="h-8 w-8"
                         src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
                         alt="Workflow"
                      />
                      <span className="text-lg font-bold ml-2">Escola360</span>*/}
-                     <p>Logo do projeto</p>
-                  </div>
-               </Link>
-               <div className="flex items-center">
-                  {isLoggedIn === false && (
-                     <>
-                        <Link
-                           to="/signup"
-                           className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
-                        >
-                           Sign up
-                        </Link>
-                        <Link
-                           to="/login"
-                           className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
-                        >
-                           Log in
-                        </Link>
-                     </>
-                  )}
-
-                  {isLoggedIn === true && (
-                     <>
-                        <button
-                           onClick={handleLogout}
-                           className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
-                        >
-                           Logout
-                        </button>
-                        <Link
-                           to="/profile"
-                           className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
-                        >
-                           Profile
-                        </Link>
-                     </>
-                  )}
-               </div>
+              <div className=" w-20">
+                <img src="../public/imagens/logo.jpg" />
+              </div>
             </div>
-         </div>
-      </nav>
-   );
+          </Link>
+          <div className="flex items-center">
+            {isLoggedIn === false && (
+              <>
+                <Link
+                  to="/signup"
+                  className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Sign up
+                </Link>
+                <Link
+                  to="/login"
+                  className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Log in
+                </Link>
+              </>
+            )}
+
+            {isLoggedIn === true && (
+              <>
+                <button
+                  onClick={handleLogout}
+                  className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Logout
+                </button>
+                <Link
+                  to="/profile"
+                  className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Profile
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;
