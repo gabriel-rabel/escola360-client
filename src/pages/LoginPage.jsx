@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
    const navigate = useNavigate();
+   const [userType, setUserType] = useState("user");
 
    const [form, setForm] = useState({
       email: "",
