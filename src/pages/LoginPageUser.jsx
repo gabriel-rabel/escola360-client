@@ -1,11 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/escola360logo.svg";
 
 function LoginPageUser() {
   const navigate = useNavigate();
-  const [userType, setUserType] = useState("user");
 
   const [form, setForm] = useState({
     email: "",
@@ -97,6 +96,12 @@ function LoginPageUser() {
             >
               Entrar
             </button>
+            <p className="mt-2">
+              Ainda não tem uma conta?{" "}
+              <Link to="/signup" className="text-indigo-500">
+                Cadastrar-se
+              </Link>
+            </p>
           </div>
         </form>
       </div>
