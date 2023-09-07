@@ -12,6 +12,7 @@ function LoginPageSchool() {
     password: "",
   });
 
+  //Esse handleChange atualiza meu formulário
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
@@ -20,7 +21,10 @@ function LoginPageSchool() {
     e.preventDefault();
     try {
       // Faça a requisição para a rota /login da sua API aqui.
-      const response = await axios.post("/loginschool", form); // Certifique-se de ajustar a URL da sua API
+      const response = await axios.post(
+        "http:localhost:4000/school/login",
+        form
+      ); // Certifique-se de ajustar a URL da sua API
 
       // GUARDAR O TOKEN E ID DE QUEM LOGOU
       const token = response.data.token;
@@ -38,19 +42,15 @@ function LoginPageSchool() {
     }
   }
 
-  function handleRadio(e) {
-    setUserType(e.target.value);
-  }
-
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen w-screen">
       {/*   <!-- Coluna esquerda com o logotipo e background indigo --> */}
-      <div className="flex-1 flex justify-center items-center bg-indigo-700">
+      <div className="flex-1 flex justify-center items-center bg-indigo-700 w-1/2">
         <img src={logo} alt="Your Company" className="w-32" />
       </div>
 
       {/*   <!-- Coluna direita com o formulário de login --> */}
-      <div className="flex-1 flex justify-center items-center">
+      <div className="flex-1 flex justify-center items-center w-1/2">
         <div>
           <div className="mb-4 w-64">
             <h1 className="text-4xl font-raleway font-semibold mb-6 text-gray-900">
@@ -96,6 +96,7 @@ function LoginPageSchool() {
 
             <div>
               <button
+                onClick={handleSubmit}
                 type="submit"
                 className="mt-4 w-full bg-indigo-700 text-white py-2 px-4 rounded-md hover:bg-indigo-700"
               >
