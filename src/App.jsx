@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import ProtectRoute from "./components/ProtectRoute";
 import SchoolHomePage from "./pages/SchoolHomePage";
 import UserHomePage from "./pages/UserHomePage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <div className="max-w-7xl ">
         <Routes>
           {/* Rotas que não devem ser protegidas */}
+          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPageUser />} />
           <Route path="/loginschool" element={<LoginPageSchool />} />
           <Route path="/signup" element={<SignupPage />} />
@@ -27,7 +29,7 @@ function App() {
           />
 
           <Route
-            path="/"
+            path="/school"
             element={<ProtectRoute Component={SchoolHomePage} />}
           />
 
