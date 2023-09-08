@@ -1,0 +1,81 @@
+@font-face {
+  font-family: "Raleway";
+  src: url("caminho-para-a-fonte/Raleway-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+.font-raleway {
+    font-family: 'Raleway', sans-serif;
+  }
+
+
+
+.bg-custom {
+  background-image: url("./assets/bg.svg");
+  background-size: cover; /* Cobrir toda a área do elemento */
+  background-position: center; /* Centralizar a imagem horizontal e verticalmente */
+  width: 100vw; /* Define a largura como 100% da largura da tela */
+  height: 100vh; /* Define a altura como 100% da altura da tela */
+}
+
+.navbar {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  align-content: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  background-image: url("./assets/escola360logo.svg");
+  background-size: contain; /* Controla o tamanho da imagem */
+  background-repeat: no-repeat; /* Evita repetição da imagem */
+  width: 200px; /* Defina a largura da div .logo */
+  height: 24px; /* Defina a altura da div .logo */
+  padding-left: 30px; /* Adicione um espaçamento à esquerda do logo */
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.login-student {
+  background-color: #eb420e; /* Cor de fundo desejada */
+  color: #fff; /* Cor do texto */
+  border: none;
+  width: 140px; /* Largura desejada */
+  height: 38px; /* Altura desejada */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-school {
+  color: #fff; /* Cor do texto branca */
+  background-color: transparent; /* Fundo transparente */
+  border: 1px solid #fff; /* Borda branca de 1px */
+  width: 140px; /* Largura desejada */
+  height: 38px; /* Altura desejada */
+  border-radius: 5px;
+  padding: 0; /* Removendo o preenchimento original */
+  cursor: pointer;
+}
+
+.contact-link {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
