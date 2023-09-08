@@ -5,6 +5,7 @@ import LoginPageUser from "./pages/LoginPageUser";
 import LoginPageSchool from "./pages/LoginPageSchool";
 import ProfilePage from "./pages/ProfilePage";
 import Navbar from "./components/Navbar";
+import toast, { Toaster } from 'react-hot-toast';
 import ProtectRoute from "./components/ProtectRoute";
 import SchoolHomePage from "./pages/SchoolHomePage";
 import UserHomePage from "./pages/UserHomePage";
@@ -13,6 +14,7 @@ import HomePage from "./pages/HomePage";
 function App() {
   return (
     <div className="bg-gray-100 min-h-screen">
+      <Toaster />
       {/* <Navbar /> */}
       <div className="max-w-7xl ">
         <Routes>

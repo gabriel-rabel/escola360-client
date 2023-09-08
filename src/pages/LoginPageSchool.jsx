@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/escola360logo.svg";
+import toast, { Toaster } from 'react-hot-toast';
 
 function LoginPageSchool() {
   const navigate = useNavigate();
@@ -32,12 +33,14 @@ function LoginPageSchool() {
 
       localStorage.setItem("userToken", token);
       localStorage.setItem("userId", userId);
+      toast.success('Login realizado com sucesso!')
 
       navigate("/school"); // Navega para a página inicial após o login ser bem-sucedido
 
       console.log(form);
 
     } catch (error) {
+      toast.error("Senha ou usuário incorreto, tente novamente!")
       console.log(error);
     }
   }
