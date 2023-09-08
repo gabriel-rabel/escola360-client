@@ -13,7 +13,7 @@ import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="flex bg-gray-100 min-h-screen">
       <Toaster />
       {/* <Navbar /> */}
       <div className="max-w-7xl ">
