@@ -2,10 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/escola360logo.svg";
+import toast, { Toaster } from 'react-hot-toast';
 
 function LoginPageSchool() {
   const navigate = useNavigate();
-  const [userType, setUserType] = useState("user");
 
   const [form, setForm] = useState({
     email: "",
@@ -22,9 +22,10 @@ function LoginPageSchool() {
     try {
       // Faça a requisição para a rota /login da sua API aqui.
       const response = await axios.post(
-        "http:localhost:4000/school/login",
+        "http://localhost:4000/school/login",
         form
       ); // Certifique-se de ajustar a URL da sua API
+      console.log(response)
 
       // GUARDAR O TOKEN E ID DE QUEM LOGOU
       const token = response.data.token;
@@ -32,12 +33,14 @@ function LoginPageSchool() {
 
       localStorage.setItem("userToken", token);
       localStorage.setItem("userId", userId);
+      toast.success('Login realizado com sucesso!')
 
-      navigate("/"); // Navega para a página inicial após o login ser bem-sucedido
+      navigate("/school"); // Navega para a página inicial após o login ser bem-sucedido
 
       console.log(form);
+
     } catch (error) {
-      // lógica se der erro na requisição
+      toast.error("Senha ou usuário incorreto, tente novamente!")
       console.log(error);
     }
   }
@@ -54,13 +57,14 @@ function LoginPageSchool() {
         <div>
           <div className="mb-4 w-64">
             <h1 className="text-4xl font-raleway font-semibold mb-6 text-gray-900">
-              Bem Vindo!{" "}
+              Bem Vindo{" "}
             </h1>
+            <p>Entre com o login e senha da sua Escola.</p>
           </div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="w-64">
               <label htmlFor="email" className="block font-ligth ">
-                Email
+                Email*
               </label>
               <div>
                 <input
@@ -78,7 +82,7 @@ function LoginPageSchool() {
 
             <div>
               <label htmlFor="password" className="block font-ligth">
-                Senha
+                Senha*
               </label>
               <div>
                 <input
