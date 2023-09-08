@@ -32,11 +32,13 @@ function App() {
             path="/school"
             element={<ProtectRoute Component={SchoolHomePage} />}
           />
+          
 
           <Route
             path="/user"
             element={<ProtectRoute Component={UserHomePage} />}
           />
+
         </Routes>
       </div>
     </div>

@@ -5,7 +5,6 @@ import logo from "../assets/escola360logo.svg";
 
 function LoginPageSchool() {
   const navigate = useNavigate();
-  const [userType, setUserType] = useState("user");
 
   const [form, setForm] = useState({
     email: "",
@@ -22,9 +21,10 @@ function LoginPageSchool() {
     try {
       // Faça a requisição para a rota /login da sua API aqui.
       const response = await axios.post(
-        "http:localhost:4000/school/login",
+        "http://localhost:4000/school/login",
         form
       ); // Certifique-se de ajustar a URL da sua API
+      console.log(response)
 
       // GUARDAR O TOKEN E ID DE QUEM LOGOU
       const token = response.data.token;
@@ -33,11 +33,11 @@ function LoginPageSchool() {
       localStorage.setItem("userToken", token);
       localStorage.setItem("userId", userId);
 
-      navigate("/"); // Navega para a página inicial após o login ser bem-sucedido
+      navigate("/school"); // Navega para a página inicial após o login ser bem-sucedido
 
       console.log(form);
+
     } catch (error) {
-      // lógica se der erro na requisição
       console.log(error);
     }
   }
