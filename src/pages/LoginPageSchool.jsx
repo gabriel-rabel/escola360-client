@@ -54,13 +54,14 @@ function LoginPageSchool() {
         <div>
           <div className="mb-4 w-64">
             <h1 className="text-4xl font-raleway font-semibold mb-6 text-gray-900">
-              Bem Vindo!{" "}
+              Bem Vindo{" "}
             </h1>
+            <p>Entre com o login e senha da sua Escola.</p>
           </div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="w-64">
               <label htmlFor="email" className="block font-ligth ">
-                Email
+                Email*
               </label>
               <div>
                 <input
@@ -78,7 +79,7 @@ function LoginPageSchool() {
 
             <div>
               <label htmlFor="password" className="block font-ligth">
-                Senha
+                Senha*
               </label>
               <div>
                 <input
