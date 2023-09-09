@@ -4,7 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 
 function Navbar() {
   //acessando as informações do context
-  const { isLoggedIn, role } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -17,7 +17,6 @@ function Navbar() {
     navigate("/login");
   }
 
-  console.log(role);
 
   return (
     <nav className="bg-white shadow">
