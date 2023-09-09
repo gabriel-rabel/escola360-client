@@ -1,20 +1,12 @@
-@font-face {
-  font-family: "Raleway";
-  src: url("caminho-para-a-fonte/Raleway-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-
-}
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 
 body {
   font-family: "Raleway", sans-serif;
 }
 
 .font-raleway {
-    font-family: 'Raleway', sans-serif;
-  }
-
-
+  font-family: "Raleway", sans-serif;
+}
 
 .bg-custom {
   background-image: url("./assets/bg.svg");
@@ -78,4 +70,8 @@ body {
 
 .contact-link:hover {
   text-decoration: underline;
+}
+
+.bg-login {
+  background-color: #6d7dff;
 }
