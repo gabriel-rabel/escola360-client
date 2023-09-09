@@ -1,21 +1,47 @@
-import { Link } from "react-router-dom"
+import NavbarPublic from "../components/NavbarPublic";
+import ImageKids from "../assets/Images.svg";
 
 export default function HomePage() {
+  return (
+    <div className="bg-custom">
+      {/* Fabi escreveu - Tive que usar CSS para colocar a imagem dentro dessa main, pelo tailwind não deu certo */}
+      <NavbarPublic />
 
-    return (
-        <main>
-            
-            <div className="flex justify-center gap-3 mt-50">
-                <Link to="/loginschool"> <p className="mx-4 my-2 bg-blue-600 text-white rounded-lg p-3">Link para pagina de login School</p> </Link>
-                <Link to="/login"> <p className="mx-4 my-2 bg-blue-600 text-white rounded-lg p-3">Link para pagina de login Aluno</p>  </Link>
-                
-            </div>
-            <div className="flex justify-center gap-3 mt-50">
-            <p className="text-gray-400 italic">Links adicionados apenas para usarmos como referência, antes do frontend</p>
-            </div>
-            
-        </main>
+      <div className="content flex items-center">
+        <div className="w-1/2 p-20 mx-auto text-left">
+          <h1 className=" mb-3 text-6xl font-bold text-white">
+            Seu filho sempre conectado!
+          </h1>
+          <p className="mb-3 text-white font-medium">
+            Conecte-se à jornada educacional de seus filhos, <br /> acompanhando
+            cada passo, juntos em uma parceria pela excelência.
+          </p>
+          <img src={ImageKids} />
+        </div>
 
-    )
-    
-};
+        {/* CARDS */}
+        <div className="w-1/2 p-10 flex flex-col justify-center items-center space-y-4">
+          <div className="border-2 p-2 rounded-lg text-white w-80">
+            <h1 className="font-bold text-2xl">Cardápio</h1>
+            <p>Desfrute de um acompanhamento diário do cardápio escolar.</p>
+          </div>
+
+          <div className="border-2 p-2 rounded-lg text-white w-80">
+            <h1 className="font-bold text-2xl">Frequência</h1>
+            <p>Mantenha o controle da frequência escolar do seu filho.</p>
+          </div>
+
+          <div className="border-2 p-2 rounded-lg text-white w-80">
+            <h1 className="font-bold text-2xl">Notificações</h1>
+            <p>Receba todas as notificações em tempo real.</p>
+          </div>
+
+          <div className="border-2 p-2 rounded-lg text-white w-80">
+            <h1 className="font-bold text-2xl">Boletim</h1>
+            <p>Esteja ciente das notas e performances</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
