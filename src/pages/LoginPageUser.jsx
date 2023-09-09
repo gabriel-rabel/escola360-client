@@ -31,7 +31,7 @@ function LoginPageUser() {
       localStorage.setItem("userId", userId);
       toast.success('Login realizado com sucesso!')
 
-      navigate("/profile");
+      navigate("/user");
 
     } catch (error) {
       toast.error("Senha ou usuário incorreto, tente novamente!")
