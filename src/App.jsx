@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import LoginPageUser from "./pages/LoginPageUser";
 import LoginPageSchool from "./pages/LoginPageSchool";
-import ProfilePage from "./pages/ProfilePage";
 import Navbar from "./components/Navbar";
 import toast, { Toaster } from 'react-hot-toast';
 import ProtectRoute from "./components/ProtectRoute";
@@ -26,8 +25,8 @@ function App() {
 
           {/* Rota protegida */}
           <Route
-            path="/profile"
-            element={<ProtectRoute Component={ProfilePage} />}
+            path="/user"
+            element={<ProtectRoute Component={UserHomePage} />}
           />
 
           <Route
