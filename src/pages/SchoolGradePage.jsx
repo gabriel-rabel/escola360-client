@@ -61,7 +61,7 @@ export default function SchoolGradePage() {
   }
 
   return (
-    <div>
+    <div className="w-screen">
       <NavbarSchool />
       <div className="max-w-[448px] rounded-3xl border-2 p-12 border-blue-800">
         <h1 className="text-center text-2xl font-bold text-gray-600">

@@ -48,6 +48,7 @@ export default function SubjectEditPage() {
   }
 
   return (
+    <div className="w-screen">
     <div className="max-w-[448px] rounded-3xl border-2 p-12 border-blue-800">
   <h1 className="text-center text-2xl font-bold text-gray-600">Editar Matéria</h1>
   <p className="text-center text-gray-500 mb-10 font-medium">
@@ -88,6 +89,7 @@ export default function SubjectEditPage() {
       Salvar Edição
     </button>
   </form>
+</div>
 </div>
 
   );
