@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/escola360logo.svg";
 import toast from "react-hot-toast";
 
@@ -30,7 +30,6 @@ function LoginPageUser() {
       localStorage.setItem("userToken", token);
       localStorage.setItem("userId", userId);
       toast.success("Login realizado com sucesso!");
-
 
       navigate("/user");
 
