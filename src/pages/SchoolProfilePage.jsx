@@ -3,8 +3,9 @@ import Navbar from "../components/Navbar";
 import api from "../axios/api";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import NavbarSchool from "../components/NovabarSchool";
 
-export default function SchoolPerfilPage() {
+export default function SchoolProfilePage() {
   const [user, setUser] = useState({});
   const [formProfile, setFormProfile] = useState({
     name: "", 
@@ -55,7 +56,7 @@ export default function SchoolPerfilPage() {
 
   return (
     <div className="w-screen">
-      <Navbar />
+      <NavbarSchool />
       <div className="mt-10 mx-32">
         <p>Bem vindo, Escola {user.name}.</p>
         <div className="mt-10">

@@ -1,5 +1,7 @@
 export default function SchoolMenuPage(params) {
 
+    
+
 
     return (
         <div>

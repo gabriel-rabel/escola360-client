@@ -8,6 +8,12 @@ import ProtectRoute from "./components/ProtectRoute";
 import SchoolHomePage from "./pages/SchoolHomePage";
 import UserHomePage from "./pages/UserHomePage";
 import HomePage from "./pages/HomePage";
+import SchoolGradePage from "./pages/SchoolGradePage";
+import SchoolNotificationPage from "./pages/SchoolNotificationPage";
+import SchoolStudentPage from "./pages/SchoolStudentPage";
+import SchoolMenuPage from "./pages/SchoolMenuPage";
+import SchoolReportCardPage from "./pages/SchoolReportCardPage";
+import SchoolProfilePage from "./pages/SchoolProfilePage";
 
 function App() {
   return (
@@ -31,6 +37,30 @@ function App() {
           <Route
             path="/user"
             element={<ProtectRoute Component={UserHomePage} />}
+          />
+          <Route
+            path="/school/grade"
+            element={<ProtectRoute Component={SchoolGradePage} />}
+          />
+          <Route
+            path="/school/notification"
+            element={<ProtectRoute Component={SchoolNotificationPage} />}
+          />
+          <Route
+            path="/school/student"
+            element={<ProtectRoute Component={SchoolStudentPage} />}
+          />
+          <Route
+            path="/school/menu"
+            element={<ProtectRoute Component={SchoolMenuPage} />}
+          />
+          <Route
+            path="/school/report-card"
+            element={<ProtectRoute Component={SchoolReportCardPage} />}
+          />
+          <Route
+            path="/school/profile"
+            element={<ProtectRoute Component={SchoolProfilePage} />}
           />
         </Routes>
       </div>
