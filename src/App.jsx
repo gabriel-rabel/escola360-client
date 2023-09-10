@@ -11,7 +11,7 @@ import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <div className="flex bg-gray-100 min-h-screen">
+    <div className="flex bg-white min-h-screen">
       <Toaster />
       {/* <Navbar /> */}
       <div className="max-w-7xl ">
@@ -23,7 +23,6 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
 
           {/* Rota protegida */}
-
           <Route
             path="/school"
             element={<ProtectRoute Component={SchoolHomePage} />}
