@@ -3,6 +3,7 @@ import api from "../axios/api";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NovabarSchool";
+import formatarData from "../utils/dateFormatter";
 
 export default function SchoolNotificationPage() {
 
@@ -63,8 +64,9 @@ export default function SchoolNotificationPage() {
                         <div className="flex flex-col gap-3 max-w-[60%] m-auto">
                             <div className="border border-blue-600 rounded-md shadow-sm p-3">
                                 <div className="mx-8">
-                                    <p>{notification.title}</p>
+                                    <p>Assunto: {notification.title}</p>
                                     <p>{notification.description}</p>
+                                    <p>Data: {formatarData(notification.createdAt)}</p>
                                 </div>
                             </div>
                         </div>
