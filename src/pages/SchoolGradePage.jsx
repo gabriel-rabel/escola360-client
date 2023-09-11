@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../axios/api";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import NavbarSchool from "../components/NovabarSchool";
+import NavbarSchool from "../components/NavbarSchool";
 
 export default function SchoolGradePage() {
   const [subjects, setSubjects] = useState([]); // Altere subject para subjects
@@ -43,7 +43,8 @@ export default function SchoolGradePage() {
   }
 
   return (
-    <div className="" >
+    <div className="bg-[#6D7DFF] h-screen w-screen">
+      <NavbarSchool />
       <div>
         <div>
           <table className="min-w-full divide-y divide-gray-300">
