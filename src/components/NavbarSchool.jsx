@@ -15,12 +15,12 @@ export default function NavbarSchool() {
 
   return (
     <nav>
-      <div className="navbar px-10 flex">
+      <div className="navbar px-10 flex bg-[#6D7DFF]">
         <Link to="/">
           <span className="logo"></span>
         </Link>
         <div className="menu">
-          <div>
+          <div> 
             {isLoggedIn === true && (
               <>
                 <Link to="/school/profile" className="px-4 py-1">

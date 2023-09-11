@@ -12,6 +12,7 @@ export default function SchoolNotificationEdit() {
 
   const params = useParams();
   const navigate = useNavigate();
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     async function getNotification() {
@@ -27,7 +28,7 @@ export default function SchoolNotificationEdit() {
       }
     }
     getNotification();
-  }, []);
+  }, [reload]);
 
   function handleChangeNotification(e) {
     setFormNotification({
@@ -44,6 +45,7 @@ export default function SchoolNotificationEdit() {
         `/notification/edit/${params.id_notification}`,
         formNotification
       );
+      setReload(!reload);
       navigate("/school/notification");
       toast.success("Notificação editada com sucesso!");
     } catch (error) {
