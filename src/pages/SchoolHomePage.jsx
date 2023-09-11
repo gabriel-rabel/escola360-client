@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import api from "../axios/api";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import NavbarSchool from "../components/NovabarSchool";
+import NavbarSchool from "../components/NavbarSchool";
 
 export default function SchoolHomePage() {
   const [user, setUser] = useState({});
@@ -29,27 +29,42 @@ export default function SchoolHomePage() {
           <p>Bem vindo, Escola {user.name}</p>
         </div>
         <div className="flex flex-col gap-3 max-w-[60%] m-auto">
-          <Link to="/school/student" className="border border-blue-600 rounded-md shadow-sm p-3">
+          <Link
+            to="/school/student"
+            className="border border-blue-600 rounded-md shadow-sm p-3"
+          >
             <div className="mx-8">
               <p>Alunos</p>
             </div>
           </Link>
-          <Link to="/school/grade" className="border border-blue-600 rounded-md shadow-sm p-3">
+          <Link
+            to="/school/grade"
+            className="border border-blue-600 rounded-md shadow-sm p-3"
+          >
             <div className="mx-8">
               <p>Matérias</p>
             </div>
           </Link>
-          <Link to="/school/menu" className="border border-blue-600 rounded-md shadow-sm p-3">
+          <Link
+            to="/school/menu"
+            className="border border-blue-600 rounded-md shadow-sm p-3"
+          >
             <div className="mx-8">
               <p>Cardápio</p>
             </div>
           </Link>
-          <Link to="/school/notification" className="border border-blue-600 rounded-md shadow-sm p-3">
+          <Link
+            to="/school/notification"
+            className="border border-blue-600 rounded-md shadow-sm p-3"
+          >
             <div className="mx-8">
               <p>Notificações</p>
             </div>
           </Link>
-          <Link to="/school/report-card" className="border border-blue-600 rounded-md shadow-sm p-3">
+          <Link
+            to="/school/report-card"
+            className="border border-blue-600 rounded-md shadow-sm p-3"
+          >
             <div className="mx-8">
               <p>Boletins</p>
             </div>

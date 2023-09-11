@@ -3,16 +3,16 @@ import Navbar from "../components/Navbar";
 import api from "../axios/api";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import NavbarSchool from "../components/NovabarSchool";
+import NavbarSchool from "../components/NavbarSchool";
 
 export default function SchoolProfilePage() {
   const [user, setUser] = useState({});
   const [formProfile, setFormProfile] = useState({
-    name: "", 
-    phone: "", 
-    description: "", 
-    email: "", 
-    address: "", 
+    name: "",
+    phone: "",
+    description: "",
+    email: "",
+    address: "",
     cnpj: "",
   });
   const [reload, setReload] = useState(false);
