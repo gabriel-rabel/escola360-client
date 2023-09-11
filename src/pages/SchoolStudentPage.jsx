@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import api from "../axios/api";
-import Navbar from "../components/Navbar";
 import Flor1 from "../assets/flor1.svg";
 import Flor2 from "../assets/flor2.svg";
+import NavbarSchool from "../components/NovabarSchool";
 
 export default function SchoolStudentPage() {
   // state para armazenar a lista de alunos
@@ -31,7 +31,7 @@ export default function SchoolStudentPage() {
   const groupedUsers = groupUsersByYear(users);
   return (
     <div className="bg-[#6D7DFF] h-screen w-screen">
-      <Navbar />
+      <NavbarSchool />
 
       {/* TÍTULO */}
       <div className="relative">

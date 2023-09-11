@@ -14,6 +14,7 @@ import SchoolStudentPage from "./pages/SchoolStudentPage";
 import SchoolMenuPage from "./pages/SchoolMenuPage";
 import SchoolReportCardPage from "./pages/SchoolReportCardPage";
 import SchoolProfilePage from "./pages/SchoolProfilePage";
+import SubjectEditPage from "./pages/SchoolSubjectEditPage";
 
 function App() {
   return (
@@ -42,6 +43,11 @@ function App() {
             path="/school/grade"
             element={<ProtectRoute Component={SchoolGradePage} />}
           />
+          <Route
+            path="/school/subject-edit/:id_subject"
+            element={<ProtectRoute Component={SubjectEditPage} />}
+          />
+
           <Route
             path="/school/notification"
             element={<ProtectRoute Component={SchoolNotificationPage} />}
