@@ -15,29 +15,41 @@ export default function NavbarSchool() {
 
   return (
     <nav>
-      <div className="flex mx-10 justify-end gap-3">
+      <div className="navbar px-10 flex">
         <Link to="/">
-          <span className=""></span>
+          <span className="logo"></span>
         </Link>
-        <div className="flex gap-3">
+        <div className="menu gap-2">
           {isLoggedIn === true && (
             <>
-              <Link to="/school/student" className="px-4 py-1">
+              <Link
+                to="/school/student"
+                className="px-4 py-1 rounded-md border"
+              >
                 Alunos
               </Link>
-              <Link to="/school/grade" className="px-4 py-1">
+              <Link to="/school/grade" className="px-4 py-1 rounded-md border">
                 Matérias
               </Link>
-              <Link to="/school/menu" className="px-4 py-1">
+              <Link to="/school/menu" className="px-4 py-1 rounded-md border">
                 Cardápio
               </Link>
-              <Link to="/school/notification" className="px-4 py-1">
+              <Link
+                to="/school/notification"
+                className="px-4 py-1 rounded-md border"
+              >
                 Notificações
               </Link>
-              <Link to="/school/report-card" className="px-4 py-1">
+              <Link
+                to="/school/report-card"
+                className="px-4 py-1 rounded-md border"
+              >
                 Boletins
               </Link>
-              <Link to="/school/profile" className="px-4 py-1">
+              <Link
+                to="/school/profile"
+                className="px-4 py-1 rounded-md border"
+              >
                 Perfil
               </Link>
               <button
