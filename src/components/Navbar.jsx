@@ -36,34 +36,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-/* <nav>
-      <div>
-         <Link to="/">
-            <div>
-               <img
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                  alt="Workflow"
-               />
-               <span>Dev Suport</span>
-            </div>
-         </Link>
-         <div>
-            {isLoggedIn === false && (
-               <>
-                  <Link to="/signup">Sign up</Link>
-                  <Link to="/login">Log in</Link>
-               </>
-            )}
-
-            {isLoggedIn === true && (
-               <>
-                  <button onClick={handleLogout}>Logout</button>
-                  <Link to="/profile">Profile</Link>
-               </>
-            )}
-         </div>
-      </div>
-   </nav>
-
- */
