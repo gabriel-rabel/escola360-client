@@ -16,6 +16,19 @@ export default function SchoolStudentPage() {
     getStudents();
   }, []);
 
+  // Função para agrupar os alunos por ano
+  const groupUsersByYear = (users) => {
+    const groupedUsers = {};
+    users.forEach((user) => {
+      if (!groupedUsers[user.class]) {
+        groupedUsers[user.class] = [];
+      }
+      groupedUsers[user.class].push(user);
+    });
+    return groupedUsers;
+  };
+
+  const groupedUsers = groupUsersByYear(users);
   return (
     <div className="bg-[#6D7DFF] h-screen w-screen">
       <Navbar />
@@ -34,44 +47,32 @@ export default function SchoolStudentPage() {
             </h1>
           </div>
 
-          {/* LISTA DE ALUNOS */}
+          {/* LISTA DE ALUNOS AGRUPADA POR CLASSE (ANO) */}
           <div className="relative mb-10 bg-white rounded-lg p-4 w-[800px]">
             <img
               src={Flor2}
               alt=""
               className="absolute top-[200px] left-[1000px]"
             />
-            {/* Renderize a lista de alunos aqui */}
             <ul>
-              <p className="text-[#6A7AF5]">Alunos:</p>
-              {users.map((user) => (
-                <li key={user.id}>
-                  <p className="text-[#525252] font-bold">
-                    {user.name} - {user.class}
-                  </p>
+              {Object.entries(groupedUsers).map(([year, users]) => (
+                <li key={year}>
+                  <div>
+                    <p className="text-[#6A7AF5]">{year}</p>
+                  </div>
+                  <ul>
+                    {users.map((user) => (
+                      <li key={user.id}>
+                        <p className="text-[#525252] font-bold">{user.name}</p>
+                      </li>
+                    ))}
+                  </ul>
                 </li>
               ))}
             </ul>
           </div>
-
-          {/* Resto do conteúdo da página */}
         </div>
       </div>
     </div>
   );
-}
-{
-  /*<div>
-      <p>Página de Alunos</p>
-      <h2>Lista de Alunos</h2>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            {user.name} - {user.class}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}*/
 }
