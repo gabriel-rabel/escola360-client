@@ -3,6 +3,7 @@ import api from "../axios/api";
 import Flor1 from "../assets/flor1.svg";
 import Flor2 from "../assets/flor2.svg";
 import NavbarSchool from "../components/NovabarSchool";
+import { Link } from "react-router-dom";
 
 export default function SchoolStudentPage() {
   // state para armazenar a lista de alunos
@@ -47,6 +48,10 @@ export default function SchoolStudentPage() {
             </h1>
           </div>
 
+          <div className=" bg-white rounded p-2 mb-2">
+            <Link to={``}>Cadastrar um aluno</Link>
+          </div>
+
           {/* LISTA DE ALUNOS AGRUPADA POR CLASSE (ANO) */}
           <div className="relative mb-10 bg-white rounded-lg p-4 w-[800px]">
             <img
@@ -57,7 +62,7 @@ export default function SchoolStudentPage() {
             <ul>
               {Object.entries(groupedUsers).map(([year, users]) => (
                 <li key={year}>
-                  <div>
+                  <div className="flex">
                     <p className="text-[#6A7AF5]">{year}</p>
                   </div>
                   <ul>

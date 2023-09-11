@@ -15,6 +15,7 @@ import SchoolMenuPage from "./pages/SchoolMenuPage";
 import SchoolReportCardPage from "./pages/SchoolReportCardPage";
 import SchoolProfilePage from "./pages/SchoolProfilePage";
 import SubjectEditPage from "./pages/SchoolSubjectEditPage";
+import CreateStudent from "./pages/SchoolCreateStudent";
 
 function App() {
   return (
