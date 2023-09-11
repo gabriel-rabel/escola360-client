@@ -61,10 +61,10 @@ export default function SchoolGradePage() {
   }
 
   return (
-    <div className="bg-[#6D7DFF] h-screen w-screen ">
+    <div className="bg-[#6D7DFF] h-screen w-screen">
       <NavbarSchool />
-      <div className=" flex flex-col justify-center items-center">
-        <div className="w-1/3 mt-4 rounded-3xl border-2 p-12 bg-white shadow-md border-blue-500">
+      <div className="flex flex-col justify-center max-w-2xl">
+        <div className="mt-4 rounded-3xl border-2 p-12 bg-white shadow-md border-blue-500">
           <h1 className="text-center text-2xl font-bold text-gray-600">
             Cadastre uma matéria
           </h1>
@@ -108,80 +108,79 @@ export default function SchoolGradePage() {
             </button>
           </form>
         </div>
-      </div>
 
-      <div className="mt-8">
-        <table className="min-w-full divide-y divide-gray-300">
-          <thead className="bg-gray-50">
-            <tr>
-              <th
-                scope="col"
-                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
-              >
-                Nome
-              </th>
-              <th
-                scope="col"
-                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-              >
-                Descrição
-              </th>
-              <th
-                scope="col"
-                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-              >
-                Professor
-              </th>
-              <th
-                scope="col"
-                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-              >
-                Status
-              </th>
-              <th
-                scope="col"
-                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-              >
-                Editar
-              </th>
-              <th
-                scope="col"
-                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-              >
-                Deletar
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {subjects.map((subject) => (
-              <tr key={subject._id}>
-                <td className="py-2 pl-4 pr-3 text-left text-sm bg-white text-gray-900 sm:pl-6">
-                  {subject.name}
-                </td>
-                <td className="px-3 py-2 text-left text-sm bg-white text-gray-900">
-                  {subject.description}
-                </td>
-                <td className="px-3 py-2 text-left text-sm bg-white text-gray-900">
-                  {subject.teacher}
-                </td>
-                <td className="px-3 py-2 text-left text-sm bg-white text-gray-900">
-                  {subject.status}
-                </td>
-                <td className="px-3 py-2 text-left text-sm bg-white text-gray-900">
-                  <Link to={`/school/subject-edit/${subject._id}`}>Editar</Link>
-                </td>
-                <td className="px-3 py-2 text-left text-sm bg-white text-gray-900">
-                  <button
-                    onClick={() => handleDeleteSubject(subject._id)}
-                    className="text-red-600 cursor-pointer"
-                  >
-                    Deletar
-                  </button>
-                </td>
+        <div className="mt-8">
+          <table className="divide-y divide-gray-200 shadow">
+            <thead className="bg-white">
+              <tr>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Nome
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Descrição
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Professor
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Status
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Editar
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Deletar
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {subjects.map((subject) => (
+                <tr key={subject._id}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {subject.name}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {subject.description}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {subject.teacher}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {subject.status}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:underline">
+                    <Link to={`/school/subject-edit/${subject._id}`}>
+                      Editar
+                    </Link>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-red-500 cursor-pointer hover:underline">
+                    <button onClick={() => handleDeleteSubject(subject._id)}>
+                      Deletar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

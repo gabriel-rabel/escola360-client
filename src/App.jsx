@@ -15,6 +15,7 @@ import SchoolMenuPage from "./pages/SchoolMenuPage";
 import SchoolReportCardPage from "./pages/SchoolReportCardPage";
 import SchoolProfilePage from "./pages/SchoolProfilePage";
 import SubjectEditPage from "./pages/SchoolSubjectEditPage";
+import SchoolNotificationEdit from "./pages/SchoolNotificationEditPage";
 
 function App() {
   return (
@@ -52,6 +53,11 @@ function App() {
             path="/school/notification"
             element={<ProtectRoute Component={SchoolNotificationPage} />}
           />
+          <Route
+            path="/notification/edit/:id_notification"
+            element={<ProtectRoute Component={SchoolNotificationEdit} />}
+          />
+
           <Route
             path="/school/student"
             element={<ProtectRoute Component={SchoolStudentPage} />}
