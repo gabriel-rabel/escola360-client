@@ -3,7 +3,7 @@ import NavbarSchool from "../components/NovabarSchool";
 export default function SchoolReportCardPage(params) {
 
     return(
-        <div className="w-screen">
+        <div className="bg-[#6D7DFF] h-screen w-screen">
             <NavbarSchool />
             <p>
                 Página de Boletim
