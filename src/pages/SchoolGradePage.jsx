@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
 import Voltar from "../assets/voltar.svg";
-import SubjectEditPage from "./SchoolSubjectEditPage";
 
 export default function SchoolGradePage() {
   const [subjects, setSubjects] = useState([]);
