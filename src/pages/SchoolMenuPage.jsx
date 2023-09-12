@@ -3,23 +3,8 @@ import api from "../axios/api";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
-import formatarData from "../utils/dateFormatter";
+import Voltar from "../assets/voltar.svg";
 
-/*export default function SchoolMenuPage(params) {
-  const [formMenu, setFormMenu] = useState({
-    name: "",
-    description: "",
-    teacher: "",
-  });
-
-  useEffect(() => {
-    async function getMenus() {}
-  });
-  async function handleSubmitMenu(e) {
-    e.preventDefault();
-  }
-
-  function handleChangeMenu(e) {}*/
 
 export default function SchoolMenuPage() {
   const [user, setUser] = useState([]);
@@ -63,66 +48,20 @@ export default function SchoolMenuPage() {
   }
 
   return (
-    <div className="bg-[#6D7DFF] h-screen w-screen">
+    <div className="h-screen w-screen">
       <NavbarSchool />
-      <p>Página de Cardápio</p>
+      
       <div className=" flex flex-col justify-center items-center">
         <div className="w-1/3 mt-4 rounded-3xl border-2 p-12 bg-white shadow-md border-blue-500">
-          <h1 className="text-center text-2xl font-bold text-gray-600">
-            Cadastro de Cardápio
-          </h1>
-          <form onSubmit={handleSubmitMenu} className="flex flex-col mt-6">
-            <label className="text-gray-500">Nome da matéria</label>
-            <input
-              type="text"
-              name="name"
-              value={formSubject.name}
-              onChange={handleChangeMenu}
-              className="rounded-md border border-gray-300 p-2 text-gray-500"
-            />
-
-            <label htmlFor="description" className="text-gray-500 mt-5">
-              Descrição
-            </label>
-            <textarea
-              type="text"
-              name="description"
-              value={formSubject.description}
-              onChange={handleChangeMenu}
-              className="rounded-md border border-gray-300 p-2 text-gray-500"
-            />
-
-            <label htmlFor="teacher" className="text-gray-500 mt-5">
-              Professor
-            </label>
-            <input
-              type="text"
-              name="teacher"
-              value={formSubject.teacher}
-              onChange={handleChangeMenu}
-              className="rounded-md border border-gray-300 p-2 text-gray-500"
-            />
-
-            <button
-              type="submit"
-              className="bg-blue-800 text-white border p-3 mt-5 rounded-lg"
-            >
-              Salvar
-            </button>
-          </form>
-        </div>
-      </div>
-      <div className=" flex flex-col justify-center items-center">
-        <div className="w-1/3 mt-4 rounded-3xl border-2 p-12 bg-white shadow-md border-blue-500">
-          <h1 className="text-center text-2xl font-bold text-gray-600">
-            Cardápio
-          </h1>
-          <p className="text-center text-gray-500 mb-10 font-medium">
-            Edite o cardapio abaixo.
-          </p>
+        <Link to="/school">
+          <div className="flex items-center gap-2 mb-2">
+            <img src={Voltar} />
+            <h1 className="text-[18px]">Edite o cardápio</h1>
+          </div>
+        </Link>
           <form onSubmit={handleSubmitMenu}>
             <div className="flex flex-col">
-              <label className="text-gray-500 font-medium">Semana</label>
+
               <textarea
                 type="text"
                 rows={10}
@@ -134,17 +73,10 @@ export default function SchoolMenuPage() {
 
               <button
                 type="submit"
-                className="bg-blue-500 text-white rounded-lg p-2 mt-4 hover:bg-blue-400"
+                className="self-center border mt-5 bg-[#6D7DFF] text-white font-bold rounded-md w-[250px] h-[44px]"
               >
                 Salvar
               </button>
-
-              <Link
-                to="/school/profile"
-                className="text-blue-500 text-center mt-4"
-              >
-                Voltar
-              </Link>
             </div>
           </form>
         </div>
