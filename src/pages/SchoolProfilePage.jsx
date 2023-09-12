@@ -4,6 +4,8 @@ import api from "../axios/api";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
+import Separar from "../assets/separacao.svg";
+import Voltar from "../assets/voltar.svg";
 
 export default function SchoolProfilePage() {
   const [user, setUser] = useState({});
@@ -57,20 +59,71 @@ export default function SchoolProfilePage() {
   return (
     <div className="w-screen">
       <NavbarSchool />
+
+      {/* Saudação */}
       <div className="mt-10 mx-32">
-        <p>Bem vindo, Escola {user.name}.</p>
-        <div className="mt-10">
-          <h1 className="font-bold">Perfil</h1>
-          <p>Seu email é: {user.email}</p>
-          <p>Descrição: {user.description}</p>
-          <p>Seu telefone é: {user.phone}</p>
-          <p>Seu endereço é: {user.address}</p>
-          <p>Cpnj: {user.cnpj}</p>
+        <p className="text-4xl text-center mb-10">
+          Bem vindo, <span className="font-bold">{user.name}</span>
+        </p>
+        <div className="mt-10 ">
+
+          
+          {/* Seta - Voltar */}
+          <Link to="/school">
+            <div className="flex items-center gap-2 mb-2">
+              <img src={Voltar} />
+              <h1 className="text-[18px]">Perfil</h1>
+            </div>
+          </Link>
+
+          {/* Perfil */}
+          <p className="text-[16px] text-[#6D7DFF] font-bold">
+            {" "}
+            Seu email é:{" "}
+            <span className="text-[18px] text-black font-medium">
+              {user.email}
+            </span>
+          </p>
+          <p className="text-[16px] text-[#6D7DFF] font-bold">
+            Descrição:{" "}
+            <span className="text-[18px] text-black font-medium">
+              {user.description}
+            </span>
+          </p>
+          <p className="text-[16px] text-[#6D7DFF] font-bold">
+            Seu telefone é:{" "}
+            <span className="text-[18px] text-black font-medium">
+              {user.phone}
+            </span>
+          </p>
+          <p className="text-[16px] text-[#6D7DFF] font-bold">
+            Seu endereço é:{" "}
+            <span className="text-[18px] text-black font-medium">
+              {user.address}
+            </span>
+          </p>
+          <p className="text-[16px] text-[#6D7DFF] font-bold">
+            Cpnj:{" "}
+            <span className="text-[18px] text-black font-medium">
+              {user.cnpj}
+            </span>
+          </p>
         </div>
+
+        {/* Divisor */}
+        <div className="flex justify-center mt-4 mb-4">
+          <img src={Separar} />
+        </div>
+
+        {/* Form */}
         <div className="mt-10">
-          <h2 className="font-bold">Formulário de edição da Escola</h2>
+          {/* Título */}
+          <h2 className="text-[18px] mb-4">Formulário de edição da Escola</h2>
+
+          {/* Inputs */}
           <div>
             <form onSubmit={handleSubmitProfile} className="flex flex-col">
+              {/* Nome da escola */}
               <label>Nome da Escola</label>
               <input
                 name="name"
@@ -78,7 +131,10 @@ export default function SchoolProfilePage() {
                 onChange={handleChangeProfile}
                 type="text"
                 placeholder={user.name}
+                className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
               />
+
+              {/* E-MAIL */}
               <label>
                 Email{" "}
                 <span className="italic text-xs">
@@ -91,41 +147,57 @@ export default function SchoolProfilePage() {
                 placeholder={user.email}
                 value={formProfile.email}
                 onChange={handleChangeProfile}
+                className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
               />
+
+              {/* Descrição */}
               <label>Descrição</label>
               <input
                 name="description"
                 placeholder={user.description}
                 value={formProfile.description}
                 onChange={handleChangeProfile}
+                className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
               />
+
+              {/* telefone */}
               <label>Telefone</label>
               <input
                 name="telefone"
                 placeholder={user.phone}
                 value={formProfile.phone}
                 onChange={handleChangeProfile}
+                className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
               />
+
+              {/* Endereço */}
               <label>Endereço</label>
               <input
                 name="address"
                 placeholder={user.address}
                 value={formProfile.address}
                 onChange={handleChangeProfile}
+                className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
               />
+
+              {/* CNPJ */}
               <label>CNPJ</label>
               <input
                 name="cnpj"
                 placeholder={user.cnpj}
                 value={formProfile.cnpj}
                 onChange={handleChangeProfile}
+                className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
               />
-              <button
-                type="submit"
-                className="border mt-5 bg-slate-600 text-white rounded-md"
-              >
-                Enviar
-              </button>
+
+              <div className="flex justify-center items-center">
+                <button
+                  type="submit"
+                  className="border mt-5 bg-[#6D7DFF] text-white font-bold rounded-md w-[250px] h-[44px]"
+                >
+                  Enviar
+                </button>
+              </div>
             </form>
           </div>
         </div>
