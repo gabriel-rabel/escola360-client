@@ -3,6 +3,7 @@ import api from "../axios/api";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
+import Voltar from "../assets/voltar.svg";
 import SubjectEditPage from "./SchoolSubjectEditPage";
 
 export default function SchoolGradePage() {
@@ -61,91 +62,92 @@ export default function SchoolGradePage() {
   }
 
   return (
-    <div className="bg-[#6D7DFF] h-screen w-screen">
+    <div className="w-screen">
       <NavbarSchool />
-      <div className="flex flex-col justify-center max-w-2xl">
-        <div className="mt-4 rounded-3xl border-2 p-12 bg-white shadow-md border-blue-500">
-          <h1 className="text-center text-2xl font-bold text-gray-600">
-            Cadastre uma matéria
-          </h1>
-          <form onSubmit={handleSubmitSubject} className="flex flex-col mt-6">
-            <label className="text-gray-500">Nome da matéria</label>
-            <input
-              type="text"
-              name="name"
-              value={formSubject.name}
-              onChange={handleChangeSubject}
-              className="rounded-md border border-gray-300 p-2 text-gray-500"
-            />
+      <div className="mt-10 mx-32">
+        <Link to="/school">
+          <div className="flex items-center gap-2 mb-2">
+            <img src={Voltar} />
+            <h1 className="text-[18px]">Cadastre uma matéria</h1>
+          </div>
+        </Link>
+        <form onSubmit={handleSubmitSubject} className="flex flex-col mt-6">
+          <label className="text-gray-500">Nome da matéria</label>
+          <input
+            type="text"
+            name="name"
+            value={formSubject.name}
+            onChange={handleChangeSubject}
+            className="rounded-md border border-gray-300 p-2 text-gray-500"
+          />
 
-            <label htmlFor="description" className="text-gray-500 mt-5">
-              Descrição
-            </label>
-            <textarea
-              type="text"
-              name="description"
-              value={formSubject.description}
-              onChange={handleChangeSubject}
-              className="rounded-md border border-gray-300 p-2 text-gray-500"
-            />
+          <label htmlFor="description" className="text-gray-500 mt-5">
+            Descrição
+          </label>
+          <textarea
+            type="text"
+            name="description"
+            value={formSubject.description}
+            onChange={handleChangeSubject}
+            className="rounded-md border border-gray-300 p-2 text-gray-500"
+          />
 
-            <label htmlFor="teacher" className="text-gray-500 mt-5">
-              Professor
-            </label>
-            <input
-              type="text"
-              name="teacher"
-              value={formSubject.teacher}
-              onChange={handleChangeSubject}
-              className="rounded-md border border-gray-300 p-2 text-gray-500"
-            />
+          <label htmlFor="teacher" className="text-gray-500 mt-5">
+            Professor
+          </label>
+          <input
+            type="text"
+            name="teacher"
+            value={formSubject.teacher}
+            onChange={handleChangeSubject}
+            className="rounded-md border border-gray-300 p-2 text-gray-500"
+          />
 
-            <button
-              type="submit"
-              className="bg-blue-800 text-white border p-3 mt-5 rounded-lg"
-            >
-              Salvar
-            </button>
-          </form>
-        </div>
+          <button
+            type="submit"
+            className="bg-blue-800 text-white border p-3 mt-5 rounded-lg"
+          >
+            Salvar
+          </button>
+        </form>
 
-        <div className="mt-8">
+        <div className="mt-10 max-w-xs">
           <table className="divide-y divide-gray-200 shadow">
             <thead className="bg-white">
               <tr>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="max-w-full px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   Nome
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="max-w-full px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   Descrição
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className=" max-w-full px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   Professor
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="max-w-full px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   Status
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="max-w-full px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   Editar
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="max-w-full px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   Deletar
                 </th>
@@ -154,10 +156,10 @@ export default function SchoolGradePage() {
             <tbody className="bg-white divide-y divide-gray-200">
               {subjects.map((subject) => (
                 <tr key={subject._id}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="max-w-full px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {subject.name}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="max-w-full px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {subject.description}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
