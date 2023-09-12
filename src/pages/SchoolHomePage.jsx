@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 import api from "../axios/api";
-import { Link, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 import NavbarSchool from "../components/NavbarSchool";
+import Seta from "../assets/seta.svg";
+import Flor from "../assets/flor2.svg";
 
 export default function SchoolHomePage() {
   const [user, setUser] = useState({});
@@ -22,51 +22,83 @@ export default function SchoolHomePage() {
   }, []);
 
   return (
-    <div className="w-screen">
+    <div className="w-screen bg-[#6D7DFF] h-screen w-screen">
       <NavbarSchool />
-      <div className="mx-40">
-        <div className="flex justify-center mt-10">
-          <p>Bem vindo, Escola {user.name}</p>
+      <div className="mx-40 relative">
+        <div className="mt-10 text-4xl text-center mb-10 text-white">
+          <p>
+            <img
+              className="absolute top-[0px] left-[390px] transform -translate-x-1/2"
+              src={Flor}
+            />
+            Bem vindo, <span className="font-bold">{user.name}</span>!
+          </p>
         </div>
-        <div className="flex flex-col gap-3 max-w-[60%] m-auto">
+
+        {/* LINKS */}
+        <div className=" flex flex-col gap-6 max-w-[60%] m-auto">
+          {/* Alunos */}
           <Link
             to="/school/student"
-            className="border border-blue-600 rounded-md shadow-sm p-3"
+            className="border border-white rounded-md shadow-sm p-3"
           >
-            <div className="mx-8">
-              <p>Alunos</p>
+            <div className="flex items-center justify-between">
+              <div className="flex gap-4">
+                <p className="text-white">Alunos</p>
+              </div>
+              <img src={Seta} alt="Ícone da seta" />
             </div>
           </Link>
+
+          {/* Matérias */}
           <Link
             to="/school/grade"
-            className="border border-blue-600 rounded-md shadow-sm p-3"
+            className="border border-white rounded-md shadow-sm p-3"
           >
-            <div className="mx-8">
-              <p>Matérias</p>
+            <div className="flex items-center justify-between">
+              <div className="flex gap-4">
+                <p className="text-white">Matérias</p>
+              </div>
+              <img src={Seta} alt="Ícone da seta" />
             </div>
           </Link>
+
+          {/* Cardápio */}
           <Link
             to="/school/menu"
-            className="border border-blue-600 rounded-md shadow-sm p-3"
+            className="border border-white rounded-md shadow-sm p-3"
           >
-            <div className="mx-8">
-              <p>Cardápio</p>
+            <div className="flex items-center justify-between">
+              <div className="flex gap-4">
+                <p className="text-white">Cardápio</p>
+              </div>
+              <img src={Seta} alt="Ícone da seta" />
             </div>
           </Link>
+
+          {/* Notificações */}
           <Link
             to="/school/notification"
-            className="border border-blue-600 rounded-md shadow-sm p-3"
+            className="border border-white rounded-md shadow-sm p-3"
           >
-            <div className="mx-8">
-              <p>Notificações</p>
+            <div className="flex items-center justify-between">
+              <div className="flex gap-4">
+                <p className="text-white">Notificações</p>
+              </div>
+              <img src={Seta} alt="Ícone da seta" />
             </div>
           </Link>
+
+          {/* Boletins */}
           <Link
             to="/school/report-card"
-            className="border border-blue-600 rounded-md shadow-sm p-3"
+            className="border border-white rounded-md shadow-sm p-3"
           >
-            <div className="mx-8">
-              <p>Boletins</p>
+            <div className="flex items-center justify-between">
+              <div className="flex gap-4">
+                <p className="text-white">Boletins</p>
+              </div>
+              <img src={Seta} alt="Ícone da seta" />
             </div>
           </Link>
         </div>
