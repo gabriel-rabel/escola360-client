@@ -26,7 +26,7 @@ export default function SchoolEditStudent() {
             try {
                 const response = await api.get(`/school/get_one/${params.id_student}`);
                 setUser(response.data);
-                setFormStudent(response.data);
+                setFormStudent({...response.data, password: ""});
             } catch (error) {
                 console.log(error);
             }
@@ -156,7 +156,7 @@ return (
 
                     <button
                         type="submit"
-                        className="bg-blue-800 text-white border p-3 mt-5 rounded-lg"
+                        className="bg-[#6A7AF5] text-white border p-3 mt-5 rounded-lg"
                     >
                         Salvar Edição
                     </button>

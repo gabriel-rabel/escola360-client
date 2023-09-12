@@ -2,6 +2,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../axios/api";
 import toast from "react-hot-toast";
+import NavbarSchool from "../components/NavbarSchool";
+import Voltar from "../assets/voltar.svg";
 
 export default function SchoolNotificationEdit() {
   const [notification, setNotification] = useState({});
@@ -54,7 +56,8 @@ export default function SchoolNotificationEdit() {
   }
 
   return (
-    <div className="bg-[#6D7DFF] h-screen w-screen ">
+    <div className="w-screen ">
+       <NavbarSchool />
       <div className=" flex flex-col justify-center items-center">
         <div className="w-1/3 mt-4 rounded-3xl border-2 p-12 bg-white shadow-md border-blue-500">
           <h1 className="text-center text-2xl font-bold text-gray-600">
