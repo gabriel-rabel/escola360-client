@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import api from "../axios/api";
 import Flor1 from "../assets/flor1.svg";
 import Flor2 from "../assets/flor2.svg";
+import Voltar from "../assets/voltar.svg";
 import NavbarSchool from "../components/NavbarSchool";
+import { Link } from "react-router-dom";
 
 export default function SchoolStudentPage() {
   // state para armazenar a lista de alunos

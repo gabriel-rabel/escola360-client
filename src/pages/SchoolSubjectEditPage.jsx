@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../axios/api";
 import toast from "react-hot-toast";
-import NavbarSchool from "../components/NovabarSchool";
+import NavbarSchool from "../components/NavbarSchool";
 
 export default function SubjectEditPage() {
   const [subject, setSubject] = useState({});

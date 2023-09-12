@@ -28,7 +28,7 @@ export default function SchoolHomePage() {
         <div className="mt-10 text-4xl text-center mb-10 text-white">
           <p>
             <img
-              className="absolute top-[0px] left-[390px] transform -translate-x-1/2"
+              className="absolute top-[0px] left-2 transform -translate-x-1/2"
               src={Flor}
             />
             Bem vindo, <span className="font-bold">{user.name}</span>!

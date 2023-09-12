@@ -10,17 +10,17 @@ export default function NavbarSchool() {
     e.preventDefault();
     localStorage.removeItem("userToken");
     localStorage.removeItem("userId");
-    navigate("/login");
+    navigate("/loginschool");
   }
 
   return (
     <nav>
       <div className="navbar px-10 flex bg-[#6D7DFF]">
-        <Link to="/">
+        <Link to="/school">
           <span className="logo"></span>
         </Link>
         <div className="menu">
-          <div> 
+          <div>
             {isLoggedIn === true && (
               <>
                 <Link to="/school/profile" className="px-4 py-1">

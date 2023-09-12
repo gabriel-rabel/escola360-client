@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../axios/api";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import NavbarSchool from "../components/NovabarSchool";
+import NavbarSchool from "../components/NavbarSchool";
 import formatarData from "../utils/dateFormatter";
 
 export default function SchoolNotificationPage() {
@@ -61,7 +61,6 @@ export default function SchoolNotificationPage() {
     }
   }
 
-
   return (
     <div className="bg-[#6D7DFF] h-screen w-screen">
       <NavbarSchool />
@@ -106,67 +105,70 @@ export default function SchoolNotificationPage() {
           </form>
         </div>
         <div className="mt-8">
-  <table className="min-w-full divide-y divide-gray-200 shadow">
-    <thead className="bg-white">
-      <tr>
-        <th
-          scope="col"
-          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-        >
-          Título
-        </th>
-        <th
-          scope="col"
-          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-        >
-          Descrição
-        </th>
-        <th
-          scope="col"
-          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-        >
-          Data
-        </th>
-        <th
-          scope="col"
-          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-        >
-          Editar
-        </th>
-        <th
-          scope="col"
-          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-        >
-          Deletar
-        </th>
-      </tr>
-    </thead>
-    <tbody className="bg-white divide-y divide-gray-200">
-      {notifications.map((notification) => (
-        <tr key={notification._id}>
-          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            {notification.title}
-          </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            {notification.description}
-          </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            {formatarData(notification.createdAt)}
-          </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:underline">
-            <Link to={`/notification/edit/${notification._id}`}>Editar</Link>
-          </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-red-500 cursor-pointer hover:underline">
-            <button onClick={() => handleDeleteNotification(notification._id)}>
-              Deletar
-            </button>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-
+          <table className="min-w-full divide-y divide-gray-200 shadow">
+            <thead className="bg-white">
+              <tr>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Título
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Descrição
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Data
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Editar
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Deletar
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {notifications.map((notification) => (
+                <tr key={notification._id}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {notification.title}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {notification.description}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {formatarData(notification.createdAt)}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:underline">
+                    <Link to={`/notification/edit/${notification._id}`}>
+                      Editar
+                    </Link>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-red-500 cursor-pointer hover:underline">
+                    <button
+                      onClick={() => handleDeleteNotification(notification._id)}
+                    >
+                      Deletar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

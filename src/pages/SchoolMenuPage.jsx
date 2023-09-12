@@ -3,7 +3,6 @@ import api from "../axios/api";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
-import { useEffect, useState } from "react";
 import formatarData from "../utils/dateFormatter";
 
 /*export default function SchoolMenuPage(params) {
