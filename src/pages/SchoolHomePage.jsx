@@ -9,7 +9,7 @@ import {
   BookOpenIcon,
   ClipboardIcon,
   BellIcon,
-  ClipboardDocumentIcon,
+  ClipboardDocumentListIcon,
 } from "@heroicons/react/24/outline";
 
 export default function SchoolHomePage() {
@@ -107,7 +107,7 @@ export default function SchoolHomePage() {
           >
             <div className="flex items-center justify-between">
               <div className="flex gap-4">
-                <ClipboardDocumentIcon className="h-6 w-6 mr-1 text-white" />
+                <ClipboardDocumentListIcon className="h-6 w-6 mr-1 text-white" />
                 <p className="text-white">Boletins</p>
               </div>
               <img src={Seta} alt="Ícone da seta" />
