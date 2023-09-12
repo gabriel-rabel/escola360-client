@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import api from "../axios/api";
-import Flor1 from "../assets/flor1.svg";
 import Flor2 from "../assets/flor2.svg";
 import Voltar from "../assets/voltar.svg";
 import NavbarSchool from "../components/NavbarSchool";
@@ -20,6 +19,7 @@ export default function SchoolStudentPage() {
   });
   const [reload, setReload] = useState(false);
 
+  //funcao p mostrar os estudantes
   useEffect(() => {
     async function getStudents() {
       try {
@@ -36,6 +36,7 @@ export default function SchoolStudentPage() {
     setFormStudent({ ...formStudent, [e.target.name]: e.target.value });
   }
 
+  //funcao para criar um estudante
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -207,32 +208,48 @@ export default function SchoolStudentPage() {
               Salvar
             </button>
           </div>
-
-          {/* LISTA DE ALUNOS AGRUPADA POR CLASSE (ANO) */}
-          <div className="relative mb-10 bg-white rounded-lg p-4 w-[800px]">
-            <img
-              src={Flor2}
-              alt=""
-              className="absolute top-[200px] left-[1000px]"
-            />
-            <ul>
-              {Object.entries(groupedUsers).map(([year, users]) => (
-                <li key={year}>
-                  <div>
-                    <p className="text-[#6A7AF5]">{formatTurma(year)}</p>
-                  </div>
-                  <ul>
-                    {users.map((user) => (
-                      <li key={user.id}>
-                        <p className="text-[#525252] font-bold">{user.name}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          </div>
         </form>
+
+        {/* LISTA DE ALUNOS AGRUPADA POR CLASSE (ANO) */}
+        {/*<div className="mb-10 bg-white rounded-lg p-4 w-[800px] relative mt-8">*/}
+        <div className="mt-10 max-w-full">
+          <table className="w-full divide-y divide-gray-200 shadow">
+            <thead className="bg-white">
+              <tr>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Nome
+                </th>
+                <th
+                  scope="col"
+                  className="flex flex-col items-end mx-4 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Ano
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {Object.entries(groupedUsers).map(([year, users]) => (
+                <tr key={year}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <ul>
+                      {users.map((user) => (
+                        <li key={user.id} className=" text-[#525252] font-bold">
+                          {user.name}
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                  <td className="flex flex-col items-end mx-4 px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {formatTurma(year)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
