@@ -213,42 +213,54 @@ export default function SchoolStudentPage() {
         {/* LISTA DE ALUNOS AGRUPADA POR CLASSE (ANO) */}
         {/*<div className="mb-10 bg-white rounded-lg p-4 w-[800px] relative mt-8">*/}
         <div className="mt-10 max-w-full">
-          <table className="w-full divide-y divide-gray-200 shadow">
-            <thead className="bg-white">
-              <tr>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                >
-                  Nome
-                </th>
-                <th
-                  scope="col"
-                  className="flex flex-col items-end mx-4 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                >
-                  Ano
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {Object.entries(groupedUsers).map(([year, users]) => (
-                <tr key={year}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    <ul>
-                      {users.map((user) => (
-                        <li key={user.id} className=" text-[#525252] font-bold">
-                          {user.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </td>
-                  <td className="flex flex-col items-end mx-4 px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {formatTurma(year)}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <table className="w-full divide-y divide-gray-200 shadow">
+  <thead className="bg-white">
+    <tr>
+      <th
+        scope="col"
+        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+      >
+        Nome
+      </th>
+      <th
+        scope="col"
+        className="flex flex-col items-end mx-4 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+      >
+        Ano
+      </th>
+      <th
+        scope="col"
+        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+      >
+        Editar
+      </th>
+    </tr>
+  </thead>
+  <tbody className="bg-white divide-y divide-gray-200">
+    {Object.entries(groupedUsers).map(([year, users]) => (
+      <tr key={year}>
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+          <ul>
+            {users.map((user) => (
+              <li key={user._id} className="text-[#525252] font-bold">
+                {user.name}
+              </li>
+            ))}
+          </ul>
+        </td>
+        <td className="flex flex-col items-end mx-4 px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+          {formatTurma(year)}
+        </td>
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+          <Link to={`/school/student/${users[0]._id}`} className="text-[#525252] font-bold">
+            Editar
+          </Link>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
         </div>
       </div>
     </div>
