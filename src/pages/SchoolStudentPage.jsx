@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import api from "../axios/api";
-/* import Flor1 from "../assets/flor1.svg"; */
+import Flor1 from "../assets/flor1.svg";
 import Flor2 from "../assets/flor2.svg";
-import NavbarSchool from "../components/NovabarSchool";
+import NavbarSchool from "../components/NavbarSchool";
 
 export default function SchoolStudentPage() {
   // state para armazenar a lista de alunos
@@ -76,8 +76,6 @@ export default function SchoolStudentPage() {
             <h1 className="text-[18px]">Cadastre um aluno</h1>
           </div>
         </Link>
-        <div></div>
-
         {/* Form */}
         <form onSubmit={handleSubmit} className="mt-4">
           <div className="mb-4">
@@ -147,7 +145,7 @@ export default function SchoolStudentPage() {
               ))}
             </ul>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
