@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import api from "../axios/api";
-import Flor1 from "../assets/flor1.svg";
+/* import Flor1 from "../assets/flor1.svg"; */
 import Flor2 from "../assets/flor2.svg";
 import NavbarSchool from "../components/NovabarSchool";
-import { Link } from "react-router-dom";
 
 export default function SchoolStudentPage() {
   // state para armazenar a lista de alunos
   const [users, setUsers] = useState([]);
+  const [formData, setFormData] = useState({
+    name: "",
+    password: "",
+    email: "",
+  });
 
   useEffect(() => {
     async function getStudents() {
@@ -16,6 +20,35 @@ export default function SchoolStudentPage() {
     }
     getStudents();
   }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await api.post("/user/signup", formData);
+      alert("Aluno cadastrado com sucesso!");
+
+      // Limpar o formulário após o sucesso
+      setFormData({
+        nome: "",
+        password: "",
+        email: "",
+      });
+
+      // Você pode fazer algo com a resposta do servidor, se necessário
+      console.log("Resposta do servidor:", response.data);
+    } catch (error) {
+      console.error("Erro ao cadastrar aluno:", error);
+    }
+  };
 
   // Função para agrupar os alunos por ano
   const groupUsersByYear = (users) => {
@@ -30,26 +63,64 @@ export default function SchoolStudentPage() {
   };
 
   const groupedUsers = groupUsersByYear(users);
+
   return (
-    <div className="bg-[#6D7DFF] h-screen w-screen">
+    <div className="w-screen">
       <NavbarSchool />
 
-      {/* TÍTULO */}
-      <div className="relative">
-        <img
-          src={Flor1}
-          alt=""
-          className="absolute top-9 left-[200px] transform -translate-x-1/2"
-        />
-        <div className="flex justify-center items-center flex-col mt-20">
-          <div>
-            <h1 className="text-4xl text-center mb-10 text-white">
-              Bem-vindo à página de alunos
-            </h1>
+      {/* Título */}
+      <div className="mt-10 mx-32">
+        <Link to="/school">
+          <div className="flex items-center gap-2 mb-2">
+            <img src={Voltar} />
+            <h1 className="text-[18px]">Cadastre um aluno</h1>
           </div>
+        </Link>
+        <div></div>
 
-          <div className=" bg-white rounded p-2 mb-2">
-            <Link to={``}>Cadastrar um aluno</Link>
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="mt-4">
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-[#6A7AF5]">
+              Nome do aluno
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="nome"
+              value={formData.nome}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="block text-[#6A7AF5]">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-[#6A7AF5]">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded"
+              required
+            />
           </div>
 
           {/* LISTA DE ALUNOS AGRUPADA POR CLASSE (ANO) */}
@@ -62,7 +133,7 @@ export default function SchoolStudentPage() {
             <ul>
               {Object.entries(groupedUsers).map(([year, users]) => (
                 <li key={year}>
-                  <div className="flex">
+                  <div>
                     <p className="text-[#6A7AF5]">{year}</p>
                   </div>
                   <ul>
