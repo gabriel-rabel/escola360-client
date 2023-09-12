@@ -71,6 +71,27 @@ export default function SchoolStudentPage() {
 
   const groupedUsers = groupUsersByYear(users);
 
+  function formatTurma(turma) {
+    // Mapeie os valores da turma para as strings formatadas correspondentes
+    const turmaMap = {
+      "1ano": "1º ano",
+      "2ano": "2º ano",
+      "3ano": "3º ano",
+      "4ano": "4º ano",
+      "5ano": "5º ano",
+      "6ano": "6º ano",
+      "7ano": "7º ano",
+      "8ano": "8º ano",
+      "9ano": "9º ano",
+      "1anoEM": "1º ano EM",
+      "2anoEM": "2º ano EM",
+      "3anoEM": "3º ano EM",
+    };
+
+    // Verifique se a turma existe no mapeamento e retorne a string formatada correspondente
+    return turmaMap[turma] || turma;
+  }
+
   return (
     <div className="w-screen">
       <NavbarSchool />
@@ -131,14 +152,26 @@ export default function SchoolStudentPage() {
             <label htmlFor="class" className="block text-[#6A7AF5]">
               Turma
             </label>
-            <input
-              type="text"
+            <select
               name="class"
               value={formStudent.class}
               onChange={handleChangeStudent}
               className="w-full p-2 border rounded"
-              required
-            />
+            >
+              <option value="">Selecione a turma</option>
+              <option value="1ano">1º ano</option>
+              <option value="2ano">2º ano</option>
+              <option value="3ano">3º ano</option>
+              <option value="4ano">4º ano</option>
+              <option value="5ano">5º ano</option>
+              <option value="6ano">6º ano</option>
+              <option value="7ano">7º ano</option>
+              <option value="8ano">8º ano</option>
+              <option value="9ano">9º ano</option>
+              <option value="1anoEM">1º ano EM</option>
+              <option value="2anoEM">2º ano EM</option>
+              <option value="3anoEM">3º ano EM</option>
+            </select>
           </div>
 
           <div className="mb-4">
@@ -186,7 +219,7 @@ export default function SchoolStudentPage() {
               {Object.entries(groupedUsers).map(([year, users]) => (
                 <li key={year}>
                   <div>
-                    <p className="text-[#6A7AF5]">{year}</p>
+                    <p className="text-[#6A7AF5]">{formatTurma(year)}</p>
                   </div>
                   <ul>
                     {users.map((user) => (
