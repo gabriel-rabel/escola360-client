@@ -4,6 +4,13 @@ import { Link } from "react-router-dom";
 import NavbarSchool from "../components/NavbarSchool";
 import Seta from "../assets/seta.svg";
 import Flor from "../assets/flor2.svg";
+import {
+  UserIcon,
+  BookOpenIcon,
+  ClipboardIcon,
+  BellIcon,
+  ClipboardDocumentIcon,
+} from "@heroicons/react/24/outline";
 
 export default function SchoolHomePage() {
   const [user, setUser] = useState({});
@@ -28,7 +35,7 @@ export default function SchoolHomePage() {
         <div className="mt-10 text-4xl text-center mb-10 text-white">
           <p>
             <img
-              className="absolute top-[0px] left-[390px] transform -translate-x-1/2"
+              className="absolute top-[0px] left-2 transform -translate-x-1/2"
               src={Flor}
             />
             Bem vindo, <span className="font-bold">{user.name}</span>!
@@ -44,6 +51,7 @@ export default function SchoolHomePage() {
           >
             <div className="flex items-center justify-between">
               <div className="flex gap-4">
+                <UserIcon className="h-6 w-6 mr-1 text-white" />
                 <p className="text-white">Alunos</p>
               </div>
               <img src={Seta} alt="Ícone da seta" />
@@ -57,6 +65,7 @@ export default function SchoolHomePage() {
           >
             <div className="flex items-center justify-between">
               <div className="flex gap-4">
+                <BookOpenIcon className="h-6 w-6 mr-1 text-white" />
                 <p className="text-white">Matérias</p>
               </div>
               <img src={Seta} alt="Ícone da seta" />
@@ -70,6 +79,7 @@ export default function SchoolHomePage() {
           >
             <div className="flex items-center justify-between">
               <div className="flex gap-4">
+                <ClipboardIcon className="h-6 w-6 mr-1 text-white" />
                 <p className="text-white">Cardápio</p>
               </div>
               <img src={Seta} alt="Ícone da seta" />
@@ -83,6 +93,7 @@ export default function SchoolHomePage() {
           >
             <div className="flex items-center justify-between">
               <div className="flex gap-4">
+                <BellIcon className="h-6 w-6 mr-1 text-white" />
                 <p className="text-white">Notificações</p>
               </div>
               <img src={Seta} alt="Ícone da seta" />
@@ -96,6 +107,7 @@ export default function SchoolHomePage() {
           >
             <div className="flex items-center justify-between">
               <div className="flex gap-4">
+                <ClipboardDocumentIcon className="h-6 w-6 mr-1 text-white" />
                 <p className="text-white">Boletins</p>
               </div>
               <img src={Seta} alt="Ícone da seta" />
