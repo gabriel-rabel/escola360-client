@@ -4,18 +4,6 @@ import api from "../axios/api";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
 
-
-///ainda esta em edição
-//favor nao mecher
-
-
-
-///att gabriel
-
-
-
-
-
 export default function SchoolEditStudent() {
 
     const [user, setUser] = useState({});
@@ -25,7 +13,7 @@ export default function SchoolEditStudent() {
         email: "",
         class: "",
         register: "",
-        passwordHash: "",
+        password: "",
       });
 
     const [reload, setReload] = useState(false);
@@ -38,7 +26,7 @@ export default function SchoolEditStudent() {
             try {
                 const response = await api.get(`/school/get_one/${params.id_student}`);
                 setUser(response.data);
-                setFormStudent(response.data);
+                setFormStudent({...response.data, password: ""});
             } catch (error) {
                 console.log(error);
             }
@@ -115,6 +103,7 @@ return (
                             type="email"
                             name="email"
                             id="email"
+                            autoComplete="current-password"
                             value={formStudent.email}
                             onChange={handleChangeStudent}
                             className="rounded-md border border-gray-300 p-2 text-gray-500 mt-1"
@@ -158,7 +147,8 @@ return (
                             type="password"
                             name="password"
                             id="password"
-                            value={formStudent.passwordHash}
+                            autoComplete="current-password"
+                            value={formStudent.password}
                             onChange={handleChangeStudent}
                             className="rounded-md border border-gray-300 p-2 text-gray-500 mt-1"
                         />
@@ -166,7 +156,7 @@ return (
 
                     <button
                         type="submit"
-                        className="bg-blue-800 text-white border p-3 mt-5 rounded-lg"
+                        className="bg-[#6A7AF5] text-white border p-3 mt-5 rounded-lg"
                     >
                         Salvar Edição
                     </button>

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
 import formatarData from "../utils/dateFormatter";
+import Voltar from "../assets/voltar.svg";
 
 export default function SchoolNotificationPage() {
   const [notifications, setNotifications] = useState([]);
@@ -62,13 +63,16 @@ export default function SchoolNotificationPage() {
   }
 
   return (
-    <div className="bg-[#6D7DFF] h-screen w-screen">
+    <div className="w-screen">
       <NavbarSchool />
-      <div className="flex flex-col mt-10 max-w-2xl">
+      <div className="mt-10 mx-auto max-w-2xl">
         <div className="mt-4 rounded-3xl border-2 p-12 bg-white shadow-md border-blue-500">
-          <h1 className="text-center text-2xl font-bold text-gray-600">
-            Cadastre uma notificação
-          </h1>
+          <Link to="/school">
+            <div className="flex items-center gap-2 mb-2">
+              <img src={Voltar} />
+              <h1 className="text-[18px]">Cadastre uma notificação</h1>
+            </div>
+          </Link>
           <form
             onSubmit={handleSubmitNotification}
             className="flex flex-col mt-6 bg-white p-4 rounded-lg"
@@ -98,13 +102,13 @@ export default function SchoolNotificationPage() {
             />
             <button
               type="submit"
-              className="bg-blue-800 text-white border p-3 mt-5 rounded-lg"
+              className="bg-[#6D7DFF] text-white border p-3 mt-5 rounded-lg"
             >
               Cadastrar
             </button>
           </form>
         </div>
-        <div className="mt-8">
+        <div className="mt-8 overflow-x-auto rounded-3xl border-2 bg-white shadow-md border-blue-500">
           <table className="min-w-full divide-y divide-gray-200 shadow">
             <thead className="bg-white">
               <tr>
@@ -146,7 +150,7 @@ export default function SchoolNotificationPage() {
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {notification.title}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-6 py-4 whitespace-normal text-sm text-gray-500">
                     {notification.description}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
