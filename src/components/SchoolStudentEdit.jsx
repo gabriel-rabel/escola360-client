@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import api from "../axios/api";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import {XCircleIcon} from "@heroicons/react/24/outline";
 
 export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
+  const formRef = useRef(null);
   const [formStudent, setFormStudent] = useState({
     name: "",
     parentsName: "",
@@ -20,7 +22,7 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
       try {
         const response = await api.get(`/school/get_one/${userId}`);
         setFormStudent({ ...response.data, password: "" });
-        console.log(formStudent)
+        console.log(formStudent);
       } catch (error) {
         console.log(error);
       }
@@ -48,7 +50,6 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
     e.preventDefault();
     try {
       const response = await api.delete(`/school/delete/${userId}`);
-      console.log(response);
       onClose(); // Fecha o modal
     } catch (error) {
       console.log(error);
@@ -56,8 +57,20 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-40 flex justify-center items-center">
-      <div className="bg-white p-8 w-[50%] rounded-lg shadow-lg">
+    <div
+      className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-40 flex justify-center items-center"
+      onClick={(e) => {
+        //função para fechar o modal ao clicar fora
+        if (
+          e.target === e.currentTarget &&
+          !formRef.current.contains(e.target)
+        ) {
+          onClose();
+        }
+      }}
+    >
+      <div ref={formRef} className="bg-white p-8 w-[50%] rounded-lg shadow-lg">
+        <XCircleIcon onClick={onClose} className="w-6 h-6 text-[#6A7AF5]"/>
         <h1 className="text-2xl font-bold text-gray-600 mb-4">Editar Aluno</h1>
         <form onSubmit={handleSubmitStudent}>
           <div className="flex flex-col mt-6">
