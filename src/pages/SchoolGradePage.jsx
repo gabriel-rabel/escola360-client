@@ -21,7 +21,7 @@ export default function SchoolGradePage() {
       try {
         const response = await api.get("/subject/get_all");
         setSubjects(response.data);
-        console.log(response.data);
+
       } catch (error) {
         console.log(error);
       }

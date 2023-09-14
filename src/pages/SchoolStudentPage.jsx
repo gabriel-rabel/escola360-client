@@ -4,11 +4,10 @@ import Flor2 from "../assets/flor2.svg";
 import Voltar from "../assets/voltar.svg";
 import NavbarSchool from "../components/NavbarSchool";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
 import Separar from "../assets/separacao.svg";
+import SchoolStudentEdit from "../components/SchoolStudentEdit";
 
 export default function SchoolStudentPage() {
-  // state para armazenar a lista de alunos
   const [users, setUsers] = useState([]);
   const [formStudent, setFormStudent] = useState({
     name: "",
@@ -19,10 +18,9 @@ export default function SchoolStudentPage() {
     password: "",
   });
   const [reload, setReload] = useState(false);
-
   const [search, setSearch] = useState("");
+  const [selectedUserId, setSelectedUserId] = useState(null);
 
-  //funcao p mostrar os estudantes
   useEffect(() => {
     async function getStudents() {
       try {
@@ -39,15 +37,12 @@ export default function SchoolStudentPage() {
     setFormStudent({ ...formStudent, [e.target.name]: e.target.value });
   }
 
-  //funcao para criar um estudante
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       const response = await api.post("/user/signup", formStudent);
       setReload(!reload);
       toast.success("Aluno criado com sucesso!");
-
-      // Limpar os campos do formulário após a adição
       setFormStudent({
         name: "",
         parentsName: "",
@@ -60,8 +55,9 @@ export default function SchoolStudentPage() {
       console.log(error);
     }
   }
-
-  // Função para agrupar os alunos por ano
+{/*
+    //removi temporariamente até decidirmos se vamos usar
+//search by group
   const groupUsersByYear = (users) => {
     const groupedUsers = {};
     users.forEach((user) => {
@@ -75,8 +71,9 @@ export default function SchoolStudentPage() {
 
   const groupedUsers = groupUsersByYear(users);
 
+*/}
+
   function formatTurma(turma) {
-    // Mapeie os valores da turma para as strings formatadas correspondentes
     const turmaMap = {
       "1ano": "1º ano",
       "2ano": "2º ano",
@@ -91,8 +88,6 @@ export default function SchoolStudentPage() {
       "2anoEM": "2º ano EM",
       "3anoEM": "3º ano EM",
     };
-
-    // Verifique se a turma existe no mapeamento e retorne a string formatada correspondente
     return turmaMap[turma] || turma;
   }
 
@@ -100,21 +95,24 @@ export default function SchoolStudentPage() {
     setSearch(e.target.value);
   }
 
-  console.log(search);
+  const openEditModal = (userId) => {
+    setSelectedUserId(userId);
+  };
+
+  const closeEditModal = () => {
+    setSelectedUserId(null);
+  };
 
   return (
     <div className="w-screen">
       <NavbarSchool />
 
-      {/* Título */}
-      <div className="mt-10 mx-auto w-[1200px] mt-10">
-        <Link to="/school">
-          <div className="flex items-center gap-2 mb-2">
-            <img src={Voltar} />
-            <h1 className="text-[18px]">Cadastre um aluno</h1>
-          </div>
-        </Link>
-        {/* Form */}
+      <div className="mt-10 mx-auto w-[1200px]">
+        <div className="flex items-center gap-2 mb-2">
+          <img src={Voltar} />
+          <h1 className="text-[18px]">Cadastre um aluno</h1>
+        </div>
+
         <form onSubmit={handleSubmit} className="mt-4 ">
           <div className="flex flex-col">
             <label htmlFor="name" className="block">
@@ -132,7 +130,7 @@ export default function SchoolStudentPage() {
 
           <div className="flex flex-col">
             <label htmlFor="parentsName" className="block">
-              Nome dos pais
+              Responsável
             </label>
             <input
               type="text"
@@ -151,6 +149,7 @@ export default function SchoolStudentPage() {
               type="email"
               id="email"
               name="email"
+              autoComplete="on"
               value={formStudent.email}
               onChange={handleChangeStudent}
               className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
@@ -191,6 +190,7 @@ export default function SchoolStudentPage() {
             <input
               type="text"
               name="register"
+              autoComplete="off"
               value={formStudent.register}
               onChange={handleChangeStudent}
               className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
@@ -205,6 +205,7 @@ export default function SchoolStudentPage() {
             <input
               type="password"
               name="password"
+              autoComplete="new-password"
               value={formStudent.password}
               onChange={handleChangeStudent}
               className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
@@ -222,20 +223,15 @@ export default function SchoolStudentPage() {
           </div>
         </form>
 
-        {/* Divisor */}
         <div className="flex justify-center mt-10 mb-4">
           <img src={Separar} />
         </div>
 
-        {/* LISTA DE ALUNOS AGRUPADA POR CLASSE (ANO) */}
-        {/*<div className="mb-10 bg-white rounded-lg p-4 w-[800px] relative mt-8">*/}
         <div className="mt-4 max-w-full rounded-md border-gray-300">
-          {/* Título */}
           <div className="text-[24px] text-center font-bold h-[30px] flex items-center">
             <h1>Lista de Alunos</h1>
           </div>
 
-          {/* Filter */}
           <div className="flex flex-col mt-6 mb-6">
             <input
               placeholder="Pesquise"
@@ -264,44 +260,42 @@ export default function SchoolStudentPage() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y">
-              {Object.entries(groupedUsers).map(([year, users]) => (
-                <tr key={year}>
-                  <td className="py-4 text-md">
-                    <ul>
-                      {users
-                        .filter((user) => {
-                          return user.active === true;
-                        })
-                        .filter((user) => {
-                          return user.name
-                            .toLocaleLowerCase()
-                            .includes(search.toLocaleLowerCase());
-                        })
+  {users
+    .filter((user) => user.active === true)
+    .filter((user) =>
+      user.name.toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) => a.name.localeCompare(b.name)) // Ordena por nome
+    .map((user) => (
+      <tr key={user._id}>
+        <td className="py-4 text-md">
+          <button
+            onClick={() => openEditModal(user._id)}
+            className="text-[#6D7DFF] font-bold"
+          >
+            {user.name}
+          </button>
+        </td>
+        <td className="flex flex-col items-end mx-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+          {formatTurma(user.class)}
+        </td>
+      </tr>
+    ))}
+</tbody>
 
-                        .map((user) => (
-                          <li
-                            key={user._id}
-                            className="text-[#525252] font-bold mb-2"
-                          >
-                            <Link
-                              to={`/school/student/${user._id}`}
-                              className="text-[#6D7DFF] font-bold"
-                            >
-                              {user.name}
-                            </Link>
-                          </li>
-                        ))}
-                    </ul>
-                  </td>
-                  <td className="flex flex-col items-end mx-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {formatTurma(year)}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
           </table>
         </div>
       </div>
+
+      {selectedUserId && (
+        <SchoolStudentEdit
+          userId={selectedUserId}
+          onClose={closeEditModal}
+          onEdit={() => {
+            setReload(!reload);
+          }}
+        />
+      )}
     </div>
   );
 }
