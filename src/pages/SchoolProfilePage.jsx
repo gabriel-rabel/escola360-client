@@ -61,7 +61,7 @@ export default function SchoolProfilePage() {
       <NavbarSchool />
 
       {/* Saudação */}
-      <div className="mt-10 mx-32">
+      <div className="mx-auto w-[1200px] mt-10">
         <p className="text-4xl text-center mb-10">
           Bem vindo, <span className="font-bold">{user.name}</span>
         </p>

@@ -31,7 +31,7 @@ export default function SchoolHomePage() {
   return (
     <div className="w-screen bg-[#6D7DFF] h-screen w-screen">
       <NavbarSchool />
-      <div className="mx-40 relative">
+      <div className="mx-auto w-[1200px] mt-10 relative">
         <div className="mt-10 text-4xl text-center mb-10 text-white">
           <p>
             <img
