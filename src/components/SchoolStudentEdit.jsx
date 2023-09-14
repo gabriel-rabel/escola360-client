@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import api from "../axios/api";
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom";
 import {XCircleIcon} from "@heroicons/react/24/outline";
 
 export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
@@ -15,7 +14,6 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
     password: "",
   });
 
-  const params = useParams();
 
   useEffect(() => {
     async function getStudent() {
@@ -70,8 +68,14 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
       }}
     >
       <div ref={formRef} className="bg-white p-8 w-[50%] rounded-lg shadow-lg">
-        <XCircleIcon onClick={onClose} className="w-6 h-6 text-[#6A7AF5]"/>
+      <div className="flex justify-between">
+        <div>
+         <XCircleIcon onClick={onClose} className="w-6 h-6 text-[#6A7AF5]"/>
+         </div>
+         <div>
         <h1 className="text-2xl font-bold text-gray-600 mb-4">Editar Aluno</h1>
+        </div>
+        </div>
         <form onSubmit={handleSubmitStudent}>
           <div className="flex flex-col mt-6">
             <label htmlFor="name" className="text-gray-500 font-medium">

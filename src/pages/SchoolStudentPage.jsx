@@ -6,6 +6,7 @@ import NavbarSchool from "../components/NavbarSchool";
 import toast from "react-hot-toast";
 import Separar from "../assets/separacao.svg";
 import SchoolStudentEdit from "../components/SchoolStudentEdit";
+import { Link } from "react-router-dom";
 
 export default function SchoolStudentPage() {
   const [users, setUsers] = useState([]);
@@ -106,10 +107,12 @@ export default function SchoolStudentPage() {
   return (
     <div className="w-screen">
       <NavbarSchool />
-
       <div className="mt-10 mx-auto w-[1200px]">
+
         <div className="flex items-center gap-2 mb-2">
+        <Link to="/school">
           <img src={Voltar} />
+          </Link>
           <h1 className="text-[18px]">Cadastre um aluno</h1>
         </div>
 
