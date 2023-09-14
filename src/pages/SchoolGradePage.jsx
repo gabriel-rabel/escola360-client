@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
 import Voltar from "../assets/voltar.svg";
+import Separar from "../assets/separacao.svg";
+import SchoolSubjectEdit from "../components/SchoolSubjectEdit";
 
 export default function SchoolGradePage() {
   const [subjects, setSubjects] = useState([]);
@@ -13,8 +15,8 @@ export default function SchoolGradePage() {
     teacher: "",
   });
   const [reload, setReload] = useState(false);
-
-  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
+  const [selectedSubjectId, setSelectedSubjectId] = useState(null);
 
   useEffect(() => {
     async function getSubjects() {
@@ -59,39 +61,55 @@ export default function SchoolGradePage() {
       console.log(error);
     }
   }
+  function handleSearch(e) {
+    setSearch(e.target.value);
+  }
+  const openEditModal = (subjectId) => {
+    setSelectedSubjectId(subjectId);
+  };
+
+  const closeEditModal = () => {
+    setSelectedSubjectId(null);
+  };
 
   return (
     <div className="w-screen">
       <NavbarSchool />
-      <div className="mt-10 mx-32">
-        <Link to="/school">
+      <div className="mt-10 mx-auto w-[1200px]">
+        
           <div className="flex items-center gap-2 mb-2">
+          <Link to="/school">
             <img src={Voltar} />
+            </Link>
             <h1 className="text-[18px]">Cadastre uma matéria</h1>
           </div>
-        </Link>
-        <form onSubmit={handleSubmitSubject} className="flex flex-col mt-6">
-          <label className="text-gray-500">Nome da matéria</label>
+       
+        <form onSubmit={handleSubmitSubject} className="mt-4">
+          <div className="flex flex-col">
+          <label htmlFor="name" className="block">Nome da matéria</label>
           <input
             type="text"
             name="name"
             value={formSubject.name}
             onChange={handleChangeSubject}
-            className="rounded-md border border-gray-300 p-2 text-gray-500"
+            className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
           />
-
-          <label htmlFor="description" className="text-gray-500 mt-5">
+          </div>
+          <div className="flex flex-col">
+          <label htmlFor="description" className="block">
             Descrição
           </label>
           <textarea
             type="text"
             name="description"
+            rows="4"
             value={formSubject.description}
             onChange={handleChangeSubject}
-            className="rounded-md border border-gray-300 p-2 text-gray-500"
+            className="border border-gray-400 rounded-md px-4 py-2 mb-4"
           />
-
-          <label htmlFor="teacher" className="text-gray-500 mt-5">
+          </div>
+          <div className="flex flex-col">
+          <label htmlFor="teacher" className="block">
             Professor
           </label>
           <input
@@ -99,54 +117,65 @@ export default function SchoolGradePage() {
             name="teacher"
             value={formSubject.teacher}
             onChange={handleChangeSubject}
-            className="rounded-md border border-gray-300 p-2 text-gray-500"
+            className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
           />
-
+          </div>
+          <div className="flex justify-center items-center">
           <button
             type="submit"
-            className="bg-blue-800 text-white border p-3 mt-5 rounded-lg"
+            className="border mt-5 bg-[#6D7DFF] text-white font-bold rounded-md w-[250px] h-[44px]"
           >
             Salvar
           </button>
+          </div>
         </form>
+        <div className="flex justify-center mt-10 mb-4">
+          <img src={Separar} />
+        </div>
 
-        <div className="mt-10 max-w-xs">
-          <table className="divide-y divide-gray-200 shadow">
-            <thead className="bg-white">
+        <div className="mt-4 max-w-full rounded-md border-gray-300">
+          <div className="text-[24px] text-center font-bold h-[30px] flex items-center">
+          <h1>Lista de Disciplinas</h1>
+          </div>
+        <div className="flex flex-col mt-6 mb-6">
+        <input
+              placeholder="Pesquise"
+              type="search"
+              value={search}
+              onChange={handleSearch}
+              className="rounded-md border border-gray-300 p-2 text-gray-500 mt-1"
+            />
+        </div>
+          <table className="w-full divide-y divide-gray-200 border-gray-200">
+            <thead>
               <tr>
                 <th
                   scope="col"
-                  className="max-w-full px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="text-left text-md font-medium text-gray-500 tracking-wider"
                 >
                   Nome
                 </th>
                 <th
                   scope="col"
-                  className="max-w-full px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="text-left text-md font-medium text-gray-500 tracking-wider"
                 >
                   Descrição
                 </th>
                 <th
                   scope="col"
-                  className=" max-w-full px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="text-left text-md font-medium text-gray-500 tracking-wider"
                 >
                   Professor
                 </th>
                 <th
                   scope="col"
-                  className="max-w-full px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="text-left text-md font-medium text-gray-500 tracking-wider"
                 >
                   Status
                 </th>
                 <th
                   scope="col"
-                  className="max-w-full px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                >
-                  Editar
-                </th>
-                <th
-                  scope="col"
-                  className="max-w-full px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="text-left text-md font-medium text-gray-500 tracking-wider"
                 >
                   Deletar
                 </th>
@@ -155,10 +184,15 @@ export default function SchoolGradePage() {
             <tbody className="bg-white divide-y divide-gray-200">
               {subjects.map((subject) => (
                 <tr key={subject._id}>
-                  <td className="max-w-full px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="flex flex-col items-start mx-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <button
+            onClick={() => openEditModal(subject._id)}
+            className="text-[#6D7DFF] font-bold"
+          >
                     {subject.name}
+                    </button>
                   </td>
-                  <td className="max-w-full px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="whitespace-normal text-sm font-medium text-gray-900">
                     {subject.description}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -166,11 +200,6 @@ export default function SchoolGradePage() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {subject.status}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:underline">
-                    <Link to={`/school/subject-edit/${subject._id}`}>
-                      Editar
-                    </Link>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-red-500 cursor-pointer hover:underline">
                     <button onClick={() => handleDeleteSubject(subject._id)}>
@@ -183,6 +212,17 @@ export default function SchoolGradePage() {
           </table>
         </div>
       </div>
+      {
+        selectedSubjectId && (
+          <SchoolSubjectEdit
+            subjectId={selectedSubjectId}
+            onClose={closeEditModal}
+            onEdit={() => {
+              setReload(!reload);
+            }}
+          />
+        )
+      }
     </div>
   );
 }
