@@ -70,7 +70,7 @@ export default function SchoolNotificationPage() {
           <Link to="/school">
             <div className="flex items-center gap-2 mb-2">
               <img src={Voltar} />
-              <h1 className="text-[18px]">Cadastre uma notificação</h1>
+              <h1 className="text-[18px] text-[#6D7DFF]">Cadastre uma notificação</h1>
             </div>
           </Link>
           <form
@@ -114,31 +114,31 @@ export default function SchoolNotificationPage() {
               <tr>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#6D7DFF]"
                 >
                   Título
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#6D7DFF]"
                 >
                   Descrição
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#6D7DFF]"
                 >
                   Data
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#6D7DFF]"
                 >
                   Editar
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#6D7DFF]"
                 >
                   Deletar
                 </th>
@@ -156,7 +156,7 @@ export default function SchoolNotificationPage() {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {formatarData(notification.createdAt)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500 hover:underline">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-[#6D7DFF] hover:underline">
                     <Link to={`/notification/edit/${notification._id}`}>
                       Editar
                     </Link>
