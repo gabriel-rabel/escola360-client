@@ -203,7 +203,7 @@ export default function SchoolSchedulePage() {
           </form>
         </div>
 
-        <div className="flex justify-center mt-10 mb-4">
+        {/* <div className="flex justify-center mt-10 mb-4">
           <img src={Separar} />
         </div>
 
@@ -245,9 +245,9 @@ export default function SchoolSchedulePage() {
                   </td>
                   <td className="px-6 py-4 whitespace-normal text-sm text-gray-500">
                     {schedule.subjects.map((subjectId, index) => (
-                      <span key={subjectId}>
-                        {index > 0 ? ", " : ""}{" "}
-                        {/* Adicione uma vírgula entre os nomes, exceto para o primeiro */}
+                      <span key={subjectId}> */}
+        {/*index > 0 ? ", " : ""}{" "}
+                        {/* Adicione uma vírgula entre os nomes, exceto para o primeiro }
                         {
                           subjects.find((subject) => subject._id === subjectId)
                             ?.name
@@ -267,7 +267,7 @@ export default function SchoolSchedulePage() {
               ))}
             </tbody>
           </table>
-        </div>
+        </div> */}
       </div>
     </div>
   );
