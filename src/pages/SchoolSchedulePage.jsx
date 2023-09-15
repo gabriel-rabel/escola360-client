@@ -16,6 +16,9 @@ export default function SchoolSchedulePage() {
     bimester: "",
   });
   const [reload, setReload] = useState(false);
+  const selectedSubjects = Object.keys(formSchedule.subjects).filter(
+    (subjectId) => formSchedule.subjects[subjectId]
+  );
 
   useEffect(() => {
     async function getStudents() {
@@ -66,12 +69,6 @@ export default function SchoolSchedulePage() {
           [value]: checked,
         },
       }));
-    } else if (name === "bimester") {
-      // Adicione esta condição
-      setFormSchedule({
-        ...formSchedule,
-        [name]: value, // Defina o valor do bimestre
-      });
     } else {
       setFormSchedule({
         ...formSchedule,
@@ -97,27 +94,17 @@ export default function SchoolSchedulePage() {
         return;
       }
 
-      // Crie um cronograma para cada matéria selecionada
-      const responsePromises = selectedSubjectIds.map(async (subjectId) => {
-        const dataToSend = {
-          student: studentId,
-          subjects: [subjectId], // Crie um cronograma com uma única matéria
-          bimester: formSchedule.bimester,
-        };
+      // Crie um único cronograma com os assuntos selecionados
+      const dataToSend = {
+        student: studentId,
+        subjects: selectedSubjectIds,
+        bimester: formSchedule.bimester,
+      };
 
-        return await api.post("/school/schedule/create", dataToSend);
-      });
+      const response = await api.post("/school/schedule/create", dataToSend);
 
-      // Espere todas as solicitações de criação de cronograma serem concluídas
-      const responses = await Promise.all(responsePromises);
-
-      // Verifique se todas as solicitações foram bem-sucedidas
-      const hasErrors = responses.some((response) => response.status !== 201);
-
-      if (hasErrors) {
-        toast.error("Erro ao criar cronograma(s).");
-      } else {
-        toast.success("Cronograma(s) criado(s) com sucesso!");
+      if (response.status === 201) {
+        toast.success("Cronograma criado com sucesso!");
         // Limpar os campos do formulário após a adição
         setFormSchedule({
           student: "",
@@ -125,10 +112,12 @@ export default function SchoolSchedulePage() {
           bimester: "",
         });
         setReload(!reload);
+      } else {
+        toast.error("Erro ao criar cronograma.");
       }
     } catch (error) {
       console.log(error);
-      toast.error("Erro ao criar cronograma(s).");
+      toast.error("Erro ao criar cronograma.");
     }
   }
 
