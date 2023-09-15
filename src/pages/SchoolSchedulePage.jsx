@@ -3,7 +3,6 @@ import api from "../axios/api";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
-import formatarData from "../utils/dateFormatter";
 import Voltar from "../assets/voltar.svg";
 
 export default function SchoolSchedulePage() {
@@ -53,11 +52,6 @@ export default function SchoolSchedulePage() {
     getSchedules();
   }, [reload]);
 
-  // Função para verificar se um valor está presente em uma matriz
-  function isValueInArray(value, array) {
-    return array.indexOf(value) !== -1;
-  }
-
   // Função de tratamento de mudança para as checkboxes
   function handleChangeSchedule(e) {
     const { name, value, checked } = e.target;
@@ -79,6 +73,56 @@ export default function SchoolSchedulePage() {
   }
 
   async function handleSubmitSchedule(e) {
+    e.preventDefault();
+    try {
+      // Obtenha o ID do aluno selecionado do estado
+      const studentId = formSchedule.student;
+
+      // Obtenha a lista de IDs das matérias selecionadas
+      const selectedSubjectIds = Object.keys(formSchedule.subjects).filter(
+        (subjectId) => formSchedule.subjects[subjectId]
+      );
+
+      // Verifique se pelo menos uma matéria foi selecionada
+      if (selectedSubjectIds.length === 0) {
+        toast.error("Selecione pelo menos uma matéria.");
+        return;
+      }
+
+      // Crie um cronograma para cada matéria selecionada
+      const responsePromises = selectedSubjectIds.map(async (subjectId) => {
+        const dataToSend = {
+          student: studentId,
+          subjects: [subjectId], // Crie um cronograma com uma única matéria
+        };
+
+        return await api.post("/school/schedule/create", dataToSend);
+      });
+
+      // Espere todas as solicitações de criação de cronograma serem concluídas
+      const responses = await Promise.all(responsePromises);
+
+      // Verifique se todas as solicitações foram bem-sucedidas
+      const hasErrors = responses.some((response) => response.status !== 201);
+
+      if (hasErrors) {
+        toast.error("Erro ao criar cronograma(s).");
+      } else {
+        toast.success("Cronograma(s) criado(s) com sucesso!");
+        // Limpar os campos do formulário após a adição
+        setFormSchedule({
+          student: "",
+          subjects: {},
+        });
+        setReload(!reload);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Erro ao criar cronograma(s).");
+    }
+  }
+
+  /*async function handleSubmitSchedule(e) {
     e.preventDefault();
     try {
       // Obtenha os IDs dos usuários e matérias selecionados do estado
@@ -104,7 +148,7 @@ export default function SchoolSchedulePage() {
     } catch (error) {
       console.log(error);
     }
-  }
+  }*/
 
   async function handleDeleteSchedule(scheduleId) {
     try {
