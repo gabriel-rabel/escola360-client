@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
 import Voltar from "../assets/voltar.svg";
+import Separar from "../assets/separacao.svg";
 
 export default function SchoolSchedulePage() {
   const [schedules, setschedules] = useState([]);
@@ -12,6 +13,7 @@ export default function SchoolSchedulePage() {
   const [formSchedule, setFormSchedule] = useState({
     student: "",
     subjects: {},
+    bimester: "",
   });
   const [reload, setReload] = useState(false);
 
@@ -61,9 +63,15 @@ export default function SchoolSchedulePage() {
         ...prevState,
         subjects: {
           ...prevState.subjects,
-          [value]: checked, // Atualizar o valor da matéria com base na seleção da checkbox
+          [value]: checked,
         },
       }));
+    } else if (name === "bimester") {
+      // Adicione esta condição
+      setFormSchedule({
+        ...formSchedule,
+        [name]: value, // Defina o valor do bimestre
+      });
     } else {
       setFormSchedule({
         ...formSchedule,
@@ -94,6 +102,7 @@ export default function SchoolSchedulePage() {
         const dataToSend = {
           student: studentId,
           subjects: [subjectId], // Crie um cronograma com uma única matéria
+          bimester: formSchedule.bimester,
         };
 
         return await api.post("/school/schedule/create", dataToSend);
@@ -113,6 +122,7 @@ export default function SchoolSchedulePage() {
         setFormSchedule({
           student: "",
           subjects: {},
+          bimester: "",
         });
         setReload(!reload);
       }
@@ -121,34 +131,6 @@ export default function SchoolSchedulePage() {
       toast.error("Erro ao criar cronograma(s).");
     }
   }
-
-  /*async function handleSubmitSchedule(e) {
-    e.preventDefault();
-    try {
-      // Obtenha os IDs dos usuários e matérias selecionados do estado
-      const studentId = formSchedule.student;
-      const subjectIds = Object.keys(formSchedule.subjects).filter(
-        (subjectId) => formSchedule.subjects[subjectId]
-      );
-
-      // Crie o objeto de dados a ser enviado com os IDs
-      const dataToSend = {
-        student: formSchedule.student, // Usar o ID do aluno selecionado no formulário
-        subjects: subjectIds,
-      };
-
-      const response = await api.post("/school/schedule/create", dataToSend);
-      setReload(!reload);
-      toast.success("Cronograma criado com sucesso!");
-      // Limpar os campos do formulário após a adição
-      setFormSchedule({
-        student: "",
-        subjects: {},
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }*/
 
   async function handleDeleteSchedule(scheduleId) {
     try {
@@ -194,6 +176,20 @@ export default function SchoolSchedulePage() {
               ))}
             </select>
 
+            <label className="text-gray-500">Período</label>
+            <select
+              name="bimester"
+              value={formSchedule.bimester}
+              onChange={handleChangeSchedule}
+              className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
+            >
+              <option value="">Selecione o bimestre</option>
+              <option value="1bim">1º bimestre</option>
+              <option value="2bim">2º bimestre</option>
+              <option value="3bim">3º bimestre</option>
+              <option value="4bim">4º bimestre</option>
+            </select>
+
             <label className="text-gray-500">Matérias</label>
             {subjects.map((subject) => (
               <div key={subject._id} className="flex items-center mt-1">
@@ -217,6 +213,11 @@ export default function SchoolSchedulePage() {
             </button>
           </form>
         </div>
+
+        <div className="flex justify-center mt-10 mb-4">
+          <img src={Separar} />
+        </div>
+
         <div className="mt-8 overflow-x-auto rounded-3xl border-2 bg-white shadow-md border-blue-500">
           <table className="min-w-full divide-y divide-gray-200 shadow">
             <thead className="bg-white">
