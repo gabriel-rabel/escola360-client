@@ -151,31 +151,31 @@ export default function SchoolGradePage() {
               <tr>
                 <th
                   scope="col"
-                  className="text-left text-md font-medium text-gray-500 tracking-wider"
+                  className="text-left text-md font-medium text-gray-500 tracking-wider px-4 py-2"
                 >
                   Nome
                 </th>
                 <th
                   scope="col"
-                  className="text-left text-md font-medium text-gray-500 tracking-wider"
+                  className="text-left text-md font-medium text-gray-500 tracking-wider px-4 py-2"
                 >
                   Descrição
                 </th>
                 <th
                   scope="col"
-                  className="text-left text-md font-medium text-gray-500 tracking-wider"
+                  className="text-left text-md font-medium text-gray-500 tracking-wider px-4 py-2"
                 >
                   Professor
                 </th>
                 <th
                   scope="col"
-                  className="text-left text-md font-medium text-gray-500 tracking-wider"
+                  className="text-left text-md font-medium text-gray-500 tracking-wider px-4 py-2"
                 >
                   Status
                 </th>
                 <th
                   scope="col"
-                  className="text-left text-md font-medium text-gray-500 tracking-wider"
+                  className="text-left text-md font-medium text-gray-500 tracking-wider px-4 py-2"
                 >
                   Deletar
                 </th>
@@ -190,7 +190,7 @@ export default function SchoolGradePage() {
                 .sort((a, b) => a.name.localeCompare(b.name))
                 .map((subject) => (
                   <tr key={subject._id}>
-                    <td className="flex flex-col items-start mx-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                       <button
                         onClick={() => openEditModal(subject._id)}
                         className="text-[#6D7DFF] font-bold"
@@ -198,16 +198,16 @@ export default function SchoolGradePage() {
                         {subject.name}
                       </button>
                     </td>
-                    <td className="whitespace-normal text-sm font-medium text-gray-900">
+                    <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                       {subject.description}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
                       {subject.teacher}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
                       {subject.status}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-red-500 cursor-pointer hover:underline">
+                    <td className="px-4 py-2 whitespace-nowrap text-sm text-red-500 cursor-pointer hover:underline">
                       <button onClick={() => handleDeleteSubject(subject._id)}>
                         Deletar
                       </button>
