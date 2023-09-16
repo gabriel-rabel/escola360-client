@@ -1,27 +1,28 @@
 import { useEffect, useState } from "react";
 import api from "../axios/api";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
+import Separar from "../assets/separacao.svg";
 import formatarData from "../utils/dateFormatter";
 import Voltar from "../assets/voltar.svg";
+import SchoolNotificationEdit from "../components/SchoolNotificationEdit";
 
 export default function SchoolNotificationPage() {
   const [notifications, setNotifications] = useState([]);
+  const [selectedNotificationId, setSelectedNotificationId] = useState(null);
   const [formNotification, setFormNotification] = useState({
     title: "",
     description: "",
   });
   const [reload, setReload] = useState(false);
-
-  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     async function getNotifications() {
       try {
         const response = await api.get("/notification/get_all");
         setNotifications(response.data);
-        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -52,32 +53,35 @@ export default function SchoolNotificationPage() {
     }
   }
 
-  async function handleDeleteNotification(notificationId) {
-    try {
-      await api.delete(`/notification/delete/${notificationId}`);
-      setReload(!reload); // Recarregue a lista de matérias após a exclusão
-      toast.success("Notificação excluída com sucesso!");
-    } catch (error) {
-      console.log(error);
-    }
+  function handleSearch(e) {
+    setSearch(e.target.value);
   }
 
+  const openEditModal = (notificationId) => {
+    setSelectedNotificationId(notificationId);
+  };
+
+  const closeEditModal = () => {
+    setSelectedNotificationId(null);
+    setReload(!reload);
+  };
+
   return (
-    <div className="w-screen">
+    <div className="w-screen scroll-hidden">
       <NavbarSchool />
-      <div className="mt-10 mx-auto max-w-2xl">
-        <div className="mt-4 rounded-3xl border-2 p-12 bg-white shadow-md border-blue-500">
+      <div className="mt-10 mx-auto w-4/5">
+        <div className="flex items-center gap-2 mb-2">
           <Link to="/school">
-            <div className="flex items-center gap-2 mb-2">
-              <img src={Voltar} />
-              <h1 className="text-[18px] text-[#6D7DFF]">Cadastre uma notificação</h1>
-            </div>
+            <img src={Voltar} />
           </Link>
-          <form
-            onSubmit={handleSubmitNotification}
-            className="flex flex-col mt-6 bg-white p-4 rounded-lg"
-          >
-            <label htmlFor="title" className="text-gray-500">
+          <h1 className="text-[18px] text-[#6D7DFF]">
+            Cadastre uma notificação
+          </h1>
+        </div>
+
+        <form onSubmit={handleSubmitNotification} className="mt-4">
+          <div className="flex flex-col">
+            <label htmlFor="title" className="block">
               Título
             </label>
             <input
@@ -86,9 +90,11 @@ export default function SchoolNotificationPage() {
               placeholder="Título"
               value={formNotification.title}
               onChange={handleChangeNotification}
-              className="rounded-md border border-gray-300 p-2 text-gray-500 mt-1"
+              className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
             />
-            <label htmlFor="description" className="text-gray-500 mt-3">
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="description" className="block">
               Descrição
             </label>
             <textarea
@@ -100,80 +106,95 @@ export default function SchoolNotificationPage() {
               onChange={handleChangeNotification}
               className="rounded-md border border-gray-300 p-2 text-gray-500 mt-1"
             />
+          </div>
+          <div className="flex justify-center items-center">
             <button
               type="submit"
-              className="bg-[#6D7DFF] text-white border p-3 mt-5 rounded-lg"
+              className="border mt-5 bg-[#6D7DFF] text-white font-bold rounded-md w-[250px] h-[44px]"
             >
               Cadastrar
             </button>
-          </form>
+          </div>
+        </form>
+        <div className="flex justify-center mt-10 mb-4">
+          <img src={Separar} />
         </div>
-        <div className="mt-8 overflow-x-auto rounded-3xl border-2 bg-white shadow-md border-blue-500">
-          <table className="min-w-full divide-y divide-gray-200 shadow">
-            <thead className="bg-white">
+
+        <div className="mt-4 max-w-full rounded-md border-gray-300">
+          <div className="text-[24px] text-center font-bold h-[30px] flex items-center">
+            <h1>Lista de Notificações</h1>
+          </div>
+          <div className="flex flex-col mt-6 mb-6">
+            <input
+              placeholder="Pesquise"
+              type="search"
+              value={search}
+              onChange={handleSearch}
+              className="rounded-md border border-gray-300 p-2 text-gray-500 mt-1"
+            />
+          </div>
+          <table className="w-full divide-y divide-gray-200 border-gray-200 scroll-hidden">
+            <thead>
               <tr>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#6D7DFF]"
+                  className="text-left text-md font-medium text-gray-500 tracking-wider"
                 >
                   Título
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#6D7DFF]"
+                  className="text-left text-md font-medium text-gray-500 tracking-normal px-4 py-2"
                 >
                   Descrição
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#6D7DFF]"
+                  className="flex flex-col   items-end py-3 text-left text-md font-medium text-gray-500  tracking-wider"
                 >
                   Data
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#6D7DFF]"
-                >
-                  Editar
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#6D7DFF]"
-                >
-                  Deletar
                 </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {notifications.map((notification) => (
-                <tr key={notification._id}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {notification.title}
-                  </td>
-                  <td className="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                    {notification.description}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {formatarData(notification.createdAt)}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-[#6D7DFF] hover:underline">
-                    <Link to={`/notification/edit/${notification._id}`}>
-                      Editar
-                    </Link>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-red-500 cursor-pointer hover:underline">
-                    <button
-                      onClick={() => handleDeleteNotification(notification._id)}
-                    >
-                      Deletar
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {notifications
+                .filter((notification) =>
+                  notification.title
+                    .toLowerCase()
+                    .includes(search.toLowerCase())
+                )
+                .map((notification) => (
+                  <tr key={notification._id}>
+                    <td className="flex flex-col items-start  py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      <button
+                        onClick={() => openEditModal(notification._id)}
+                        className="text-[#6D7DFF] font-bold"
+                      >
+                        {" "}
+                        {notification.title}
+                      </button>
+                    </td>
+                    <td className="px-6 py-4 whitespace-normal text-sm text-gray-900">
+                      {notification.description}
+                    </td>
+                    <td className="flex flex-col items-end py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      {formatarData(notification.createdAt)}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
       </div>
+      {selectedNotificationId && (
+        <SchoolNotificationEdit
+          notificationId={selectedNotificationId}
+          onClose={closeEditModal}
+          onEdit={() => {
+            setReload(!reload);
+          }}
+        />
+      )}
     </div>
   );
 }

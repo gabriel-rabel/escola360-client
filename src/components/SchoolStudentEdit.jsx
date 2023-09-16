@@ -41,7 +41,7 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
       toast.success("Aluno editado com sucesso!");
       onEdit(); // Chama a função de atualização da lista
       onClose(); // Fecha o modal
-      setReload(!reload);
+
     } catch (error) {
       console.log(error);
     }
@@ -179,7 +179,6 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
           <div className="flex flex-col items-center">
             <button
               className="bg-[#6A7AF5] text-white border p-3 mt-4 rounded-lg w-[250px]"
-              onClick={handleSubmitStudent}
             >
               Salvar Edição
             </button>
@@ -192,14 +191,6 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
             </button>
           </div>
         </form>
-
-        {/* FECHAR */}
-        {/*         <button
-          onClick={onClose}
-          className="bg-[#6A7AF5] text-white border p-3 mt-2 rounded-lg"
-        >
-          Fechar
-        </button> */}
       </div>
     </div>
   );

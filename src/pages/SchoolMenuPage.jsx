@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
 import Voltar from "../assets/voltar.svg";
 
-
 export default function SchoolMenuPage() {
   const [user, setUser] = useState([]);
   const [formMenu, setFormMenu] = useState({
@@ -24,7 +23,6 @@ export default function SchoolMenuPage() {
         console.log(response.data);
         setFormMenu(response.data); //carrega os campos ja preenchidos
       } catch (error) {
-        console.log(error);
       }
     }
     getProfile();
@@ -48,38 +46,36 @@ export default function SchoolMenuPage() {
   }
 
   return (
-    <div className="h-screen w-screen">
+    <div className="w-screen scroll-hidden">
       <NavbarSchool />
-      
-      <div className=" flex flex-col justify-center items-center">
-        <div className="w-1/3 mt-4 rounded-3xl border-2 p-12 bg-white shadow-md border-blue-500">
-        <Link to="/school">
-          <div className="flex items-center gap-2 mb-2">
+      <div className="mt-10 mx-auto w-4/5">
+        <div className="flex items-center gap-2 mb-2">
+          <Link to="/school">
             <img src={Voltar} />
-            <h1 className="text-[18px]">Edite o cardápio</h1>
-          </div>
-        </Link>
-          <form onSubmit={handleSubmitMenu}>
-            <div className="flex flex-col">
+          </Link>
+          <h1 className="text-[18px]">Edite o cardápio</h1>
+        </div>
 
-              <textarea
-                type="text"
-                rows={10}
-                name="menu"
-                value={formMenu.menu}
-                onChange={handleChangeMenu}
-                className="border-2 border-gray-300 p-2 rounded-lg focus:outline-none focus:border-blue-400"
-              />
-
+        <form onSubmit={handleSubmitMenu} className="mt-4">
+          <div className="flex flex-col">
+            <textarea
+              type="text"
+              rows={10}
+              name="menu"
+              value={formMenu.menu}
+              onChange={handleChangeMenu}
+              className="border border-gray-400 rounded-md px-4 py-2 mb-4"
+            />
+            <div className="flex justify-center items-center">
               <button
                 type="submit"
-                className="self-center border mt-5 bg-[#6D7DFF] text-white font-bold rounded-md w-[250px] h-[44px]"
+                className="border mt-5 bg-[#6D7DFF] text-white font-bold rounded-md w-[250px] h-[44px]"
               >
                 Salvar
               </button>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   );
