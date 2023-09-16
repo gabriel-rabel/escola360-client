@@ -4,7 +4,7 @@
 
 # Setembro de 2023
 
-# Autores: Fabiane Cortez, Gabriel Rabel, Giulia Voloton.
+# Autores: Fabiane Cortez, Gabriel Rabel, Giulia Profilo.
 
 Este é um sistema de login com frontend que permite aos usuários acessar a plataforma utilizando suas credenciais.
 
