@@ -177,7 +177,7 @@ export default function SchoolGradePage() {
                 </th>
                 <th
                   scope="col"
-                  className="text-left text-md font-medium text-gray-500 tracking-wider px-4 py-2"
+                  className="text-left text-md font-medium text-gray-500 tracking-normal px-4 py-2"
                 >
                   Professor
                 </th>
@@ -199,7 +199,13 @@ export default function SchoolGradePage() {
 
             {/* Tabela */}
             <tbody className="bg-white divide-y divide-gray-200">
-              {subjects.map((subject) => (
+                {subjects
+                .filter((subject) => subject.active === true)
+                .filter((subject) =>
+                  subject.name.toLowerCase().includes(search.toLowerCase())
+                )
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((subject) => (
                 <tr key={subject._id}>
                   <td className="flex flex-col items-start  py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   <button
