@@ -20,7 +20,7 @@ import SchoolSchedulePage from "./pages/SchoolSchedulePage";
 
 function App() {
   return (
-    <div className="flex bg-white min-h-screen">
+    <div className="flex scroll-hidden bg-white min-h-screen">
       <Toaster />
       {/* <Navbar /> */}
       <div className="max-w-7xl ">
