@@ -95,6 +95,20 @@ export default function SchoolGradePage() {
             className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
           />
           </div>
+
+          <div className="flex flex-col">
+          <label htmlFor="teacher" className="block">
+            Professor
+          </label>
+          <input
+            type="text"
+            name="teacher"
+            value={formSubject.teacher}
+            onChange={handleChangeSubject}
+            className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
+          />
+          </div>
+
           <div className="flex flex-col">
           <label htmlFor="description" className="block">
             Descrição
@@ -106,18 +120,6 @@ export default function SchoolGradePage() {
             value={formSubject.description}
             onChange={handleChangeSubject}
             className="border border-gray-400 rounded-md px-4 py-2 mb-4"
-          />
-          </div>
-          <div className="flex flex-col">
-          <label htmlFor="teacher" className="block">
-            Professor
-          </label>
-          <input
-            type="text"
-            name="teacher"
-            value={formSubject.teacher}
-            onChange={handleChangeSubject}
-            className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
           />
           </div>
           <div className="flex justify-center items-center">
@@ -181,10 +183,13 @@ export default function SchoolGradePage() {
                 </th>
               </tr>
             </thead>
+
+
+            {/* Tabela */}
             <tbody className="bg-white divide-y divide-gray-200">
               {subjects.map((subject) => (
                 <tr key={subject._id}>
-                  <td className="flex flex-col items-start mx-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="flex flex-col items-start  py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   <button
             onClick={() => openEditModal(subject._id)}
             className="text-[#6D7DFF] font-bold"
@@ -192,7 +197,7 @@ export default function SchoolGradePage() {
                     {subject.name}
                     </button>
                   </td>
-                  <td className="whitespace-normal text-sm font-medium text-gray-900">
+                  <td className="whitespace-normal text-sm font-[16px] text-gray-900">
                     {subject.description}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
