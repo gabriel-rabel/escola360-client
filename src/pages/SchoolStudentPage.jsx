@@ -56,7 +56,8 @@ export default function SchoolStudentPage() {
       console.log(error);
     }
   }
-{/*
+  {
+    /*
     //removi temporariamente até decidirmos se vamos usar
 //search by group
   const groupUsersByYear = (users) => {
@@ -72,7 +73,8 @@ export default function SchoolStudentPage() {
 
   const groupedUsers = groupUsersByYear(users);
 
-*/}
+*/
+  }
 
   function formatTurma(turma) {
     const turmaMap = {
@@ -105,13 +107,12 @@ export default function SchoolStudentPage() {
   };
 
   return (
-    <div className="w-screen">
+    <div className="w-screen scroll-hidden">
       <NavbarSchool />
-      <div className="mt-10 mx-auto w-[1200px]">
-
+      <div className="mt-10 mx-auto w-4/5 ">
         <div className="flex items-center gap-2 mb-2">
-        <Link to="/school">
-          <img src={Voltar} />
+          <Link to="/school">
+            <img src={Voltar} />
           </Link>
           <h1 className="text-[18px]">Cadastre um aluno</h1>
         </div>
@@ -245,7 +246,7 @@ export default function SchoolStudentPage() {
             />
           </div>
 
-          <table className="w-full divide-y divide-gray-200 border-gray-200">
+          <table className="w-full divide-y divide-gray-200 border-gray-200 scroll-hidden">
             <thead>
               <tr>
                 <th
@@ -256,36 +257,35 @@ export default function SchoolStudentPage() {
                 </th>
                 <th
                   scope="col"
-                  className="flex flex-col items-end mx-4  py-3 text-left text-md font-medium text-gray-500  tracking-wider"
+                  className="flex flex-col items-end   py-3 text-left text-md font-medium text-gray-500  tracking-wider"
                 >
                   Ano
                 </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y">
-  {users
-    .filter((user) => user.active === true)
-    .filter((user) =>
-      user.name.toLowerCase().includes(search.toLowerCase())
-    )
-    .sort((a, b) => a.name.localeCompare(b.name)) // Ordena por nome
-    .map((user) => (
-      <tr key={user._id}>
-        <td className="py-4 text-md">
-          <button
-            onClick={() => openEditModal(user._id)}
-            className="text-[#6D7DFF] font-bold"
-          >
-            {user.name}
-          </button>
-        </td>
-        <td className="flex flex-col items-end mx-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-          {formatTurma(user.class)}
-        </td>
-      </tr>
-    ))}
-</tbody>
-
+              {users
+                .filter((user) => user.active === true)
+                .filter((user) =>
+                  user.name.toLowerCase().includes(search.toLowerCase())
+                )
+                .sort((a, b) => a.name.localeCompare(b.name)) // Ordena por nome
+                .map((user) => (
+                  <tr key={user._id}>
+                    <td className="py-4 text-md">
+                      <button
+                        onClick={() => openEditModal(user._id)}
+                        className="text-[#6D7DFF] font-bold"
+                      >
+                        {user.name}
+                      </button>
+                    </td>
+                    <td className="flex flex-col items-end  py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      {formatTurma(user.class)}
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
           </table>
         </div>
       </div>
