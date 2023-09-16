@@ -79,6 +79,10 @@ function App() {
             path="/school/schedule"
             element={<ProtectRoute Component={SchoolSchedulePage} />}
           />
+          <Route
+            path="/school/report-card"
+            element={<ProtectRoute Component={SchoolReportCardPage} />}
+          />
         </Routes>
       </div>
     </div>

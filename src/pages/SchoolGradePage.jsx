@@ -74,7 +74,7 @@ export default function SchoolGradePage() {
   return (
     <div className="w-screen">
       <NavbarSchool />
-      <div className="mt-10 mx-auto w-[1200px]">
+      <div className="mt-10 mx-auto w-4/5">
         <div className="flex items-center gap-2 mb-2">
           <Link to="/school">
             <img src={Voltar} />
