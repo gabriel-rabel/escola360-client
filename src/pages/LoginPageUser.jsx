@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/escola360logo.svg";
 import toast from "react-hot-toast";
 
@@ -43,7 +43,9 @@ function LoginPageUser() {
     <div className="flex h-screen w-screen">
       {/*   <!-- Coluna esquerda com o logotipo e background indigo --> */}
       <div className="bg-login flex-1 flex justify-center items-center w-1/2">
+        <Link to="/">
         <img src={logo} alt="Your Company" className="w-40" />
+        </Link>
       </div>
 
       {/*   <!-- Coluna direita com o formulário de login --> */}

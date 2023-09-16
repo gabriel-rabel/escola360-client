@@ -20,6 +20,9 @@ export default function SchoolSchedulePage() {
     (subjectId) => formSchedule.subjects[subjectId]
   );
 
+  const [search, setSearch] = useState("");
+  const [selectUser, setSelectUser] = useState({});
+
   useEffect(() => {
     async function getStudents() {
       try {
@@ -80,9 +83,6 @@ export default function SchoolSchedulePage() {
   async function handleSubmitSchedule(e) {
     e.preventDefault();
     try {
-      // Obtenha o ID do aluno selecionado do estado
-      const studentId = formSchedule.student;
-
       // Obtenha a lista de IDs das matérias selecionadas
       const selectedSubjectIds = Object.keys(formSchedule.subjects).filter(
         (subjectId) => formSchedule.subjects[subjectId]
@@ -96,7 +96,7 @@ export default function SchoolSchedulePage() {
 
       // Crie um único cronograma com os assuntos selecionados
       const dataToSend = {
-        student: studentId,
+        student: selectUser._id,
         subjects: selectedSubjectIds,
         bimester: formSchedule.bimester,
       };
@@ -111,6 +111,7 @@ export default function SchoolSchedulePage() {
           subjects: {},
           bimester: "",
         });
+        setSelectUser({});
         setReload(!reload);
       } else {
         toast.error("Erro ao criar cronograma.");
@@ -131,39 +132,75 @@ export default function SchoolSchedulePage() {
     }
   }
 
+  /* Para selecionar um seu */
+  function handleSelectUser(e, user) {
+    e.preventDefault();
+
+    setSelectUser(user);
+    setSearch("");
+  }
+  console.log(selectUser);
+
   return (
-    <div className="w-screen">
+    <div className="w-screen scroll-hidden">
       <NavbarSchool />
-      <div className="mt-10 mx-auto max-w-2xl">
-        <div className="mt-4 rounded-3xl border-2 p-12 bg-white shadow-md border-blue-500">
+      <div className="mt-10 mx-auto w-4/5">
+        <div className="mt-4">
           <Link to="/school">
             <div className="flex items-center gap-2 mb-2">
               <img src={Voltar} />
+
+              {/* Título */}
               <h1 className="text-[18px] text-[#6D7DFF]">
                 Cadastre um cronograma
               </h1>
             </div>
           </Link>
+
+          {/* Form */}
           <form
             onSubmit={handleSubmitSchedule}
-            className="flex flex-col mt-6 bg-white p-4 rounded-lg"
+            className="flex flex-col mt-6 bg-white rounded-lg"
           >
-            <label htmlFor="student" className="text-gray-500">
-              Aluno
-            </label>
-            <select
-              name="student"
-              value={formSchedule.student}
-              onChange={handleChangeSchedule}
-              className="rounded-md border border-gray-300 p-2 text-gray-500 mt-1"
-            >
-              <option value="">Selecione o aluno</option>
-              {users.map((user) => (
-                <option key={user._id} value={user._id}>
-                  {user.name}{" "}
-                </option>
-              ))}
-            </select>
+            {/* Pesquisa */}
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-2"
+              placeholder="Selecione um Aluno"
+            />
+
+            {search.length > 0 && (
+              <div>
+                {users
+
+                  .filter((user) =>
+                    user.name
+                      .toLocaleLowerCase()
+                      .includes(search.toLocaleLowerCase())
+                  )
+
+                  .map((user) => {
+                    return (
+                      <div
+                        key={user._id}
+                        onClick={(e) => handleSelectUser(e, user)}
+                      >
+                        <p>{user.name}</p>
+                      </div>
+                    );
+                  })}
+              </div>
+            )}
+
+            {selectUser && (
+              <div>
+                <p className="font-bold text-[16px] mb-4 ">
+                  {selectUser.name}
+                </p>
+              </div>
+            )}
 
             <label className="text-gray-500">Período</label>
             <select
@@ -196,16 +233,19 @@ export default function SchoolSchedulePage() {
               ))}
             </div>
 
-            <button
-              type="submit"
-              className="bg-[#6D7DFF] text-white border p-3 mt-5 rounded-lg"
-            >
-              Cadastrar
-            </button>
+            <div className="mt-4 flex flex-col items-center mb-4">
+              <button
+                type="submit"
+                className="border mt-5 bg-[#6D7DFF] text-white font-bold rounded-md w-[250px] h-[44px]"
+              >
+                Cadastrar
+              </button>
+            </div>
           </form>
+
           <Link to="/school/report-card">
             <div className="flex justify-center items-center text-[#6D7DFF] font-bold">
-              Ver boletins
+              Ver Boletins
             </div>
           </Link>
         </div>
