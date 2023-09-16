@@ -163,7 +163,7 @@ export default function SchoolGradePage() {
                 </th>
                 <th
                   scope="col"
-                  className="text-left text-md font-medium text-gray-500 tracking-wider px-4 py-2"
+                  className="text-left text-md font-medium text-gray-500 tracking-normal px-4 py-2"
                 >
                   Professor
                 </th>
@@ -198,7 +198,7 @@ export default function SchoolGradePage() {
                         {subject.name}
                       </button>
                     </td>
-                    <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-4 py-2 whitespace-normal text-sm font-medium text-gray-900">
                       {subject.description}
                     </td>
                     <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
