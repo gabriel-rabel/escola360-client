@@ -162,7 +162,7 @@ export default function SchoolGradePage() {
                 </th>
                 <th
                   scope="col"
-                  className="w-1/2 text-center text-md font-medium text-gray-500 tracking-wider px-4 py-2"
+                  className="w-1/2 text-left text-md font-medium text-gray-500 tracking-wider px-4 py-2"
                 >
                   Descrição
                 </th>
@@ -173,12 +173,6 @@ export default function SchoolGradePage() {
                   Professor
                 </th>
 
-                {/*               <th
-                  scope="col"
-                  className="text-left text-md font-medium text-gray-500 tracking-wider px-4 py-2"
-                >
-                  Deletar
-                </th> */}
               </tr>
             </thead>
 
@@ -200,29 +194,16 @@ export default function SchoolGradePage() {
                         {subject.name}
                       </button>
                     </td>
-                    <td className="text-center text-sm font-[16px] text-gray-900">
+                    <td className="text-left  text-sm font-[16px] text-gray-900">
                       {subject.description}
                     </td>
                     <td className="text-right px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {subject.teacher}
                     </td>
-
-
-                    {/* 
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-red-500 cursor-pointer hover:underline">
-                      <button onClick={() => handleDeleteSubject(subject._id)}>
-                        Deletar
-                      </button>
-                    </td>
- */}
                   </tr>
                 ))}
             </tbody>
-          </table>
-
-
-
-          
+          </table>    
         </div>
       </div>
       {selectedSubjectId && (
