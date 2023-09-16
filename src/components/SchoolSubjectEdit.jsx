@@ -12,6 +12,8 @@ export default function SubjectEditPage({ subjectId, onClose, onEdit }) {
     teacher: "",
   });
 
+  const [reload, setReload] = useState(false);
+
   useEffect(() => {
     async function getSubject() {
       try {
@@ -23,7 +25,7 @@ export default function SubjectEditPage({ subjectId, onClose, onEdit }) {
       }
     }
     getSubject();
-  }, [subject._Id]);
+  }, [subjectId]);
 
   function handleChangeSubject(e) {
     setFormSubject({ ...formSubject, [e.target.name]: e.target.value });
@@ -33,9 +35,25 @@ export default function SubjectEditPage({ subjectId, onClose, onEdit }) {
     e.preventDefault();
     try {
       const response = await api.put(`/subject/edit/${subjectId}`, formSubject);
+      console.log(response);
       toast.success("Matéria editada com sucesso!");
       onEdit();
       onClose();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleDeleteSubject(subjectId, e) {
+    console.log(e);
+    console.log(subjectId);
+    e.preventDefault();
+    try {
+      const response = await api.delete(`/subject/delete/${subjectId}`);
+      console.log(response);
+      setReload(!reload); // Recarregue a lista de matérias após a exclusão
+      toast.success("Matéria excluída com sucesso!");
+      onClose()
     } catch (error) {
       console.log(error);
     }
@@ -45,7 +63,7 @@ export default function SubjectEditPage({ subjectId, onClose, onEdit }) {
     <div
       className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-40 flex justify-center items-center"
       onClick={(e) => {
-        //função para fechar o modal ao clicar fora
+        // Função para fechar o modal ao clicar fora
         if (
           e.target === e.currentTarget &&
           !formRef.current.contains(e.target)
@@ -54,23 +72,19 @@ export default function SubjectEditPage({ subjectId, onClose, onEdit }) {
         }
       }}
     >
-      <div
-        ref={formRef}
-        className="bg-white p-8 w-[50%] rounded-lg shadow-lg justify-end"
-      >
-        <div className="flex justify-between">
-        
-        <div>
-          <h1 className="text-2xl font-bold text-gray-600 mb-4">
+      <div ref={formRef} className="bg-white p-8 w-[50%] rounded-lg shadow-lg">
+        <div className="flex justify-between items-center mb-4">
+          <h1 className="text-2xl font-bold text-gray-600">
             Editar Disciplina
           </h1>
+          <div className="cursor-pointer">
+            <XCircleIcon onClick={onClose} className="w-6 h-6 text-[#6A7AF5]" />
+          </div>
         </div>
-        <div className="cursor-pointer">
-          <XCircleIcon onClick={onClose} className=" w-6 h-6 text-[#6A7AF5]" />
-        </div>
-        </div>
-        <form onSubmit={handleSubmitSubject} className="flex flex-col mt-6">
-          <div className="flex flex-col mt-6">
+
+        {/* Form */}
+        <form onSubmit={handleSubmitSubject} className="flex flex-col">
+          <div className="flex flex-col mb-4">
             <label htmlFor="name" className="text-gray-500 font-medium">
               Nome
             </label>
@@ -80,34 +94,40 @@ export default function SubjectEditPage({ subjectId, onClose, onEdit }) {
               placeholder={subject.name}
               value={formSubject.name}
               onChange={handleChangeSubject}
+              className="rounded-md border border-gray-300 p-2 text-gray-500"
+            />
+          </div>
+
+          <div className="flex flex-col mb-3">
+            <label htmlFor="teacher" className="text-gray-500 font-medium">
+              Professor
+            </label>
+            <input
+              type="text"
+              name="teacher"
+              placeholder={subject.teacher}
+              value={formSubject.teacher}
+              onChange={handleChangeSubject}
+              className="rounded-md border border-gray-300 p-2 text-gray-500"
+            />
+          </div>
+
+          <div className="flex flex-col mb-3">
+            <label htmlFor="description" className="text-gray-500 font-medium">
+              Descrição
+            </label>
+            <textarea
+              type="text"
+              name="description"
+              placeholder={subject.description}
+              value={formSubject.description}
+              onChange={handleChangeSubject}
               className="rounded-md border border-gray-300 p-2 text-gray-500 mt-1"
             />
           </div>
 
-          <label htmlFor="description" className="text-gray-500 font-medium">
-            Descrição
-          </label>
-          <textarea
-            type="text"
-            name="description"
-            placeholder={subject.description}
-            value={formSubject.description}
-            onChange={handleChangeSubject}
-            className="rounded-md border border-gray-300 p-2 text-gray-500 mt-1"
-          />
-
-          <label htmlFor="teacher" className="text-gray-500 font-medium">
-            Professor
-          </label>
-          <input
-            type="text"
-            name="teacher"
-            placeholder={subject.teacher}
-            value={formSubject.teacher}
-            onChange={handleChangeSubject}
-            className="rounded-md border border-gray-300 p-2 text-gray-500 mt-1"
-          />
-          <div className="flex justify-center items-center">
+          {/* Salvar */}
+          <div className="flex justify-center">
             <button
               type="submit"
               className="border mt-5 bg-[#6D7DFF] text-white font-bold rounded-md w-[250px] h-[44px]"
@@ -115,6 +135,14 @@ export default function SubjectEditPage({ subjectId, onClose, onEdit }) {
               Salvar Edição
             </button>
           </div>
+
+          {/* Deletar correto */}
+          <button
+            className="px-6 py-4 whitespace-nowrap text-sm text-red-500 cursor-pointer hover:underline font-bold "
+            onClick={(e) => handleDeleteSubject(formSubject._id, e)}
+          >
+            Deletar Matéria
+          </button>
         </form>
       </div>
     </div>

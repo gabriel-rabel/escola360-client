@@ -108,7 +108,7 @@ function UserHomePage() {
                             (subject, subjectIndex) => (
                               <tr key={subjectIndex}>
                                 <td className="border px-4 py-2">
-                                  {subject.subject.name}
+                                  {subject.name}
                                 </td>
                                 <td className="border px-4 py-2">
                                   {subject.note}
