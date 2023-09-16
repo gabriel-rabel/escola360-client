@@ -1,6 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 
 body {
   font-family: "Raleway", sans-serif;
@@ -76,4 +74,11 @@ body {
 
 .bg-login {
   background-color: #6d7dff;
+}
+
+.scroll-hidden {
+  overflow-x: hidden !important;
+  overscroll-behavior-x: none !important;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }

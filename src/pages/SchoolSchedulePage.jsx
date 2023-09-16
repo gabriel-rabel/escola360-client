@@ -180,19 +180,21 @@ export default function SchoolSchedulePage() {
             </select>
 
             <label className="text-gray-500">Matérias</label>
-            {subjects.map((subject) => (
-              <div key={subject._id} className="flex items-center mt-1">
-                <input
-                  type="checkbox"
-                  name="subjects"
-                  value={subject._id}
-                  onChange={handleChangeSchedule}
-                  checked={formSchedule.subjects[subject._id] || false}
-                  className="mr-2"
-                />
-                <span>{subject.name}</span>
-              </div>
-            ))}
+            <div className="grid grid-cols-3 gap-2">
+              {subjects.map((subject) => (
+                <div key={subject._id} className="flex items-center mt-1">
+                  <input
+                    type="checkbox"
+                    name="subjects"
+                    value={subject._id}
+                    onChange={handleChangeSchedule}
+                    checked={formSchedule.subjects[subject._id] || false}
+                    className="mr-2 "
+                  />
+                  <span>{subject.name}</span>
+                </div>
+              ))}
+            </div>
 
             <button
               type="submit"
@@ -201,9 +203,19 @@ export default function SchoolSchedulePage() {
               Cadastrar
             </button>
           </form>
+          <Link to="/school/report-card">
+            <div className="flex justify-center items-center text-[#6D7DFF] font-bold">
+              Ver boletins
+            </div>
+          </Link>
         </div>
+      </div>
+    </div>
+  );
+}
 
-        <div className="flex justify-center mt-10 mb-4">
+{
+  /* <div className="flex justify-center mt-10 mb-4">
           <img src={Separar} />
         </div>
 
@@ -245,9 +257,11 @@ export default function SchoolSchedulePage() {
                   </td>
                   <td className="px-6 py-4 whitespace-normal text-sm text-gray-500">
                     {schedule.subjects.map((subjectId, index) => (
-                      <span key={subjectId}>
-                        {index > 0 ? ", " : ""}{" "}
-                        {/* Adicione uma vírgula entre os nomes, exceto para o primeiro */}
+                      <span key={subjectId}> */
+}
+{
+  /*index > 0 ? ", " : ""}{" "}
+                        {/* Adicione uma vírgula entre os nomes, exceto para o primeiro }
                         {
                           subjects.find((subject) => subject._id === subjectId)
                             ?.name
@@ -267,8 +281,5 @@ export default function SchoolSchedulePage() {
               ))}
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
-  );
+        </div> */
 }
