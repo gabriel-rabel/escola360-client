@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import api from "../axios/api";
-import Flor2 from "../assets/flor2.svg";
 import Voltar from "../assets/voltar.svg";
 import NavbarSchool from "../components/NavbarSchool";
 import toast from "react-hot-toast";
@@ -109,7 +108,7 @@ export default function SchoolStudentPage() {
   return (
     <div className="w-screen scroll-hidden">
       <NavbarSchool />
-      <div className="mt-10 mx-auto w-4/5 ">
+      <div className="mt-10 mx-auto w-4/5">
         <div className="flex items-center gap-2 mb-2">
           <Link to="/school">
             <img src={Voltar} />
