@@ -199,39 +199,13 @@ export default function SchoolGradePage() {
 
             {/* Tabela */}
             <tbody className="bg-white divide-y divide-gray-200">
-              {subjects
+                {subjects
                 .filter((subject) => subject.active === true)
                 .filter((subject) =>
                   subject.name.toLowerCase().includes(search.toLowerCase())
                 )
                 .sort((a, b) => a.name.localeCompare(b.name))
                 .map((subject) => (
-                  <tr key={subject._id}>
-                    <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
-                      <button
-                        onClick={() => openEditModal(subject._id)}
-                        className="text-[#6D7DFF] font-bold"
-                      >
-                        {subject.name}
-                      </button>
-                    </td>
-                    <td className="px-4 py-2 whitespace-normal text-sm font-medium text-gray-900">
-                      {subject.description}
-                    </td>
-                    <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
-                      {subject.teacher}
-                    </td>
-                    <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
-                      {subject.status}
-                    </td>
-                    <td className="px-4 py-2 whitespace-nowrap text-sm text-red-500 cursor-pointer hover:underline">
-                      <button onClick={() => handleDeleteSubject(subject._id)}>
-                        Deletar
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              {subjects.map((subject) => (
                 <tr key={subject._id}>
                   <td className="flex flex-col items-start  py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   <button
