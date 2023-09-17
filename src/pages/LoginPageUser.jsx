@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/escola360logo.svg";
@@ -6,6 +6,21 @@ import toast from "react-hot-toast";
 
 function LoginPageUser() {
   const navigate = useNavigate();
+  useEffect(() => {
+    // Função para redirecionar o usuário com base na role
+    const redirectUser = () => {
+      const userRole = localStorage.getItem("userRole");
+      if (userRole === "USER") {
+        navigate("/user");
+      }
+      if (userRole === "SCHOOL") {
+        navigate("/school");
+      }
+    };
+
+    // Chame a função de redirecionamento assim que o componente for montado
+    redirectUser();
+  }, [navigate]);
 
   const [form, setForm] = useState({
     email: "",
@@ -26,9 +41,12 @@ function LoginPageUser() {
       //GUARDAR O TOKEN E ID DE QUEM LOGOU
       const token = response.data.token;
       const userId = response.data.user._id;
+      const userRole = response.data.user.role;
 
       localStorage.setItem("userToken", token);
       localStorage.setItem("userId", userId);
+      localStorage.setItem("userRole", userRole);
+
       toast.success("Login realizado com sucesso!");
 
       navigate("/user");
