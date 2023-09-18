@@ -3,13 +3,15 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
 export default function NavbarSchool() {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, role } = useContext(AuthContext);
+  
   const navigate = useNavigate();
 
   function handleLogout(e) {
     e.preventDefault();
     localStorage.removeItem("userToken");
     localStorage.removeItem("userId");
+    localStorage.removeItem("userRole");
     navigate("/loginschool");
   }
 

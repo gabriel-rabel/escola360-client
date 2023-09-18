@@ -141,7 +141,7 @@ export default function SubjectEditPage({ subjectId, onClose, onEdit }) {
             className="px-6 py-4 whitespace-nowrap text-sm text-red-500 cursor-pointer hover:underline font-bold "
             onClick={(e) => handleDeleteSubject(formSubject._id, e)}
           >
-            Deletar Matéria
+            Excluir Matéria
           </button>
         </form>
       </div>

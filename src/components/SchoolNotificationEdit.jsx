@@ -88,7 +88,7 @@ export default function SchoolNotificationEdit({
         <h1 className="text-2xl font-bold text-gray-600 mb-2">
           Editar Notificação
         </h1>
-        <div>
+        <div className="cursor-pointer">
           <XCircleIcon onClick={onClose} className="w-6 h-6 text-[#6A7AF5]" />
         </div>
         </div>
