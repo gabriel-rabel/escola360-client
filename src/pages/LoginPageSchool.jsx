@@ -120,6 +120,9 @@ function LoginPageSchool() {
                   className="border border-gray-400 rounded-md px-4 py-2 h-10 w-64"
                 />
               </div>
+              <div className="flex mt-1 gap-2">
+              <p className="text-xs italic">Problemas com login?</p><a href="mailto:contato@escola360.com.br" className="text-xs italic text-[#6D7DFF]">Contate-nos!</a>
+              </div>
             </div>
 
             <div>

@@ -156,13 +156,13 @@ export default function SchoolGradePage() {
               <tr>
                 <th
                   scope="col"
-                  className="w-1/4 text-left text-md font-medium text-gray-500 tracking-wider px-4 py-2"
+                  className="text-left text-md font-medium text-gray-500 tracking-wider"
                 >
                   Nome
                 </th>
                 <th
                   scope="col"
-                  className="w-1/2 text-left text-md font-medium text-gray-500 tracking-wider px-4 py-2"
+                  className="w-1/2 text-left text-md font-medium text-gray-500 tracking-wider  py-2"
                 >
                   Descrição
                 </th>
