@@ -15,6 +15,111 @@ export default function SchoolSchedulePage() {
     subjects: {},
     bimester: "",
   });
+
+  const [primeiroBi, setPrimeiroBi] = useState([
+    {
+      subjects: "matematica",
+      notas: "",
+      faltas: "",
+    },
+
+    {
+      subjects: "portugues",
+      notas: "",
+      faltas: "",
+    },
+
+    {
+      subjects: "historia",
+      notas: "",
+      faltas: "",
+    },
+
+    {
+      subjects: "geografia",
+      notas: "",
+      faltas: "",
+    },
+  ]);
+
+  const [segundoBi, setSegundoBi] = useState([
+    {
+      subjects: "matematica",
+      notas: "",
+      faltas: "",
+    },
+
+    {
+      subjects: "portugues",
+      notas: "",
+      faltas: "",
+    },
+
+    {
+      subjects: "historia",
+      notas: "",
+      faltas: "",
+    },
+
+    {
+      subjects: "geografia",
+      notas: "",
+      faltas: "",
+    },
+  ]);
+
+  const [terceiroBi, setTerceiroBi] = useState([
+    {
+      subjects: "matematica",
+      notas: "",
+      faltas: "",
+    },
+
+    {
+      subjects: "portugues",
+      notas: "",
+      faltas: "",
+    },
+
+    {
+      subjects: "historia",
+      notas: "",
+      faltas: "",
+    },
+
+    {
+      subjects: "geografia",
+      notas: "",
+      faltas: "",
+    },
+  ]);
+
+  const [quartoBi, setQuartoBi] = useState([
+    {
+      subjects: "matematica",
+      notas: "",
+      faltas: "",
+    },
+
+    {
+      subjects: "portugues",
+      notas: "",
+      faltas: "",
+    },
+
+    {
+      subjects: "historia",
+      notas: "",
+      faltas: "",
+    },
+
+    {
+      subjects: "geografia",
+      notas: "",
+      faltas: "",
+    },
+  ]);
+
   const [reload, setReload] = useState(false);
   const selectedSubjects = Object.keys(formSchedule.subjects).filter(
     (subjectId) => formSchedule.subjects[subjectId]
@@ -141,6 +246,12 @@ export default function SchoolSchedulePage() {
   }
   console.log(selectUser);
 
+  function handlePrimeiroBi(e) {
+    const array = primeiroBi;
+    array[e.target.id];
+    setPrimeiroBi([]);
+  }
+
   return (
     <div className="w-screen scroll-hidden">
       <NavbarSchool />
@@ -151,9 +262,7 @@ export default function SchoolSchedulePage() {
               <img src={Voltar} />
 
               {/* Título */}
-              <h1 className="text-[18px] text-[#6D7DFF]">
-                Cadastre um cronograma
-              </h1>
+              <h1 className="text-[18px]">Criar um Boletim</h1>
             </div>
           </Link>
 
@@ -196,130 +305,103 @@ export default function SchoolSchedulePage() {
 
             {selectUser && (
               <div>
-                <p className="font-bold text-[16px] mb-4 ">
-                  {selectUser.name}
-                </p>
+                <p className="font-bold text-[16px] mb-4 ">{selectUser.name}</p>
               </div>
             )}
 
-            <label className="text-gray-500">Período</label>
-            <select
-              name="bimester"
-              value={formSchedule.bimester}
-              onChange={handleChangeSchedule}
-              className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-4"
-            >
-              <option value="">Selecione o bimestre</option>
-              <option value="1bim">1º bimestre</option>
-              <option value="2bim">2º bimestre</option>
-              <option value="3bim">3º bimestre</option>
-              <option value="4bim">4º bimestre</option>
-            </select>
+            {/* Bimestres */}
 
-            <label className="text-gray-500">Matérias</label>
-            <div className="grid grid-cols-3 gap-2">
-              {subjects.map((subject) => (
-                <div key={subject._id} className="flex items-center mt-1">
-                  <input
-                    type="checkbox"
-                    name="subjects"
-                    value={subject._id}
-                    onChange={handleChangeSchedule}
-                    checked={formSchedule.subjects[subject._id] || false}
-                    className="mr-2 "
-                  />
-                  <span>{subject.name}</span>
-                </div>
-              ))}
-            </div>
+            {/* PRIMEIRO BIMESTRE */}
+            <div className="mt-4 border-2 p-4 border-gray-800 rounded-lg">
+              <h1 className="text-2xl font-bold mb-4">1 Bim</h1>
+              <div className="flex flex-col">
+                <table className="table table-bordered table-striped">
+                  <thead>
+                    <tr className="">
+                      <th className="text-left">Matéria</th>
+                      <th className="text-left">Nota</th>
+                      <th className="text-left">Faltas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* Matemática */}
+                    <tr>
+                      <td>Matemática</td>
+                      <td>
+                        <input
+                          type="number"
+                          id="0"
+                          value={primeiroBi[0].notas}
+                          className="d-flex align-items-center justify-content-center"
+                          onChange={handlePrimeiroBi}
+                        />
+                      </td>
+                      <td>
+                        <input type="number" value={primeiroBi[0].faltas} />
+                      </td>
+                    </tr>
 
-            <div className="mt-4 flex flex-col items-center mb-4">
-              <button
-                type="submit"
-                className="border mt-5 bg-[#6D7DFF] text-white font-bold rounded-md w-[250px] h-[44px]"
-              >
-                Cadastrar
-              </button>
+                    {/* Português */}
+                    <tr>
+                      <td>Português</td>
+                      <td>
+                        <input
+                          type="number"
+                          id="1"
+                          value={primeiroBi[1].notas}
+                          className="d-flex align-items-center justify-content-center"
+                        />
+                      </td>
+                      <td>
+                        <input type="number" value={primeiroBi[1].faltas} />
+                      </td>
+                    </tr>
+
+                    {/* História */}
+                    <tr>
+                      <td>História</td>
+                      <td>
+                        <input
+                          type="number"
+                          id="2"
+                          value={primeiroBi[2].notas}
+                          className="d-flex align-items-center justify-content-center"
+                        />
+                      </td>
+                      <td>
+                        <input type="number" value={primeiroBi[2].faltas} />
+                      </td>
+                    </tr>
+
+                    {/* Geografia */}
+                    <tr>
+                      <td>Geografia</td>
+                      <td>
+                        <input
+                          type="number"
+                          id="3"
+                          value={primeiroBi[3].notas}
+                          className="form-control"
+                        />
+                      </td>
+                      <td>
+                        <input type="number" value={primeiroBi[3].faltas} />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Botão */}
+              <div className="mt-4 flex justify-center items-center">
+                <button className="border mt-5 bg-[#6D7DFF] text-white font-bold rounded-md w-[250px] h-[44px]">
+                  Enviar
+                </button>
+              </div>
             </div>
           </form>
-
-          <Link to="/school/report-card">
-            <div className="flex justify-center items-center text-[#6D7DFF] font-bold">
-              Ver Boletins
-            </div>
-          </Link>
         </div>
       </div>
     </div>
   );
-}
-
-{
-  /* <div className="flex justify-center mt-10 mb-4">
-          <img src={Separar} />
-        </div>
-
-        <div className="mt-8 overflow-x-auto rounded-3xl border-2 bg-white shadow-md border-blue-500">
-          <table className="min-w-full divide-y divide-gray-200 shadow">
-            <thead className="bg-white">
-              <tr>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#6D7DFF]"
-                >
-                  Aluno
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#6D7DFF]"
-                >
-                  Matérias
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#6D7DFF]"
-                >
-                  Editar
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#6D7DFF]"
-                >
-                  Deletar
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {schedules.map((schedule) => (
-                <tr key={schedule._id}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {schedule.student}
-                  </td>
-                  <td className="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                    {schedule.subjects.map((subjectId, index) => (
-                      <span key={subjectId}> */
-}
-{
-  /*index > 0 ? ", " : ""}{" "}
-                        {/* Adicione uma vírgula entre os nomes, exceto para o primeiro }
-                        {
-                          subjects.find((subject) => subject._id === subjectId)
-                            ?.name
-                        }
-                      </span>
-                    ))}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-[#6D7DFF] hover:underline">
-                    <Link to={`/schedule/edit/${schedule._id}`}>Editar</Link>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-red-500 cursor-pointer hover:underline">
-                    <button onClick={() => handleDeleteSchedule(schedule._id)}>
-                      Deletar
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div> */
 }

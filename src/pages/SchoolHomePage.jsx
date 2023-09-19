@@ -109,14 +109,14 @@ export default function SchoolHomePage() {
             <div className="flex items-center justify-between">
               <div className="flex gap-4">
                 <ClipboardDocumentListIcon className="h-6 w-6 mr-1 text-white" />
-                <p className="text-white">Cronograma</p>
+                <p className="text-white">Criar Boletim</p>
               </div>
               <img src={Seta} alt="Ícone da seta" />
             </div>
           </Link>
 
           {/* Boletins */}
-          <Link
+{/*           <Link
             to="/school/report-card"
             className="border border-white rounded-md shadow-sm p-3"
           >
@@ -127,7 +127,9 @@ export default function SchoolHomePage() {
               </div>
               <img src={Seta} alt="Ícone da seta" />
             </div>
-          </Link>
+          </Link> */}
+
+
         </div>
       </div>
     </div>
