@@ -12,7 +12,7 @@ export default function NavbarSchool() {
     localStorage.removeItem("userToken");
     localStorage.removeItem("userId");
     localStorage.removeItem("userRole");
-    navigate("/loginschool");
+    navigate("/");
   }
 
   return (

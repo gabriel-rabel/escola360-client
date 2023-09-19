@@ -11,7 +11,7 @@ function Navbar() {
     localStorage.removeItem("userToken");
     localStorage.removeItem("userId");
     localStorage.removeItem("userRole");
-    navigate("/login");
+    navigate("/");
   }
 
   return (

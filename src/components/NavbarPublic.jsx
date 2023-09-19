@@ -23,7 +23,7 @@ function NavbarPublic() {
         <div className="menu">
           {/* Links NAVBAR */}
           <div className="flex justify-center items-center gap-4 mt-6">
-            <p className="text-white-400">Fale Conosco</p>
+            <a href="mailto:contato@escola360.com.br">Fale Conosco</a>
             {isLoggedIn === false && (
               <>
                 <Link to="/loginschool">
@@ -36,7 +36,7 @@ function NavbarPublic() {
             )}
             {isLoggedIn === true && userRole === "USER" && (
               <>
-                <Link to="/user" className="px-4 py-1">
+                <Link to="/user" className="flex gap-1 px-4 py-1">
                   <UserIcon className="h-5 w-5 text-white-400" />
                   Minha Conta
                 </Link>
