@@ -144,7 +144,7 @@ export default function SchoolNotificationPage() {
                 </th>
                 <th
                   scope="col"
-                  className="text-left text-md font-medium text-gray-500 tracking-normal px-4 py-2"
+                  className="text-left text-md font-medium text-gray-500 tracking-normal py-2"
                 >
                   Descrição
                 </th>
@@ -174,7 +174,7 @@ export default function SchoolNotificationPage() {
                         {notification.title}
                       </button>
                     </td>
-                    <td className="px-6 py-4 whitespace-normal text-sm text-gray-900">
+                    <td className="py-4 whitespace-normal text-sm text-gray-900">
                       {notification.description}
                     </td>
                     <td className="flex flex-col items-end py-4 whitespace-nowrap text-sm font-medium text-gray-900">

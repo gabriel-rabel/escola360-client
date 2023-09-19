@@ -163,7 +163,7 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
 
           <div className="flex flex-col mt-3">
             <label htmlFor="password" className="text-gray-500 font-medium">
-              Senha
+              Senha 
             </label>
             <input
               type="password"
@@ -174,6 +174,7 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
               onChange={handleChangeStudent}
               className="rounded-md border border-gray-300 p-2 text-gray-500"
             />
+            <p className="text-xs italic">*Deve conter no mínimo 8 caracteres, sendo letras maísculas, minusculas e caracteres especiais.</p>
           </div>
 
           <div className="flex flex-col items-center">
