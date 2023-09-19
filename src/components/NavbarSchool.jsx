@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
 export default function NavbarSchool() {
-  const { isLoggedIn, role } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
   
   const navigate = useNavigate();
 
