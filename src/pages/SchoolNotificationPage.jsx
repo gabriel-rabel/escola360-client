@@ -74,7 +74,7 @@ export default function SchoolNotificationPage() {
           <Link to="/school">
             <img src={Voltar} />
           </Link>
-          <h1 className="text-[18px] text-[#6D7DFF]">
+          <h1 className="text-[18px]">
             Cadastre uma notificação
           </h1>
         </div>

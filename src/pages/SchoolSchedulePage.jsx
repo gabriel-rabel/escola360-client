@@ -12,118 +12,115 @@ export default function SchoolSchedulePage() {
   const [subjects, setSubjects] = useState([]);
   const [formSchedule, setFormSchedule] = useState({
     student: "",
-    subjects: {},
+    subject: {},
     bimester: "",
   });
 
   const [primeiroBi, setPrimeiroBi] = useState([
     {
-      subjects: "matematica",
-      notas: "",
-      faltas: "",
+      subject: "matematica",
+      note: "",
+      missed: "",
     },
 
     {
-      subjects: "portugues",
-      notas: "",
-      faltas: "",
+      subject: "portugues",
+      note: "",
+      missed: "",
     },
 
     {
-      subjects: "historia",
-      notas: "",
-      faltas: "",
+      subject: "historia",
+      note: "",
+      missed: "",
     },
 
     {
-      subjects: "geografia",
-      notas: "",
-      faltas: "",
+      subject: "geografia",
+      note: "",
+      missed: "",
     },
   ]);
 
   const [segundoBi, setSegundoBi] = useState([
     {
-      subjects: "matematica",
-      notas: "",
-      faltas: "",
+      subject: "matematica",
+      note: "",
+      missed: "",
     },
 
     {
-      subjects: "portugues",
-      notas: "",
-      faltas: "",
+      subject: "portugues",
+      note: "",
+      missed: "",
     },
 
     {
-      subjects: "historia",
-      notas: "",
-      faltas: "",
+      subject: "historia",
+      note: "",
+      missed: "",
     },
 
     {
-      subjects: "geografia",
-      notas: "",
-      faltas: "",
+      subject: "geografia",
+      note: "",
+      missed: "",
     },
   ]);
 
   const [terceiroBi, setTerceiroBi] = useState([
     {
-      subjects: "matematica",
-      notas: "",
-      faltas: "",
+      subject: "matematica",
+      note: "",
+      missed: "",
     },
 
     {
-      subjects: "portugues",
-      notas: "",
-      faltas: "",
+      subject: "portugues",
+      note: "",
+      missed: "",
     },
 
     {
-      subjects: "historia",
-      notas: "",
-      faltas: "",
+      subject: "historia",
+      note: "",
+      missed: "",
     },
 
     {
-      subjects: "geografia",
-      notas: "",
-      faltas: "",
+      subject: "geografia",
+      note: "",
+      missed: "",
     },
   ]);
 
   const [quartoBi, setQuartoBi] = useState([
     {
-      subjects: "matematica",
-      notas: "",
-      faltas: "",
+      subject: "matematica",
+      note: "",
+      missed: "",
     },
 
     {
-      subjects: "portugues",
-      notas: "",
-      faltas: "",
+      subject: "portugues",
+      note: "",
+      missed: "",
     },
 
     {
-      subjects: "historia",
-      notas: "",
-      faltas: "",
+      subject: "historia",
+      note: "",
+      missed: "",
     },
 
     {
-      subjects: "geografia",
-      notas: "",
-      faltas: "",
+      subject: "geografia",
+      note: "",
+      missed: "",
     },
   ]);
 
   const [reload, setReload] = useState(false);
-  const selectedSubjects = Object.keys(formSchedule.subjects).filter(
-    (subjectId) => formSchedule.subjects[subjectId]
-  );
 
   const [search, setSearch] = useState("");
   const [selectUser, setSelectUser] = useState({});
@@ -172,7 +169,7 @@ export default function SchoolSchedulePage() {
     if (name === "subjects") {
       setFormSchedule((prevState) => ({
         ...prevState,
-        subjects: {
+        subject: {
           ...prevState.subjects,
           [value]: checked,
         },
@@ -202,7 +199,7 @@ export default function SchoolSchedulePage() {
       // Crie um único cronograma com os assuntos selecionados
       const dataToSend = {
         student: selectUser._id,
-        subjects: selectedSubjectIds,
+        subject: selectedSubjectIds,
         bimester: formSchedule.bimester,
       };
 
@@ -213,7 +210,7 @@ export default function SchoolSchedulePage() {
         // Limpar os campos do formulário após a adição
         setFormSchedule({
           student: "",
-          subjects: {},
+          subject: {},
           bimester: "",
         });
         setSelectUser({});
@@ -227,16 +224,6 @@ export default function SchoolSchedulePage() {
     }
   }
 
-  async function handleDeleteSchedule(scheduleId) {
-    try {
-      await api.delete(`/school/schedule/delete/${scheduleId}`);
-      setReload(!reload); // Recarregue a lista de matérias após a exclusão
-      toast.success("Cronograma excluído com sucesso!");
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   /* Para selecionar um seu */
   function handleSelectUser(e, user) {
     e.preventDefault();
@@ -246,12 +233,121 @@ export default function SchoolSchedulePage() {
   }
   console.log(selectUser);
 
-  function handlePrimeiroBi(e) {
-    const array = primeiroBi;
-    array[e.target.id];
-    setPrimeiroBi([]);
+  //COPIAR ESSAS DUAS FUNCOES 1 bi
+  function handlePrimeiroBi(index, type, value) {
+    console.log(value);
+    const array = primeiroBi; //É AQUI QUE TEM QUE MUDAR O BIMESTRE
+    if (type === "note") {
+      array[index].note = value;
+      console.log(array);
+    }
+    if (type === "missed") {
+      array[index].missed = value;
+    }
+    setPrimeiroBi([...array]); //É AQUI QUE TEM QUE MUDAR O BIMESTRE
+  }
+  console.log(primeiroBi[0]);
+
+  async function handleSubmitBoletim(e) {
+    e.preventDefault();
+
+    try {
+      const response = await api.put(`/school/edit_one/${selectUser._id}`, {
+        firstBimester: primeiroBi, //É AQUI QUE TEM QUE MUDAR O BIMESTRE
+      });
+      console.log(response);
+      toast.success("Boletim editado com sucesso!");
+    } catch (error) {
+      console.log(error);
+    }
   }
 
+  //COPIAR ESSAS DUAS FUNCOES 2 bi
+  function handleSegundoBi(index, type, value) {
+    console.log(value);
+    const array = segundoBi; //É AQUI QUE TEM QUE MUDAR O BIMESTRE
+    if (type === "note") {
+      array[index].note = value;
+      console.log(array);
+    }
+    if (type === "missed") {
+      array[index].missed = value;
+    }
+    setSegundoBi([...array]); //É AQUI QUE TEM QUE MUDAR O BIMESTRE
+  }
+  console.log(segundoBi[0]);
+
+  async function handleSubmitBoletim(e) {
+    e.preventDefault();
+
+    try {
+      const response = await api.put(`/school/edit_one/${selectUser._id}`, {
+        firstBimester: segundoBi, //É AQUI QUE TEM QUE MUDAR O BIMESTRE
+      });
+      console.log(response);
+      toast.success("Boletim editado com sucesso!");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  //COPIAR ESSAS DUAS FUNCOES 3 bi
+  function handleTerceiroBi(index, type, value) {
+    console.log(value);
+    const array = terceiroBi; //É AQUI QUE TEM QUE MUDAR O BIMESTRE
+    if (type === "note") {
+      array[index].note = value;
+      console.log(array);
+    }
+    if (type === "missed") {
+      array[index].missed = value;
+    }
+    setTerceiroBi([...array]); //É AQUI QUE TEM QUE MUDAR O BIMESTRE
+  }
+  console.log(segundoBi[0]);
+
+  async function handleSubmitBoletim(e) {
+    e.preventDefault();
+
+    try {
+      const response = await api.put(`/school/edit_one/${selectUser._id}`, {
+        firstBimester: terceiroBi, //É AQUI QUE TEM QUE MUDAR O BIMESTRE
+      });
+      console.log(response);
+      toast.success("Boletim editado com sucesso!");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  //COPIAR ESSAS DUAS FUNCOES 4 bi
+  function handleQuartoBi(index, type, value) {
+    console.log(value);
+    const array = quartoBi; //É AQUI QUE TEM QUE MUDAR O BIMESTRE
+    if (type === "note") {
+      array[index].note = value;
+      console.log(array);
+    }
+    if (type === "missed") {
+      array[index].missed = value;
+    }
+    setQuartoBi([...array]); //É AQUI QUE TEM QUE MUDAR O BIMESTRE
+  }
+  console.log(segundoBi[0]);
+
+  async function handleSubmitBoletim(e) {
+    e.preventDefault();
+
+    try {
+      const response = await api.put(`/school/edit_one/${selectUser._id}`, {
+        firstBimester: quartoBi, //É AQUI QUE TEM QUE MUDAR O BIMESTRE
+      });
+      console.log(response);
+      toast.success("Boletim editado com sucesso!");
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className="w-screen scroll-hidden">
       <NavbarSchool />
@@ -311,92 +407,555 @@ export default function SchoolSchedulePage() {
 
             {/* Bimestres */}
 
-            {/* PRIMEIRO BIMESTRE */}
-            <div className="mt-4 border-2 p-4 border-gray-800 rounded-lg">
-              <h1 className="text-2xl font-bold mb-4">1 Bim</h1>
-              <div className="flex flex-col">
-                <table className="table table-bordered table-striped">
-                  <thead>
-                    <tr className="">
-                      <th className="text-left">Matéria</th>
-                      <th className="text-left">Nota</th>
-                      <th className="text-left">Faltas</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* Matemática */}
-                    <tr>
-                      <td>Matemática</td>
-                      <td>
-                        <input
-                          type="number"
-                          id="0"
-                          value={primeiroBi[0].notas}
-                          className="d-flex align-items-center justify-content-center"
-                          onChange={handlePrimeiroBi}
-                        />
-                      </td>
-                      <td>
-                        <input type="number" value={primeiroBi[0].faltas} />
-                      </td>
-                    </tr>
+            {/* TERCEIRO BIMESTRE */}
+            <div className=" flex gap-6 justify-center">
+              <div className="mt-4 w-1/3">
+                <div className="text-center p-2">
+                  <h1 className="text-[18px] font-bold mb-4">
+                    Primeiro Bimestre
+                  </h1>
+                </div>
+                <div className="flex flex-col border-[1.5px] rounded-lg">
+                  <table className="  rounded-lg">
+                    <thead>
+                      <tr className=" ">
+                        <th className="text-left py-2 px-4 font-medium bg-[#6D7DFF]/10 rounded-l-lg rounded-r-none ">
+                          Matérias
+                        </th>
+                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10  rounded-r-none ">
+                          Notas
+                        </th>
+                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10 rounded-r-lg rounded--none ">
+                          Faltas
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* Matemática */}
+                      <tr>
+                        <td className="py-2 px-4 text-[16px]">Matemática</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={primeiroBi[0].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handlePrimeiroBi(0, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={primeiroBi[0].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handlePrimeiroBi(0, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
 
-                    {/* Português */}
-                    <tr>
-                      <td>Português</td>
-                      <td>
-                        <input
-                          type="number"
-                          id="1"
-                          value={primeiroBi[1].notas}
-                          className="d-flex align-items-center justify-content-center"
-                        />
-                      </td>
-                      <td>
-                        <input type="number" value={primeiroBi[1].faltas} />
-                      </td>
-                    </tr>
+                      {/* Português */}
+                      <tr>
+                        <td className="py-2 px-4">Português</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={primeiroBi[1].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handlePrimeiroBi(1, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={primeiroBi[1].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handlePrimeiroBi(1, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
 
-                    {/* História */}
-                    <tr>
-                      <td>História</td>
-                      <td>
-                        <input
-                          type="number"
-                          id="2"
-                          value={primeiroBi[2].notas}
-                          className="d-flex align-items-center justify-content-center"
-                        />
-                      </td>
-                      <td>
-                        <input type="number" value={primeiroBi[2].faltas} />
-                      </td>
-                    </tr>
+                      {/* História */}
+                      <tr>
+                        <td className="py-2 px-4">História</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={primeiroBi[2].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handlePrimeiroBi(2, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={primeiroBi[2].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handlePrimeiroBi(2, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
 
-                    {/* Geografia */}
-                    <tr>
-                      <td>Geografia</td>
-                      <td>
-                        <input
-                          type="number"
-                          id="3"
-                          value={primeiroBi[3].notas}
-                          className="form-control"
-                        />
-                      </td>
-                      <td>
-                        <input type="number" value={primeiroBi[3].faltas} />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                      {/* Geografia */}
+                      <tr>
+                        <td className="py-2 px-4">Geografia</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={primeiroBi[3].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handlePrimeiroBi(3, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={primeiroBi[3].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handlePrimeiroBi(3, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Botão */}
+                <div className=" flex justify-center items-center">
+                  <button
+                    onClick={handleSubmitBoletim}
+                    className="border mt-5 bg-[#6D7DFF] text-white font-bold rounded-[100px] w-[100px] h-[44px]"
+                  >
+                    Salvar
+                  </button>
+                </div>
               </div>
 
-              {/* Botão */}
-              <div className="mt-4 flex justify-center items-center">
-                <button className="border mt-5 bg-[#6D7DFF] text-white font-bold rounded-md w-[250px] h-[44px]">
-                  Enviar
-                </button>
+              {/* Segundo Bimestre */}
+              <div className="mt-4  w-1/3">
+                <div className="text-center p-2">
+                  <h1 className="text-[18px] font-bold mb-4">
+                    Segundo Bimestre
+                  </h1>
+                </div>
+                <div className="flex flex-col border-[1.5px] rounded-lg">
+                  <table className="  rounded-lg">
+                    <thead>
+                      <tr className=" ">
+                        <th className="text-left py-2 px-4 font-medium bg-[#6D7DFF]/10 rounded-l-lg rounded-r-none ">
+                          Matérias
+                        </th>
+                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10  rounded-r-none ">
+                          Notas
+                        </th>
+                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10 rounded-r-lg rounded--none ">
+                          Faltas
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* Matemática */}
+                      <tr>
+                        <td className="py-2 px-4 text-[16px]">Matemática</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={segundoBi[0].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleSegundoBi(0, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={segundoBi[0].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleSegundoBi(0, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
+
+                      {/* Português */}
+                      <tr>
+                        <td className="py-2 px-4">Português</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={segundoBi[1].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleSegundoBi(1, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={segundoBi[1].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleSegundoBi(1, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
+
+                      {/* História */}
+                      <tr>
+                        <td className="py-2 px-4">História</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={terceiroBi[2].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleTerceiroBi(2, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={terceiroBi[2].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleTerceiroBi(2, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
+
+                      {/* Geografia */}
+                      <tr>
+                        <td className="py-2 px-4">Geografia</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={quartoBi[3].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleQuartoBi(3, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={quartoBi[3].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleQuartoBi(3, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Botão */}
+                <div className=" flex justify-center items-center">
+                  <button
+                    onClick={handleSubmitBoletim}
+                    className="border mt-5 bg-[#6D7DFF] text-white font-bold rounded-[100px] w-[100px] h-[44px]"
+                  >
+                    Salvar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Segunda Linha */}
+            <div className="mt-6 flex gap-6 justify-center mb-20">
+              <div className="mt-4 w-1/3">
+                <div className="text-center p-2">
+                  <h1 className="text-[18px] font-bold mb-4">
+                    Terceiro Bimestre
+                  </h1>
+                </div>
+                <div className="flex flex-col border-[1.5px] rounded-lg">
+                  <table className="  rounded-lg">
+                    <thead>
+                      <tr className=" ">
+                        <th className="text-left py-2 px-4 font-medium bg-[#6D7DFF]/10 rounded-l-lg rounded-r-none ">
+                          Matérias
+                        </th>
+                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10  rounded-r-none ">
+                          Notas
+                        </th>
+                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10 rounded-r-lg rounded--none ">
+                          Faltas
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* Matemática */}
+                      <tr>
+                        <td className="py-2 px-4 text-[16px]">Matemática</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={terceiroBi[0].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleTerceiroBi(0, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={terceiroBi[0].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleTerceiroBi(0, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
+
+                      {/* Português */}
+                      <tr>
+                        <td className="py-2 px-4">Português</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={terceiroBi[1].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleTerceiroBi(1, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={terceiroBi[1].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleTerceiroBi(1, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
+
+                      {/* História */}
+                      <tr>
+                        <td className="py-2 px-4">História</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={terceiroBi[2].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleTerceiroBi(2, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={terceiroBi[2].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleTerceiroBi(2, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
+
+                      {/* Geografia */}
+                      <tr>
+                        <td className="py-2 px-4">Geografia</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={terceiroBi[3].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleTerceiroBi(3, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={terceiroBi[3].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleTerceiroBi(3, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Botão */}
+                <div className=" flex justify-center items-center">
+                  <button
+                    onClick={handleSubmitBoletim}
+                    className="border mt-5 bg-[#6D7DFF] text-white font-bold rounded-[100px] w-[100px] h-[44px]"
+                  >
+                    Salvar
+                  </button>
+                </div>
+              </div>
+
+              {/* Segundo Bimestre */}
+              <div className="mt-4  w-1/3">
+                <div className="text-center p-2">
+                  <h1 className="text-[18px] font-bold mb-4">
+                    Quarto Bimestre
+                  </h1>
+                </div>
+                <div className="flex flex-col border-[1.5px] rounded-lg">
+                  <table className="  rounded-lg">
+                    <thead>
+                      <tr className=" ">
+                        <th className="text-left py-2 px-4 font-medium bg-[#6D7DFF]/10 rounded-l-lg rounded-r-none ">
+                          Matérias
+                        </th>
+                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10  rounded-r-none ">
+                          Notas
+                        </th>
+                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10 rounded-r-lg rounded--none ">
+                          Faltas
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* Matemática */}
+                      <tr>
+                        <td className="py-2 px-4 text-[16px]">Matemática</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={quartoBi[0].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleQuartoBi(0, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={quartoBi[0].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleQuartoBi(0, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
+
+                      {/* Português */}
+                      <tr>
+                        <td className="py-2 px-4">Português</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={quartoBi[1].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleQuartoBi(1, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={quartoBi[1].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleQuartoBi(1, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
+
+                      {/* História */}
+                      <tr>
+                        <td className="py-2 px-4">História</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={quartoBi[2].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleQuartoBi(2, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={quartoBi[2].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleQuartoBi(2, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
+
+                      {/* Geografia */}
+                      <tr>
+                        <td className="py-2 px-4">Geografia</td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={quartoBi[3].note}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleQuartoBi(3, "note", e.target.value)
+                            }
+                          />
+                        </td>
+                        <td className="py-2 px-4">
+                          <input
+                            type="text"
+                            value={quartoBi[3].missed}
+                            className="w-24 py-1 px-2 border rounded border-gray-200"
+                            onChange={(e) =>
+                              handleQuartoBi(3, "missed", e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Botão */}
+                <div className=" flex justify-center items-center">
+                  <button
+                    onClick={handleSubmitBoletim}
+                    className="border mt-5 bg-[#6D7DFF] text-white font-bold rounded-[100px] w-[100px] h-[44px]"
+                  >
+                    Salvar
+                  </button>
+                </div>
               </div>
             </div>
           </form>
