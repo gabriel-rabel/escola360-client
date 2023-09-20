@@ -40,8 +40,7 @@ export default function Navbar() {
   async function markNotificationsAsRead() {
     try {
       await api.put("/notification/mark_as_read");
-      // Após marcar as notificações como lidas, atualize a lista de notificações
-      getUserNotifications();
+
       // Defina o estado como "lido" quando clicar no ícone
       setUnreadNotifications(false);
     } catch (error) {
