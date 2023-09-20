@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import api from "../axios/api";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
 import Voltar from "../assets/voltar.svg";
-import Separar from "../assets/separacao.svg";
 
 export default function SchoolSchedulePage() {
   const [users, setUsers] = useState([]);
@@ -137,32 +136,27 @@ export default function SchoolSchedulePage() {
     setSelectUser(user);
     setSearch("");
   }
-  console.log(selectUser);
 
   //COPIAR ESSAS DUAS FUNCOES 1 bi
   function handlePrimeiroBi(index, type, value) {
-    console.log(value);
     const array = primeiroBi; //É AQUI QUE TEM QUE MUDAR O BIMESTRE
     if (type === "note") {
       array[index].note = value;
-      console.log(array);
     }
     if (type === "missed") {
       array[index].missed = value;
     }
     setPrimeiroBi([...array]); //É AQUI QUE TEM QUE MUDAR O BIMESTRE
   }
-  console.log(primeiroBi[0]);
 
   // Primeiro bimestre
   async function handleSubmitPrimeiroBi(e) {
     e.preventDefault();
 
     try {
-      const response = await api.put(`/school/edit_one/${selectUser._id}`, {
+      await api.put(`/school/edit_one/${selectUser._id}`, {
         firstBimester: primeiroBi,
       });
-      console.log(response);
       toast.success("Boletim do primeiro bimestre editado com sucesso!");
     } catch (error) {
       console.log(error);
@@ -171,28 +165,24 @@ export default function SchoolSchedulePage() {
 
   //COPIAR ESSAS DUAS FUNCOES 2 bi
   function handleSegundoBi(index, type, value) {
-    console.log(value);
     const array = segundoBi; //É AQUI QUE TEM QUE MUDAR O BIMESTRE
     if (type === "note") {
       array[index].note = value;
-      console.log(array);
     }
     if (type === "missed") {
       array[index].missed = value;
     }
     setSegundoBi([...array]); //É AQUI QUE TEM QUE MUDAR O BIMESTRE
   }
-  console.log(segundoBi[0]);
 
   // Segundo bimestre
   async function handleSubmitSegundoBi(e) {
     e.preventDefault();
 
     try {
-      const response = await api.put(`/school/edit_one/${selectUser._id}`, {
+      await api.put(`/school/edit_one/${selectUser._id}`, {
         secondBimester: segundoBi,
       });
-      console.log(response);
       toast.success("Boletim do segundo bimestre editado com sucesso!");
     } catch (error) {
       console.log(error);
@@ -201,27 +191,23 @@ export default function SchoolSchedulePage() {
 
   //COPIAR ESSAS DUAS FUNCOES 3 bi
   function handleTerceiroBi(index, type, value) {
-    console.log(value);
     const array = terceiroBi; //É AQUI QUE TEM QUE MUDAR O BIMESTRE
     if (type === "note") {
       array[index].note = value;
-      console.log(array);
     }
     if (type === "missed") {
       array[index].missed = value;
     }
     setTerceiroBi([...array]); //É AQUI QUE TEM QUE MUDAR O BIMESTRE
   }
-  console.log(segundoBi[0]);
 
   async function handleSubmitTerceiroBi(e) {
     e.preventDefault();
 
     try {
-      const response = await api.put(`/school/edit_one/${selectUser._id}`, {
+      await api.put(`/school/edit_one/${selectUser._id}`, {
         thirdBimester: terceiroBi, //É AQUI QUE TEM QUE MUDAR O BIMESTRE
       });
-      console.log(response);
       toast.success("Boletim editado com sucesso!");
     } catch (error) {
       console.log(error);
@@ -230,27 +216,23 @@ export default function SchoolSchedulePage() {
 
   //COPIAR ESSAS DUAS FUNCOES 4 bi
   function handleQuartoBi(index, type, value) {
-    console.log(value);
     const array = quartoBi; //É AQUI QUE TEM QUE MUDAR O BIMESTRE
     if (type === "note") {
       array[index].note = value;
-      console.log(array);
     }
     if (type === "missed") {
       array[index].missed = value;
     }
     setQuartoBi([...array]); //É AQUI QUE TEM QUE MUDAR O BIMESTRE
   }
-  console.log(segundoBi[0]);
 
   async function handleSubmitQuartoBi(e) {
     e.preventDefault();
 
     try {
-      const response = await api.put(`/school/edit_one/${selectUser._id}`, {
+      await api.put(`/school/edit_one/${selectUser._id}`, {
         fourthBimester: quartoBi, //É AQUI QUE TEM QUE MUDAR O BIMESTRE
       });
-      console.log(response);
       toast.success("Boletim editado com sucesso!");
     } catch (error) {
       console.log(error);

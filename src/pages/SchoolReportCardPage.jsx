@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../axios/api";
-import Flor2 from "../assets/flor2.svg";
 import Voltar from "../assets/voltar.svg";
 import NavbarSchool from "../components/NavbarSchool";
-import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 export default function SchoolReportCardPage() {
@@ -24,13 +22,10 @@ export default function SchoolReportCardPage() {
     getStudents();
   }, [reload]);
 
-  //tem q ajeitar esse get p mandar o id do user pra requisicao,
-  //mostrar o name em vez de id e organizar por bimestre
-  async function getSchedules(studentId) {
+  async function getSchedules() {
     try {
       const response = await api.get(`/school/schedule/get_all`);
       setSchedules(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }

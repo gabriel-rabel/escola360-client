@@ -2,6 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import api from "../axios/api";
+import { Link } from "react-router-dom";
+import logo from "../assets/escola360logo.svg";
+
+
+//página nao sera usada. apenas para teste
+
 
 function SignupPage() {
   const navigate = useNavigate();
@@ -23,12 +29,8 @@ function SignupPage() {
     //photo = state com a foto guardada
     try {
       const multiPartForm = new FormData();
-
       multiPartForm.append("picture", photo);
-
       const response = await api.post("/upload/file", multiPartForm);
-
-      console.log(response);
 
       return response.data.url;
     } catch (error) {
@@ -62,24 +64,30 @@ function SignupPage() {
     setPhoto(e.target.files[0]);
   }
 
-  function handleRadio(e) {
-    setUserType(e.target.value);
-  }
 
   return (
-    <div>
-      <div className="flex w-screen min-h-full mt-4 justify-center items-center bg-gray-100">
-        <div className="sm:w-full sm:max-w-sm bg-white p-8 rounded-lg shadow">
-          <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
-          />
-          <h2 className="mt-4 text-center text-2xl font-bold leading-9 text-gray-900">
-            Cadastre-se na plataforma
-          </h2>
+    <div className="flex h-screen w-screen">
+       {/*   <!-- Coluna esquerda com o logotipo e background indigo --> */}
+       <div className="bg-login flex-1 flex justify-center items-center w-1/2">
+        <Link to="/">
+        <img src={logo} alt="Your Company" className="w-40" />
+        </Link>
+      </div>
+      <div className="flex-1 flex justify-center items-center w-1/2">
+        <div>
+          <div className="mb-4 w-64">
+            <h1 className="text-4xl font-raleway font-semibold mb-2 text-gray-900">
+              Bem Vindo{" "}
+            </h1>
+            <p className="mb-10 font-raleway font-medium">
+              Área de cadastro de escola.
+            </p>
+            
+          </div>
+      {/*   <!-- Coluna direita com o formulário de login --> */}
+        
 
-          <form className="mt-4 space-y-4" onSubmit={handleSubmit}>
+          <form className="mt-4" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
@@ -182,101 +190,13 @@ function SignupPage() {
               Entre em contato com a gente
             </a>
           </p>
+          <p className="text-xs">*Seu cadastro passará por um processo de aprovação. Aguarde, em até 48 horas você receberá um e-mail de confirmação.</p>
         </div>
+      </div> 
       </div>
-    </div>
+
   );
 }
 
 export default SignupPage;
 
-/* 
-SEM AS CLASSES
-<div>
-   <div>
-      <img
-         src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-         alt="Your Company"
-      />
-      <h2>Cadastre-se na plataforma</h2>
-
-      <form onSubmit={handleSubmit}>
-         <div>
-            <label htmlFor="email">Email</label>
-            <div>
-               <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={form.email}
-                  onChange={handleChange}
-               />
-            </div>
-         </div>
-
-         <div>
-            <label htmlFor="password">Senha</label>
-            <div>
-               <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="new-password"
-                  required
-                  value={form.password}
-                  onChange={handleChange}
-               />
-            </div>
-         </div>
-
-         <div>
-            <label htmlFor="photo">Foto de perfil</label>
-            <div>
-               <label htmlFor="photo" className="cursor-pointer">
-                  <svg
-                     xmlns="http://www.w3.org/2000/svg"
-                     fill="none"
-                     viewBox="0 0 24 24"
-                     stroke="currentColor"
-                  >
-                     <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                     />
-                  </svg>
-                  Escolher Foto
-               </label>
-               <input
-                  id="photo"
-                  name="photo"
-                  type="file"
-                  accept="image/png, image/jpeg"
-                  onChange={handlePhoto}
-                  className="hidden"
-               />
-            </div>
-         </div>
-
-         <div>
-            <button type="submit">CADASTRE-SE</button>
-         </div>
-      </form>
-
-      <p>
-         Problemas com o cadastro?{" "}
-         <a
-            href="https://wa.me/+5511999999999/?text=Não%20consegui%20me%20cadastrar%20no%20site"
-            target="_blank"
-            rel="noreferrer noopener"
-         >
-            Entre em contato com a gente
-         </a>
-      </p>
-   </div>
-</div>
-
-*/

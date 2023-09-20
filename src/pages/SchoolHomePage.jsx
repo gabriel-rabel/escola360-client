@@ -10,7 +10,6 @@ import {
   ClipboardIcon,
   BellIcon,
   ClipboardDocumentListIcon,
-  AcademicCapIcon,
 } from "@heroicons/react/24/outline";
 
 export default function SchoolHomePage() {
@@ -21,7 +20,6 @@ export default function SchoolHomePage() {
       try {
         const response = await api.get("/school/profile");
         setUser(response.data);
-        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -114,22 +112,6 @@ export default function SchoolHomePage() {
               <img src={Seta} alt="Ícone da seta" />
             </div>
           </Link>
-
-          {/* Boletins */}
-{/*           <Link
-            to="/school/report-card"
-            className="border border-white rounded-md shadow-sm p-3"
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex gap-4">
-                <AcademicCapIcon className="h-6 w-6 mr-1 text-white" />
-                <p className="text-white">Boletins</p>
-              </div>
-              <img src={Seta} alt="Ícone da seta" />
-            </div>
-          </Link> */}
-
-
         </div>
       </div>
     </div>

@@ -4,7 +4,6 @@ import ImageKids from "../assets/Images.svg";
 export default function HomePage() {
   return (
     <div className="bg-custom">
-      {/* Fabi escreveu - Tive que usar CSS para colocar a imagem dentro dessa main, pelo tailwind não deu certo */}
       <NavbarPublic />
 
       <div className="content flex items-center">
@@ -18,33 +17,27 @@ export default function HomePage() {
           </p>
           <img src={ImageKids} />
         </div>
-
-
-{/* CARDS */}
+        {/* CARDS */}
         <div className="w-1/2 p-10 flex flex-col justify-center items-center space-y-4">
-
-          <div className="border-2 p-2 rounded-lg text-white w-80" >
+          <div className="border-2 p-2 rounded-lg text-white w-80">
             <h1 className="font-bold text-2xl">Cardápio</h1>
             <p>Desfrute de um acompanhamento diário do cardápio escolar.</p>
           </div>
 
-          <div className="border-2 p-2 rounded-lg text-white w-80" >
+          <div className="border-2 p-2 rounded-lg text-white w-80">
             <h1 className="font-bold text-2xl">Frequência</h1>
             <p>Mantenha o controle da frequência escolar do seu filho.</p>
           </div>
 
-          <div className="border-2 p-2 rounded-lg text-white w-80" >
+          <div className="border-2 p-2 rounded-lg text-white w-80">
             <h1 className="font-bold text-2xl">Notificações</h1>
             <p>Receba todas as notificações em tempo real.</p>
           </div>
 
-          <div className="border-2 p-2 rounded-lg text-white w-80" >
+          <div className="border-2 p-2 rounded-lg text-white w-80">
             <h1 className="font-bold text-2xl">Boletim</h1>
             <p>Esteja ciente das notas e performances</p>
           </div>
-
-
-
         </div>
       </div>
     </div>

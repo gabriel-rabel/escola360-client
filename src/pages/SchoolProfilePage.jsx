@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 import api from "../axios/api";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
 import Separar from "../assets/separacao.svg";
@@ -18,17 +17,11 @@ export default function SchoolProfilePage() {
     cnpj: "",
   });
   const [reload, setReload] = useState(false);
-
-  const navigate = useNavigate(); //sem uso ainda
-
-  const id_user = localStorage.getItem("userId"); //sem uso auinda
-
   useEffect(() => {
     async function getProfile() {
       try {
         const response = await api.get("/school/profile");
         setUser(response.data);
-        console.log(response.data);
         setFormProfile(response.data); //carrega os campos ja preenchidos
       } catch (error) {
         console.log(error);
@@ -42,13 +35,10 @@ export default function SchoolProfilePage() {
     setFormProfile({ ...formProfile, [e.target.name]: e.target.value });
   }
 
-  //handle do logout
-
   async function handleSubmitProfile(e) {
     e.preventDefault();
     try {
-      const response = await api.put("/school/edit", formProfile);
-
+      await api.put("/school/edit", formProfile);
       setReload(!reload);
       toast.success("Edição realizada com sucesso!");
     } catch (error) {
