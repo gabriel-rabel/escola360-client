@@ -7,11 +7,14 @@ import Flor2 from "../assets/flor2.svg";
 export default function UserHomePage() {
   const [user, setUser] = useState({});
 
+
+
   useEffect(() => {
     async function getProfile() {
       try {
         const response = await api.get("/user/profile");
         setUser(response.data);
+  
       } catch (error) {
         console.log(error);
       }
@@ -19,6 +22,14 @@ export default function UserHomePage() {
 
     getProfile();
   }, []);
+
+console.log(user)
+
+
+
+
+
+
 
   return (
     <div className="bg-[#6D7DFF] h-screen w-screen">
@@ -40,8 +51,9 @@ export default function UserHomePage() {
           </div>
 
           {/* DADOS PESSOAIS */}
+          <section className="flex gap-5 w-[800px]">
 
-          <div className="relative mb-10 bg-white rounded-lg p-4 w-[800px]">
+          <div className="relative mb-10 bg-white rounded-lg p-4 w-3/5">
             <img
               src={Flor2}
               alt=""
@@ -94,8 +106,17 @@ export default function UserHomePage() {
                       </span>
                     ))}
               </span>
+
             </div>
+            
           </div>
+          <div className="relative mb-10 bg-white rounded-lg p-4 w-2/5">
+            <h1 className="text-[#6A7AF5]">Cardápio do mês</h1>
+            <pre className="text-[#525252] whitespace-pre-line font-raleway">{user.menu}</pre>
+          </div>
+          </section>
+          
+
 
           {/* BOLETIM */}
           <div className="mt-4">
