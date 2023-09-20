@@ -21,7 +21,6 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
       try {
         const response = await api.get(`/school/get_one/${userId}`);
         setFormStudent({ ...response.data, password: "" });
-        console.log(formStudent);
       } catch (error) {
         console.log(error);
       }
@@ -36,12 +35,10 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
   async function handleSubmitStudent(e) {
     e.preventDefault();
     try {
-      const response = await api.put(`/school/edit_one/${userId}`, formStudent);
-      console.log(response);
+      await api.put(`/school/edit_one/${userId}`, formStudent);
       toast.success("Aluno editado com sucesso!");
       onEdit(); // Chama a função de atualização da lista
       onClose(); // Fecha o modal
-
     } catch (error) {
       console.log(error);
     }
@@ -50,7 +47,7 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
   async function HandleDelete(e) {
     e.preventDefault();
     try {
-      const response = await api.delete(`/school/delete/${userId}`);
+      await api.delete(`/school/delete/${userId}`);
       toast.error("Aluno excluído com sucesso!");
       onClose(); // Fecha o modal
       setReload(!reload);
@@ -163,7 +160,7 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
 
           <div className="flex flex-col mt-3">
             <label htmlFor="password" className="text-gray-500 font-medium">
-              Senha 
+              Senha
             </label>
             <input
               type="password"
@@ -174,13 +171,14 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
               onChange={handleChangeStudent}
               className="rounded-md border border-gray-300 p-2 text-gray-500"
             />
-            <p className="text-xs italic">*Deve conter no mínimo 8 caracteres, sendo letras maísculas, minusculas e caracteres especiais.</p>
+            <p className="text-xs italic">
+              *Deve conter no mínimo 8 caracteres, sendo letras maísculas,
+              minusculas e caracteres especiais.
+            </p>
           </div>
 
           <div className="flex flex-col items-center">
-            <button
-              className="bg-[#6A7AF5] text-white border p-3 mt-4 rounded-lg w-[250px]"
-            >
+            <button className="bg-[#6A7AF5] text-white border p-3 mt-4 rounded-lg w-[250px]">
               Salvar Edição
             </button>
 

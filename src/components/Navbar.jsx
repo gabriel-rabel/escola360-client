@@ -4,7 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { BellIcon } from "@heroicons/react/24/solid";
 import api from "../axios/api";
 
-function Navbar() {
+export default function Navbar() {
   const { isLoggedIn } = useContext(AuthContext);
   const [notifications, setNotifications] = useState([]);
   const [unreadNotifications, setUnreadNotifications] = useState(false); // Estado para controlar se há notificações não lidas
@@ -80,5 +80,3 @@ function Navbar() {
     </nav>
   );
 }
-
-export default Navbar;

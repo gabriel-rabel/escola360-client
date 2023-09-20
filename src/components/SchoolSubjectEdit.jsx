@@ -18,7 +18,6 @@ export default function SubjectEditPage({ subjectId, onClose, onEdit }) {
     async function getSubject() {
       try {
         const response = await api.get(`/subject/get_one/${subjectId}`);
-        console.log(response.data);
         setFormSubject(response.data);
       } catch (error) {
         console.log(error);
@@ -34,8 +33,7 @@ export default function SubjectEditPage({ subjectId, onClose, onEdit }) {
   async function handleSubmitSubject(e) {
     e.preventDefault();
     try {
-      const response = await api.put(`/subject/edit/${subjectId}`, formSubject);
-      console.log(response);
+      await api.put(`/subject/edit/${subjectId}`, formSubject);
       toast.success("Matéria editada com sucesso!");
       onEdit();
       onClose();
@@ -45,15 +43,12 @@ export default function SubjectEditPage({ subjectId, onClose, onEdit }) {
   }
 
   async function handleDeleteSubject(subjectId, e) {
-    console.log(e);
-    console.log(subjectId);
     e.preventDefault();
     try {
-      const response = await api.delete(`/subject/delete/${subjectId}`);
-      console.log(response);
+      await api.delete(`/subject/delete/${subjectId}`);
       setReload(!reload); // Recarregue a lista de matérias após a exclusão
       toast.success("Matéria excluída com sucesso!");
-      onClose()
+      onClose();
     } catch (error) {
       console.log(error);
     }
@@ -97,7 +92,6 @@ export default function SubjectEditPage({ subjectId, onClose, onEdit }) {
               className="rounded-md border border-gray-300 p-2 text-gray-500"
             />
           </div>
-
           <div className="flex flex-col mb-3">
             <label htmlFor="teacher" className="text-gray-500 font-medium">
               Professor
@@ -111,7 +105,6 @@ export default function SubjectEditPage({ subjectId, onClose, onEdit }) {
               className="rounded-md border border-gray-300 p-2 text-gray-500"
             />
           </div>
-
           <div className="flex flex-col mb-3">
             <label htmlFor="description" className="text-gray-500 font-medium">
               Descrição
@@ -125,8 +118,6 @@ export default function SubjectEditPage({ subjectId, onClose, onEdit }) {
               className="rounded-md border border-gray-300 p-2 text-gray-500 mt-1"
             />
           </div>
-
-          {/* Salvar */}
           <div className="flex justify-center">
             <button
               type="submit"
@@ -135,8 +126,6 @@ export default function SubjectEditPage({ subjectId, onClose, onEdit }) {
               Salvar Edição
             </button>
           </div>
-
-          {/* Deletar correto */}
           <button
             className="px-6 py-4 whitespace-nowrap text-sm text-red-500 cursor-pointer hover:underline font-bold "
             onClick={(e) => handleDeleteSubject(formSubject._id, e)}

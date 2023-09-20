@@ -18,7 +18,7 @@ function LoginPageUser() {
       }
     };
 
-    // Chame a função de redirecionamento assim que o componente for montado
+    // Chama a função de redirecionamento assim que o componente for montado
     redirectUser();
   }, [navigate]);
 
@@ -38,7 +38,7 @@ function LoginPageUser() {
       let response;
       response = await axios.post("http://localhost:4000/user/login", form);
 
-      //GUARDAR O TOKEN E ID DE QUEM LOGOU
+      //GUARDA O TOKEN E ID DE QUEM LOGOU
       const token = response.data.token;
       const userId = response.data.user._id;
       const userRole = response.data.user.role;

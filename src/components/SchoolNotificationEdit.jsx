@@ -1,13 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import api from "../axios/api";
 import toast from "react-hot-toast";
-import NavbarSchool from "../components/NavbarSchool";
 import { XCircleIcon } from "@heroicons/react/24/outline";
 
 export default function SchoolNotificationEdit({
   notificationId,
   onClose,
-  onEdit
+  onEdit,
 }) {
   const formRef = useRef(null);
   const [notification, setNotification] = useState({});
@@ -24,7 +23,6 @@ export default function SchoolNotificationEdit({
           `/notification/get_one/${notificationId}`
         );
         setNotification(response.data);
-        console.log(response.data);
         setFormNotification(response.data);
       } catch (error) {
         console.log(error);
@@ -44,11 +42,7 @@ export default function SchoolNotificationEdit({
     e.preventDefault();
 
     try {
-      const response = await api.put(
-        `/notification/edit/${notificationId}`,
-        formNotification
-       
-      );
+      await api.put(`/notification/edit/${notificationId}`, formNotification);
       toast.success("Notificação editada com sucesso!");
       onEdit(); // Chama a função de atualização da lista
       onClose(); // Fecha o modal
@@ -61,7 +55,7 @@ export default function SchoolNotificationEdit({
   async function HandleDelete(e) {
     e.preventDefault();
     try {
-      const response = await api.delete(`/notification/delete/${notificationId }`);
+      await api.delete(`/notification/delete/${notificationId}`);
       toast.error("Notificação excluída com sucesso!");
       onClose(); // Fecha o modal
       setReload(!reload);
@@ -83,14 +77,17 @@ export default function SchoolNotificationEdit({
         }
       }}
     >
-      <div ref={formRef} className="bg-white p-8 w-[50%] rounded-lg shadow-lg max-w-screen-sm">
-      <div className="flex justify-between">
-        <h1 className="text-2xl font-bold text-gray-600 mb-2">
-          Editar Notificação
-        </h1>
-        <div className="cursor-pointer">
-          <XCircleIcon onClick={onClose} className="w-6 h-6 text-[#6A7AF5]" />
-        </div>
+      <div
+        ref={formRef}
+        className="bg-white p-8 w-[50%] rounded-lg shadow-lg max-w-screen-sm"
+      >
+        <div className="flex justify-between">
+          <h1 className="text-2xl font-bold text-gray-600 mb-2">
+            Editar Notificação
+          </h1>
+          <div className="cursor-pointer">
+            <XCircleIcon onClick={onClose} className="w-6 h-6 text-[#6A7AF5]" />
+          </div>
         </div>
 
         <form onSubmit={handleSubmitNotification}>

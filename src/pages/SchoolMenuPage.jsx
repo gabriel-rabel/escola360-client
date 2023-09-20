@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../axios/api";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
 import Voltar from "../assets/voltar.svg";
@@ -12,17 +12,14 @@ export default function SchoolMenuPage() {
   });
   const [reload, setReload] = useState(false);
 
-  const navigate = useNavigate();
-  const id_user = localStorage.getItem("userId");
-
   useEffect(() => {
     async function getProfile() {
       try {
         const response = await api.get("/school/profile");
         setUser(response.data);
-        console.log(response.data);
         setFormMenu(response.data); //carrega os campos ja preenchidos
       } catch (error) {
+        console.log(error);
       }
     }
     getProfile();
@@ -36,8 +33,7 @@ export default function SchoolMenuPage() {
   async function handleSubmitMenu(e) {
     e.preventDefault();
     try {
-      const response = await api.put("/school/edit", formMenu);
-
+      await api.put("/school/edit", formMenu);
       setReload(!reload);
       toast.success("Cardápio atualizado com sucesso!");
     } catch (error) {
@@ -55,7 +51,6 @@ export default function SchoolMenuPage() {
           </Link>
           <h1 className="text-[18px]">Edite o cardápio</h1>
         </div>
-
         <form onSubmit={handleSubmitMenu} className="mt-4">
           <div className="flex flex-col">
             <textarea

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../axios/api";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import NavbarSchool from "../components/NavbarSchool";
 import Voltar from "../assets/voltar.svg";
@@ -40,7 +40,7 @@ export default function SchoolGradePage() {
       const response = await api.post("/subject/create", formSubject);
       setReload(!reload);
       toast.success("Matéria adicionada com sucesso!");
-      // Limpar os campos do formulário após a adição
+      // Limpa os campos do formulário após a adição
       setFormSubject({
         name: "",
         description: "",
@@ -54,7 +54,7 @@ export default function SchoolGradePage() {
   async function handleDeleteSubject(subjectId) {
     try {
       await api.delete(`/subject/delete/${subjectId}`);
-      setReload(!reload); // Recarregue a lista de matérias após a exclusão
+      setReload(!reload); // Recarrega a lista de matérias após a exclusão
       toast.success("Matéria excluída com sucesso!");
     } catch (error) {
       console.log(error);

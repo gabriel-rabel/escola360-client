@@ -40,7 +40,7 @@ export default function SchoolStudentPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const response = await api.post("/user/signup", formStudent);
+      await api.post("/user/signup", formStudent);
       setReload(!reload);
       toast.success("Aluno criado com sucesso!");
       setFormStudent({
@@ -54,25 +54,6 @@ export default function SchoolStudentPage() {
     } catch (error) {
       console.log(error);
     }
-  }
-  {
-    /*
-    //removi temporariamente até decidirmos se vamos usar
-//search by group
-  const groupUsersByYear = (users) => {
-    const groupedUsers = {};
-    users.forEach((user) => {
-      if (!groupedUsers[user.class]) {
-        groupedUsers[user.class] = [];
-      }
-      groupedUsers[user.class].push(user);
-    });
-    return groupedUsers;
-  };
-
-  const groupedUsers = groupUsersByYear(users);
-
-*/
   }
 
   function formatTurma(turma) {
@@ -116,7 +97,7 @@ export default function SchoolStudentPage() {
           <h1 className="text-[18px]">Cadastre um aluno</h1>
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-4 ">
+        <form onSubmit={handleSubmit} className="mt-4">
           <div className="flex flex-col">
             <label htmlFor="name" className="block">
               Nome do aluno

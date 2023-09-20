@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Flor1 from "../assets/flor1.svg";
 import Flor2 from "../assets/flor2.svg";
 
-function UserHomePage() {
+export default function UserHomePage() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -12,7 +12,6 @@ function UserHomePage() {
       try {
         const response = await api.get("/user/profile");
         setUser(response.data);
-        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -100,8 +99,6 @@ function UserHomePage() {
 
           {/* BOLETIM */}
           <div className="mt-4">
-            {/*             <h1 className="mt-2 text-3xl font-bold text-white mb-4">Boletim:</h1> */}
-
             <div className="rounded-lg flex gap-2">
               <div className="p-3 rounded-lg bg-white">
                 <h1 className="text-l text-[#6A7AF5] mb-2 text-center">
@@ -215,6 +212,4 @@ function UserHomePage() {
       </div>
     </div>
   );
-}
-
-export default UserHomePage;
+                      }
