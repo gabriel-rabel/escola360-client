@@ -102,7 +102,7 @@ function UserHomePage() {
           <div className="mt-4">
             {/*             <h1 className="mt-2 text-3xl font-bold text-white mb-4">Boletim:</h1> */}
 
-            <div className="rounded-lg flex gap-4">
+            <div className="rounded-lg flex gap-2">
               <div className="p-3 rounded-lg bg-white">
                 <h1 className="text-l text-[#6A7AF5] mb-2 text-center">
                   1º Bimestre
@@ -116,13 +116,16 @@ function UserHomePage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {user[`firstBimester`].map((subject) => (
-                      <tr key={subject._id}>
-                        <td className="border px-4 py-2">{subject.subject}</td>
-                        <td className="border px-4 py-2">{subject.note}</td>
-                        <td className="border px-4 py-2">{subject.missed}</td>
-                      </tr>
-                    ))}
+                    {user[`firstBimester`] &&
+                      user["firstBimester"].map((subject) => (
+                        <tr key={subject._id}>
+                          <td className="border px-4 py-2">
+                            {subject.subject}
+                          </td>
+                          <td className="border px-4 py-2">{subject.note}</td>
+                          <td className="border px-4 py-2">{subject.missed}</td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>
@@ -139,13 +142,16 @@ function UserHomePage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {user[`secondBimester`].map((subject) => (
-                      <tr key={subject._id}>
-                        <td className="border px-4 py-2">{subject.subject}</td>
-                        <td className="border px-4 py-2">{subject.note}</td>
-                        <td className="border px-4 py-2">{subject.missed}</td>
-                      </tr>
-                    ))}
+                    {user[`secondBimester`] &&
+                      user["secondBimester"].map((subject) => (
+                        <tr key={subject._id}>
+                          <td className="border px-4 py-2">
+                            {subject.subject}
+                          </td>
+                          <td className="border px-4 py-2">{subject.note}</td>
+                          <td className="border px-4 py-2">{subject.missed}</td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>
@@ -162,13 +168,16 @@ function UserHomePage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {user[`thirdBimester`].map((subject) => (
-                      <tr key={subject._id}>
-                        <td className="border px-4 py-2">{subject.subject}</td>
-                        <td className="border px-4 py-2">{subject.note}</td>
-                        <td className="border px-4 py-2">{subject.missed}</td>
-                      </tr>
-                    ))}
+                    {user[`thirdBimester`] &&
+                      user["thirdBimester"].map((subject) => (
+                        <tr key={subject._id}>
+                          <td className="border px-4 py-2">
+                            {subject.subject}
+                          </td>
+                          <td className="border px-4 py-2">{subject.note}</td>
+                          <td className="border px-4 py-2">{subject.missed}</td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>
@@ -185,13 +194,16 @@ function UserHomePage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {user[`fourthBimester`].map((subject) => (
-                      <tr key={subject._id}>
-                        <td className="border px-4 py-2">{subject.subject}</td>
-                        <td className="border px-4 py-2">{subject.note}</td>
-                        <td className="border px-4 py-2">{subject.missed}</td>
-                      </tr>
-                    ))}
+                    {user[`fourthBimester`] &&
+                      user["fourthBimester"].map((subject) => (
+                        <tr key={subject._id}>
+                          <td className="border px-4 py-2">
+                            {subject.subject}
+                          </td>
+                          <td className="border px-4 py-2">{subject.note}</td>
+                          <td className="border px-4 py-2">{subject.missed}</td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>
