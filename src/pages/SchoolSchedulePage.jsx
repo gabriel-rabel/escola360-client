@@ -277,7 +277,7 @@ export default function SchoolSchedulePage() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="border border-gray-400 rounded-md px-4 py-2 h-10 mb-2"
+              className="border border-gray-400 w-full rounded-md px-4 py-2 h-10 mb-2"
               placeholder="Selecione um Aluno"
             />
 
