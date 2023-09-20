@@ -4,15 +4,17 @@ import Navbar from "../components/Navbar";
 import Flor1 from "../assets/flor1.svg";
 import Flor2 from "../assets/flor2.svg";
 
-function UserHomePage() {
+export default function UserHomePage() {
   const [user, setUser] = useState({});
+
+
 
   useEffect(() => {
     async function getProfile() {
       try {
         const response = await api.get("/user/profile");
         setUser(response.data);
-        console.log(response.data);
+  
       } catch (error) {
         console.log(error);
       }
@@ -20,6 +22,14 @@ function UserHomePage() {
 
     getProfile();
   }, []);
+
+console.log(user)
+
+
+
+
+
+
 
   return (
     <div className="bg-[#6D7DFF] h-screen w-screen">
@@ -41,8 +51,9 @@ function UserHomePage() {
           </div>
 
           {/* DADOS PESSOAIS */}
+          <section className="flex gap-5 w-[800px]">
 
-          <div className="relative mb-10 bg-white rounded-lg p-4 w-[800px]">
+          <div className="relative mb-10 bg-white rounded-lg p-4 w-3/5">
             <img
               src={Flor2}
               alt=""
@@ -95,13 +106,20 @@ function UserHomePage() {
                       </span>
                     ))}
               </span>
+
             </div>
+            
           </div>
+          <div className="relative mb-10 bg-white rounded-lg p-4 w-2/5">
+            <h1 className="text-[#6A7AF5]">Cardápio do mês</h1>
+            <pre className="text-[#525252] whitespace-pre-line font-raleway">{user.menu}</pre>
+          </div>
+          </section>
+          
+
 
           {/* BOLETIM */}
           <div className="mt-4">
-            {/*             <h1 className="mt-2 text-3xl font-bold text-white mb-4">Boletim:</h1> */}
-
             <div className="rounded-lg flex gap-2">
               <div className="p-3 rounded-lg bg-white">
                 <h1 className="text-l text-[#6A7AF5] mb-2 text-center">
@@ -215,6 +233,4 @@ function UserHomePage() {
       </div>
     </div>
   );
-}
-
-export default UserHomePage;
+                      }

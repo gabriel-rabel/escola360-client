@@ -40,7 +40,7 @@ export default function SchoolNotificationPage() {
   async function handleSubmitNotification(e) {
     e.preventDefault();
     try {
-      const response = await api.post("/notification/create", formNotification);
+      await api.post("/notification/create", formNotification);
       setReload(!reload);
       toast.success("Notificação adicionada com sucesso!");
       // Limpar os campos do formulário após a adição

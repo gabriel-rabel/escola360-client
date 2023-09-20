@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import NotificationList from "../components/NotificationsList";
 import api from "../axios/api";
 import { Link } from "react-router-dom";
 import Voltar from "../assets/voltar.svg";
 import formatarData from "../utils/dateFormatter";
 
-function NotificationsPage() {
+export default function NotificationsPage() {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
@@ -18,7 +17,6 @@ function NotificationsPage() {
         console.log(error);
       }
     }
-
     getUserNotifications();
   }, []);
 
@@ -84,5 +82,3 @@ function NotificationsPage() {
     </div>
   );
 }
-
-export default NotificationsPage;

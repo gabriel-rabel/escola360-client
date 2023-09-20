@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/escola360logo.svg";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
-function LoginPageSchool() {
+export default function LoginPageSchool() {
   const navigate = useNavigate();
   
   useEffect(() => {
-    // Função para redirecionar o usuário com base na role
     const redirectUser = () => {
       const userRole = localStorage.getItem("userRole");
       if (userRole === "SCHOOL") {
@@ -18,8 +17,7 @@ function LoginPageSchool() {
         navigate("/user");
       }
     };
-
-    // Chame a função de redirecionamento assim que o componente for montado
+    // Chama a função de redirecionamento assim que o componente for montado
     redirectUser();
   }, [navigate]);
 
@@ -29,7 +27,7 @@ function LoginPageSchool() {
     password: "",
   });
 
-  //Esse handleChange atualiza meu formulário
+  //Atualiza o formulário
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
@@ -41,10 +39,9 @@ function LoginPageSchool() {
       const response = await axios.post(
         "http://localhost:4000/school/login",
         form
-      ); // Certifique-se de ajustar a URL da sua API
-      console.log(response);
+      );
 
-      // GUARDAR O TOKEN E ID DE QUEM LOGOU
+      // GUARDA O TOKEN E ID DE QUEM LOGOU
       const token = response.data.token;
       const userId = response.data.user._id;
       const userRole = response.data.user.role;
@@ -53,10 +50,7 @@ function LoginPageSchool() {
       localStorage.setItem("userId", userId);
       localStorage.setItem("userRole", userRole);
       toast.success("Login realizado com sucesso!");
-
       navigate("/school"); // Navega para a página inicial após o login ser bem-sucedido
-
-      console.log(form);
     } catch (error) {
       toast.error("Senha ou usuário incorreto, tente novamente!");
       console.log(error);
@@ -71,7 +65,6 @@ function LoginPageSchool() {
         <img src={logo} alt="Your Company" className="w-40" />
         </Link>
       </div>
-
       {/*   <!-- Coluna direita com o formulário de login --> */}
       <div className="flex-1 flex justify-center items-center w-1/2">
         <div>
@@ -140,55 +133,3 @@ function LoginPageSchool() {
     </div>
   );
 }
-
-export default LoginPageSchool;
-
-/* 
-VERSÃO SEM ESTILO
-  <div>
-      <div>
-         <img
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
-         />
-         <h2>Entre na sua conta</h2>
-
-         <form onSubmit={handleSubmit}>
-            <div>
-               <label htmlFor="email">Email</label>
-               <div>
-                  <input
-                     id="email"
-                     name="email"
-                     type="email"
-                     autoComplete="email"
-                     required
-                     value={form.email}
-                     onChange={handleChange}
-                  />
-               </div>
-            </div>
-
-            <div>
-               <label htmlFor="password">Senha</label>
-               <div>
-                  <input
-                     id="password"
-                     name="password"
-                     type="password"
-                     autoComplete="current-password"
-                     required
-                     value={form.password}
-                     onChange={handleChange}
-                  />
-               </div>
-            </div>
-
-            <div>
-               <button type="submit">Entrar</button>
-            </div>
-         </form>
-      </div>
-   </div>
-
-*/

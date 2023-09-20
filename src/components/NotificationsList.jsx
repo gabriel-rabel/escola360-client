@@ -1,6 +1,6 @@
 import React from "react";
 
-function NotificationList({ notifications }) {
+export default function NotificationList({ notifications }) {
   return (
     <div>
       <h2>Suas Notificações:</h2>
@@ -15,5 +15,3 @@ function NotificationList({ notifications }) {
     </div>
   );
 }
-
-export default NotificationList;

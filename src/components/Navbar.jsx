@@ -4,7 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { BellIcon } from "@heroicons/react/24/solid";
 import api from "../axios/api";
 
-function Navbar() {
+export default function Navbar() {
   const { isLoggedIn } = useContext(AuthContext);
   const [notifications, setNotifications] = useState([]);
   const [unreadNotifications, setUnreadNotifications] = useState(false); // Estado para controlar se há notificações não lidas
@@ -40,8 +40,7 @@ function Navbar() {
   async function markNotificationsAsRead() {
     try {
       await api.put("/notification/mark_as_read");
-      // Após marcar as notificações como lidas, atualize a lista de notificações
-      getUserNotifications();
+
       // Defina o estado como "lido" quando clicar no ícone
       setUnreadNotifications(false);
     } catch (error) {
@@ -80,5 +79,3 @@ function Navbar() {
     </nav>
   );
 }
-
-export default Navbar;
