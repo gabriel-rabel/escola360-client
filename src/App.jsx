@@ -15,6 +15,7 @@ import SchoolMenuPage from "./pages/SchoolMenuPage";
 import SchoolReportCardPage from "./pages/SchoolReportCardPage";
 import SchoolProfilePage from "./pages/SchoolProfilePage";
 import SchoolSchedulePage from "./pages/SchoolSchedulePage";
+import NotificationsPage from "./pages/NotificationsPage";
 
 function App() {
   return (
@@ -71,6 +72,10 @@ function App() {
           <Route
             path="/school/report-card"
             element={<ProtectRoute Component={SchoolReportCardPage} />}
+          />
+          <Route
+            path="/notifications"
+            element={<ProtectRoute Component={NotificationsPage} />}
           />
         </Routes>
       </div>
