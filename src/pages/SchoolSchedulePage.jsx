@@ -869,6 +869,7 @@ export default function SchoolSchedulePage() {
           </div>
         </div>
       </div>
+         
     </div>
   );
 }
