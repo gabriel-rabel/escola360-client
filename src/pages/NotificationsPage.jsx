@@ -22,6 +22,8 @@ function NotificationsPage() {
     getUserNotifications();
   }, []);
 
+  notifications.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
   return (
     <div className="w-screen">
       <Navbar />
