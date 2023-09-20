@@ -28,21 +28,22 @@ function Navbar() {
       }
     }
 
-    if (isLoggedIn) {
-      getUserNotifications(); // Busque as notificações do usuário se estiver logado
-    }
-  }, [isLoggedIn]);
+    getUserNotifications();
+  }, []);
 
   return (
     <nav>
-      <div className="navbar px-10 flex justify-between items-center">
+      <div className="navbar px-10 flex bg-[#6D7DFF] justify-between items-center">
         <Link to="/">
           <span className="logo"></span>
         </Link>
         <div className="menu flex items-center">
           {isLoggedIn && (
             <>
-              <Link to="/notifications" className="mr-4 flex items-center">
+              <Link
+                to="/notifications"
+                className="mr-8 flex items-center relative"
+              >
                 <BellIcon className="h-6 w-6" />
                 {notifications.length > 0 && (
                   <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full h-4 w-4 flex items-center justify-center">
