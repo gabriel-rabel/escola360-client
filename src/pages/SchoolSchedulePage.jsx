@@ -408,24 +408,24 @@ export default function SchoolSchedulePage() {
             {/* Bimestres */}
 
             {/* TERCEIRO BIMESTRE */}
-            <div className=" flex gap-6 justify-center">
+            <div className=" flex gap-10 justify-center">
               <div className="mt-4 w-1/3">
                 <div className="text-center p-2">
                   <h1 className="text-[18px] font-bold mb-4">
                     Primeiro Bimestre
                   </h1>
                 </div>
-                <div className="flex flex-col border-[1.5px] rounded-lg">
-                  <table className="  rounded-lg">
+                <div className="flex flex-col border-[1.5px] rounded-lg ">
+                  <table className="rounded-lg">
                     <thead>
-                      <tr className=" ">
-                        <th className="text-left py-2 px-4 font-medium bg-[#6D7DFF]/10 rounded-l-lg rounded-r-none ">
+                      <tr className=" bg-[#6D7DFF]/10">
+                        <th className="text-left py-2 px-4 font-medium  ">
                           Matérias
                         </th>
-                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10  rounded-r-none ">
+                        <th className="text-left py-2 px-4 font-medium   ">
                           Notas
                         </th>
-                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10 rounded-r-lg rounded--none ">
+                        <th className="text-left py-2 px-4 font-medium ">
                           Faltas
                         </th>
                       </tr>
@@ -555,14 +555,14 @@ export default function SchoolSchedulePage() {
                 <div className="flex flex-col border-[1.5px] rounded-lg">
                   <table className="  rounded-lg">
                     <thead>
-                      <tr className=" ">
-                        <th className="text-left py-2 px-4 font-medium bg-[#6D7DFF]/10 rounded-l-lg rounded-r-none ">
+                      <tr className=" bg-[#6D7DFF]/10 ">
+                        <th className="text-left py-2 px-4 font-medium  ">
                           Matérias
                         </th>
-                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10  rounded-r-none ">
+                        <th className="text-left py-2 px-4 font-medium   ">
                           Notas
                         </th>
-                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10 rounded-r-lg rounded--none ">
+                        <th className="text-left py-2 px-4 font-medium   ">
                           Faltas
                         </th>
                       </tr>
@@ -684,7 +684,7 @@ export default function SchoolSchedulePage() {
             </div>
 
             {/* Segunda Linha */}
-            <div className="mt-6 flex gap-6 justify-center mb-20">
+            <div className="mt-6 flex gap-10 justify-center mb-20">
               <div className="mt-4 w-1/3">
                 <div className="text-center p-2">
                   <h1 className="text-[18px] font-bold mb-4">
@@ -694,14 +694,14 @@ export default function SchoolSchedulePage() {
                 <div className="flex flex-col border-[1.5px] rounded-lg">
                   <table className="  rounded-lg">
                     <thead>
-                      <tr className=" ">
-                        <th className="text-left py-2 px-4 font-medium bg-[#6D7DFF]/10 rounded-l-lg rounded-r-none ">
+                      <tr className=" bg-[#6D7DFF]/10">
+                        <th className="text-left py-2 px-4 font-medium  ">
                           Matérias
                         </th>
-                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10  rounded-r-none ">
+                        <th className="text-left py-2 px-4 font-medium ">
                           Notas
                         </th>
-                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10 rounded-r-lg rounded--none ">
+                        <th className="text-left py-2 px-4 font-medium ">
                           Faltas
                         </th>
                       </tr>
@@ -831,14 +831,14 @@ export default function SchoolSchedulePage() {
                 <div className="flex flex-col border-[1.5px] rounded-lg">
                   <table className="  rounded-lg">
                     <thead>
-                      <tr className=" ">
-                        <th className="text-left py-2 px-4 font-medium bg-[#6D7DFF]/10 rounded-l-lg rounded-r-none ">
+                      <tr className="bg-[#6D7DFF]/10 ">
+                        <th className="text-left py-2 px-4 font-medium  ">
                           Matérias
                         </th>
-                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10  rounded-r-none ">
+                        <th className="text-left py-2 px-4 font-medium   ">
                           Notas
                         </th>
-                        <th className="text-left py-2 px-4 font-medium  bg-[#6D7DFF]/10 rounded-r-lg rounded--none ">
+                        <th className="text-left py-2 px-4 font-medium   ">
                           Faltas
                         </th>
                       </tr>
