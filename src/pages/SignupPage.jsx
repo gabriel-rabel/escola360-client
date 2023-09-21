@@ -5,9 +5,7 @@ import api from "../axios/api";
 import { Link } from "react-router-dom";
 import logo from "../assets/escola360logo.svg";
 
-
 //página nao sera usada. apenas para teste
-
 
 function SignupPage() {
   const navigate = useNavigate();
@@ -50,7 +48,10 @@ function SignupPage() {
         profilePicture: url,
       };
 
-      await axios.post("http://localhost:4000/school/signup", formWithPhoto);
+      await axios.post(
+        "https://escola360-server.onrender.com/school/signup",
+        formWithPhoto
+      );
 
       navigate("/login");
     } catch (error) {
@@ -64,13 +65,12 @@ function SignupPage() {
     setPhoto(e.target.files[0]);
   }
 
-
   return (
     <div className="flex h-screen w-screen">
-       {/*   <!-- Coluna esquerda com o logotipo e background indigo --> */}
-       <div className="bg-login flex-1 flex justify-center items-center w-1/2">
+      {/*   <!-- Coluna esquerda com o logotipo e background indigo --> */}
+      <div className="bg-login flex-1 flex justify-center items-center w-1/2">
         <Link to="/">
-        <img src={logo} alt="Your Company" className="w-40" />
+          <img src={logo} alt="Your Company" className="w-40" />
         </Link>
       </div>
       <div className="flex-1 flex justify-center items-center w-1/2">
@@ -82,10 +82,8 @@ function SignupPage() {
             <p className="mb-10 font-raleway font-medium">
               Área de cadastro de escola.
             </p>
-            
           </div>
-      {/*   <!-- Coluna direita com o formulário de login --> */}
-        
+          {/*   <!-- Coluna direita com o formulário de login --> */}
 
           <form className="mt-4" onSubmit={handleSubmit}>
             <div>
@@ -190,13 +188,14 @@ function SignupPage() {
               Entre em contato com a gente
             </a>
           </p>
-          <p className="text-xs">*Seu cadastro passará por um processo de aprovação. Aguarde, em até 48 horas você receberá um e-mail de confirmação.</p>
+          <p className="text-xs">
+            *Seu cadastro passará por um processo de aprovação. Aguarde, em até
+            48 horas você receberá um e-mail de confirmação.
+          </p>
         </div>
-      </div> 
       </div>
-
+    </div>
   );
 }
 
 export default SignupPage;
-

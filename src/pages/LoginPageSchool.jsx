@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 export default function LoginPageSchool() {
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const redirectUser = () => {
       const userRole = localStorage.getItem("userRole");
@@ -20,7 +20,6 @@ export default function LoginPageSchool() {
     // Chama a função de redirecionamento assim que o componente for montado
     redirectUser();
   }, [navigate]);
-
 
   const [form, setForm] = useState({
     email: "",
@@ -37,7 +36,7 @@ export default function LoginPageSchool() {
     try {
       // Faça a requisição para a rota /login da sua API aqui.
       const response = await axios.post(
-        "http://localhost:4000/school/login",
+        "https://escola360-server.onrender.com/school/login",
         form
       );
 
@@ -62,7 +61,7 @@ export default function LoginPageSchool() {
       {/*   <!-- Coluna esquerda com o logotipo e background indigo --> */}
       <div className="bg-login flex-1 flex justify-center items-center w-1/2">
         <Link to="/">
-        <img src={logo} alt="Your Company" className="w-40" />
+          <img src={logo} alt="Your Company" className="w-40" />
         </Link>
       </div>
       {/*   <!-- Coluna direita com o formulário de login --> */}
@@ -114,7 +113,13 @@ export default function LoginPageSchool() {
                 />
               </div>
               <div className="flex mt-1 gap-2">
-              <p className="text-xs italic">Problemas com login?</p><a href="mailto:contato@escola360.com.br" className="text-xs italic text-[#6D7DFF]">Contate-nos!</a>
+                <p className="text-xs italic">Problemas com login?</p>
+                <a
+                  href="mailto:contato@escola360.com.br"
+                  className="text-xs italic text-[#6D7DFF]"
+                >
+                  Contate-nos!
+                </a>
               </div>
             </div>
 
