@@ -1,6 +1,5 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import SignupPage from "./pages/SignupPage";
 import LoginPageUser from "./pages/LoginPageUser";
 import LoginPageSchool from "./pages/LoginPageSchool";
 import { Toaster } from "react-hot-toast";
@@ -11,7 +10,6 @@ import HomePage from "./pages/HomePage";
 import SchoolNotificationPage from "./pages/SchoolNotificationPage";
 import SchoolStudentPage from "./pages/SchoolStudentPage";
 import SchoolMenuPage from "./pages/SchoolMenuPage";
-import SchoolReportCardPage from "./pages/SchoolReportCardPage";
 import SchoolProfilePage from "./pages/SchoolProfilePage";
 import SchoolSchedulePage from "./pages/SchoolSchedulePage";
 import NotificationsPage from "./pages/NotificationsPage";
@@ -27,8 +25,6 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPageUser />} />
           <Route path="/loginschool" element={<LoginPageSchool />} />
-          <Route path="/signup" element={<SignupPage />} />
-
           {/* Rota protegida */}
           <Route
             path="/school"
@@ -53,20 +49,12 @@ function App() {
             element={<ProtectRoute Component={SchoolMenuPage} />}
           />
           <Route
-            path="/school/report-card"
-            element={<ProtectRoute Component={SchoolReportCardPage} />}
-          />
-          <Route
             path="/school/profile"
             element={<ProtectRoute Component={SchoolProfilePage} />}
           />
           <Route
             path="/school/schedule"
             element={<ProtectRoute Component={SchoolSchedulePage} />}
-          />
-          <Route
-            path="/school/report-card"
-            element={<ProtectRoute Component={SchoolReportCardPage} />}
           />
           <Route
             path="/notifications"

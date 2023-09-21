@@ -4,10 +4,6 @@ const api = axios.create({
   baseURL: "https://escola360-server.onrender.com",
 });
 
-/*const api = axios.create({
-   baseURL: "https://escola360-server.onrender.com",
-});
-*/
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("userToken");
