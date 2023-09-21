@@ -8,7 +8,6 @@ import ProtectRoute from "./components/ProtectRoute";
 import SchoolHomePage from "./pages/SchoolHomePage";
 import UserHomePage from "./pages/UserHomePage";
 import HomePage from "./pages/HomePage";
-import SchoolGradePage from "./pages/SchoolGradePage";
 import SchoolNotificationPage from "./pages/SchoolNotificationPage";
 import SchoolStudentPage from "./pages/SchoolStudentPage";
 import SchoolMenuPage from "./pages/SchoolMenuPage";
@@ -39,10 +38,6 @@ function App() {
           <Route
             path="/user"
             element={<ProtectRoute Component={UserHomePage} />}
-          />
-          <Route
-            path="/school/grade"
-            element={<ProtectRoute Component={SchoolGradePage} />}
           />
 
           <Route

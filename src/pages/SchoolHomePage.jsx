@@ -57,20 +57,6 @@ export default function SchoolHomePage() {
             </div>
           </Link>
 
-          {/* Matérias */}
-          <Link
-            to="/school/grade"
-            className="border border-white rounded-md shadow-sm p-3"
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex gap-4">
-                <BookOpenIcon className="h-6 w-6 mr-1 text-white" />
-                <p className="text-white">Matérias</p>
-              </div>
-              <img src={Seta} alt="Ícone da seta" />
-            </div>
-          </Link>
-
           {/* Cardápio */}
           <Link
             to="/school/menu"
