@@ -14,6 +14,7 @@ export default function UserHomePage() {
       try {
         const response = await api.get("/user/profile");
         setUser(response.data);
+        console.log(response.data)
   
       } catch (error) {
         console.log(error);
@@ -24,12 +25,6 @@ export default function UserHomePage() {
   }, []);
 
 console.log(user)
-
-
-
-
-
-
 
   return (
     <div className="bg-[#6D7DFF] h-screen w-screen">
@@ -233,4 +228,4 @@ console.log(user)
       </div>
     </div>
   );
-                      }
+}
