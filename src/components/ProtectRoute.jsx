@@ -8,7 +8,7 @@ export default function ProtectRoute({ Component }) {
 
    useEffect(() => {
       if (!token) {
-         navigate("/login");
+         navigate("/");
       }
    }, [navigate, token]);
 
