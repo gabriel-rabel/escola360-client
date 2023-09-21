@@ -69,7 +69,7 @@ export default function SchoolNotificationPage() {
   return (
     <div className="w-screen scroll-hidden">
       <NavbarSchool />
-      <div className="mt-10 mx-auto w-4/6">
+      <div className="mt-10 mx-auto w-4/5">
         <div className="flex items-center gap-2 mb-2">
           <Link to="/school">
             <img src={Voltar} />
