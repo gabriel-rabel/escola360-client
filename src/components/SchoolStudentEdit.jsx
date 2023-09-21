@@ -40,7 +40,7 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
       onEdit(); // Chama a função de atualização da lista
       onClose(); // Fecha o modal
     } catch (error) {
-      if (error.response && error.response.status === 409) {
+      if (error.response && error.response.status === 500) {
         toast.error("Usuário já está cadastrado.");
       } else {
         console.log(error);
