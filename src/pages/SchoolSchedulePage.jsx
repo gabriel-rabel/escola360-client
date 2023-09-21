@@ -521,20 +521,20 @@ export default function SchoolSchedulePage() {
                           <td className="py-2 px-4">
                             <input
                               type="text"
-                              value={terceiroBi[2].note}
+                              value={segundoBi[2].note}
                               className="w-24 py-1 px-2 border rounded border-gray-200"
                               onChange={(e) =>
-                                handleTerceiroBi(2, "note", e.target.value)
+                                handleSegundoBi(2, "note", e.target.value)
                               }
                             />
                           </td>
                           <td className="py-2 px-4">
                             <input
                               type="text"
-                              value={terceiroBi[2].missed}
+                              value={segundoBi[2].missed}
                               className="w-24 py-1 px-2 border rounded border-gray-200"
                               onChange={(e) =>
-                                handleTerceiroBi(2, "missed", e.target.value)
+                                handleSegundoBi(2, "missed", e.target.value)
                               }
                             />
                           </td>
@@ -546,20 +546,20 @@ export default function SchoolSchedulePage() {
                           <td className="py-2 px-4">
                             <input
                               type="text"
-                              value={quartoBi[3].note}
+                              value={segundoBi[3].note}
                               className="w-24 py-1 px-2 border rounded border-gray-200"
                               onChange={(e) =>
-                                handleQuartoBi(3, "note", e.target.value)
+                                handleSegundoBi(3, "note", e.target.value)
                               }
                             />
                           </td>
                           <td className="py-2 px-4">
                             <input
                               type="text"
-                              value={quartoBi[3].missed}
+                              value={segundoBi[3].missed}
                               className="w-24 py-1 px-2 border rounded border-gray-200"
                               onChange={(e) =>
-                                handleQuartoBi(3, "missed", e.target.value)
+                                handleSegundoBi(3, "missed", e.target.value)
                               }
                             />
                           </td>
