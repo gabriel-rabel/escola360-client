@@ -40,7 +40,6 @@ export default function SchoolStudentEdit({ userId, onClose, onEdit }) {
       onEdit(); // Chama a função de atualização da lista
       onClose(); // Fecha o modal
     } catch (error) {
-        toast.error("Erro ao criar o aluno. Verifique os campos.");
         console.log(error);
       }
     }
