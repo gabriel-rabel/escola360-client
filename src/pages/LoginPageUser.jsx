@@ -36,7 +36,10 @@ function LoginPageUser() {
     try {
       //Faça a requisição para a rota /login da sua api aqui.
       let response;
-      response = await axios.post("http://localhost:4000/user/login", form);
+      response = await axios.post(
+        "https://escola360-server.onrender.com/user/login",
+        form
+      );
 
       //GUARDA O TOKEN E ID DE QUEM LOGOU
       const token = response.data.token;
@@ -50,7 +53,6 @@ function LoginPageUser() {
       toast.success("Login realizado com sucesso!");
 
       navigate("/user");
-
     } catch (error) {
       toast.error("Senha ou usuário incorreto, tente novamente!");
       console.log(error);
@@ -62,7 +64,7 @@ function LoginPageUser() {
       {/*   <!-- Coluna esquerda com o logotipo e background indigo --> */}
       <div className="bg-login flex-1 flex justify-center items-center w-1/2">
         <Link to="/">
-        <img src={logo} alt="Your Company" className="w-40" />
+          <img src={logo} alt="Your Company" className="w-40" />
         </Link>
       </div>
 
@@ -114,7 +116,13 @@ function LoginPageUser() {
                 />
               </div>
               <div className="flex mt-1 gap-2">
-              <p className="text-xs italic">Problemas com login?</p><a href="mailto:contato@escola360.com.br" className="text-xs italic text-[#6D7DFF]">Contate-nos!</a>
+                <p className="text-xs italic">Problemas com login?</p>
+                <a
+                  href="mailto:contato@escola360.com.br"
+                  className="text-xs italic text-[#6D7DFF]"
+                >
+                  Contate-nos!
+                </a>
               </div>
             </div>
             <div>
