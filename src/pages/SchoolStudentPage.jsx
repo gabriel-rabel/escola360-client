@@ -52,7 +52,11 @@ export default function SchoolStudentPage() {
         password: "",
       });
     } catch (error) {
-      console.log(error);
+      if (error.response && error.response.status === 500) {
+        toast.error("O email do usuário já está cadastrado.");
+      } else {
+        console.log(error);
+      }
     }
   }
 
