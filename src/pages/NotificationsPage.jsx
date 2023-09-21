@@ -40,8 +40,8 @@ export default function NotificationsPage() {
 
             {/* Tabela */}
             <table className="divide-y divide-gray-200 border-gray-200 scroll-hidden  ">
-              <thead >
-                <tr >
+              <thead>
+                <tr>
                   <th
                     scope="col"
                     className="text-left text-md font-medium text-gray-500 tracking-wider"
@@ -50,13 +50,13 @@ export default function NotificationsPage() {
                   </th>
                   <th
                     scope="col"
-                    className="text-left text-md font-medium text-gray-500 tracking-normal py-2"
+                    className="text-left text-md font-medium text-gray-500 tracking-normal py-2 px-2"
                   >
                     Descrição
                   </th>
                   <th
                     scope="col"
-                    className="flex flex-col items-end py-3 text-right text-md font-medium text-gray-500 tracking-wider"
+                    className="flex flex-col items-end py-3 px-6 text-right text-md font-medium text-gray-500 tracking-wider"
                   >
                     Data
                   </th>
@@ -65,8 +65,10 @@ export default function NotificationsPage() {
               <tbody className="bg-white divide-y divide-gray-200">
                 {notifications.map((notification) => (
                   <tr key={notification._id}>
-                    <td className="py-4 text-md">{notification.title}</td>
-                    <td className="py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="py-4 text-sm font-medium whitespace-normal">
+                      {notification.title}
+                    </td>
+                    <td className="py-4 px-2 whitespace-normal text-sm font-medium text-gray-900">
                       {notification.description}
                     </td>
                     <td className="flex flex-col items-end py-4 whitespace-nowrap text-sm font-medium text-gray-900">
