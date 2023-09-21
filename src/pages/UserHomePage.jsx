@@ -8,7 +8,7 @@ export default function UserHomePage() {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true); // Adicione um estado para verificar se os dados estão carregando
 
-   useEffect(() => {
+  useEffect(() => {
     async function getProfile() {
       try {
         const response = await api.get("/user/profile");
@@ -190,13 +190,6 @@ export default function UserHomePage() {
     user.fourthBimester,
   ]);
 
-  const faltasDoSecondBimester = capturarFaltasDoSecondBimester(user);
-
-  const faltasDoThirdBimester = capturarFaltasDoThirdBimester(user);
-
-  const faltasDoFourthBimester = capturarFaltasDoFourthBimester(user);
-
-  const faltasDoFirstBimester = capturarFaltasDoFirstBimester(user);
   return (
     <div className="bg-[#6D7DFF] h-screen w-screen">
       <Navbar />
