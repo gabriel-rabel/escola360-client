@@ -6,19 +6,27 @@ import Flor2 from "../assets/flor2.svg";
 
 export default function UserHomePage() {
   const [user, setUser] = useState({});
+  const [isLoading, setIsLoading] = useState(true); // Adicione um estado para verificar se os dados estão carregando
 
   useEffect(() => {
     async function getProfile() {
       try {
         const response = await api.get("/user/profile");
         setUser(response.data);
+        setIsLoading(false); // Defina isLoading como false quando os dados forem carregados
       } catch (error) {
         console.log(error);
+        setIsLoading(false); // Defina isLoading como false em caso de erro
       }
     }
 
     getProfile();
   }, []);
+
+  if (isLoading) {
+    // Mostrar um indicador de carregamento enquanto os dados estão sendo carregados
+    return <p>Carregando...</p>;
+  }
 
   console.log(user);
 
@@ -151,7 +159,7 @@ export default function UserHomePage() {
   const mediasFinais = calcularMediaFinal(todasAsNotas);
 
   function calcularMediaFaltas(bimestres) {
-    if (!bimestres) {
+    if (!bimestres || !Array.isArray(bimestres) || bimestres.length === 0) {
       return [];
     }
 
@@ -424,32 +432,4 @@ export default function UserHomePage() {
       </div>
     </div>
   );
-}
-{
-  /* <div className="p-3 rounded-lg bg-white">
-                <h1 className="text-l text-[#6A7AF5] mb-2 text-center">
-                  Média final
-                </h1>
-                <table className="table-auto">
-                  <thead>
-                    <tr>
-                      <th className="px-4 py-2 text-gray-600">Matéria</th>
-                      <th className="px-4 py-2 text-gray-600">Nota</th>
-                      <th className="px-4 py-2 text-gray-600">Faltas</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {user[`finalSchedule`] &&
-                      user["finalSchedule"].map((subject) => (
-                        <tr key={subject._id}>
-                          <td className="border px-4 py-2">
-                            {subject.subject}
-                          </td>
-                          <td className="border px-4 py-2">{notasBimestre1}</td>
-                          <td className="border px-4 py-2">{subject.missed}</td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              </div> */
 }
